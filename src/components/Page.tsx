@@ -1,21 +1,11 @@
-// Helper function to import all pages
-const importAllPages = () => {
-  const images: { [key: string]: string } = {};
+// Import images into array of URLs, using Vite's dynamic import with URL
 
-  // Loop from 1 to 11
-  for (let i = 1; i <= 11; i++) {
-    // Using Vite's dynamic import with URL
-    images[`page${i}`] = new URL(
-      `../assets/page${i}.png`,
-      import.meta.url
-    ).href;
-  }
+const images = Array.from(
+  { length: 34 },
+  (_, i) => new URL(`../assets/pg_${i}.png`, import.meta.url).href
+);
 
-  return images;
-};
-
-// Use the function to create your images object
-const images = importAllPages();
+console.log(images);
 
 interface Prop {
   page: number;

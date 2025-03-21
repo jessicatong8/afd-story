@@ -4,13 +4,13 @@ import BackButton from "./components/BackButton";
 import NextButton from "./components/NextButton";
 
 function App() {
-  const numPages = 11;
-  const storyPages = [...Array(numPages)].map((_, i) => `page${i + 1}`);
+  const numPages = 33;
 
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  console.log(currentPage);
 
   const handleNextClick = () => {
-    if (currentPage < storyPages.length - 1) {
+    if (currentPage < numPages) {
       setCurrentPage(currentPage + 1);
     }
   };
