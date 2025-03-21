@@ -6,7 +6,7 @@ import NextButton from "./components/NextButton";
 function App() {
   const numPages = 33;
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   console.log(currentPage);
 
   const handleNextClick = () => {
@@ -16,14 +16,14 @@ function App() {
   };
 
   const handleBackClick = () => {
-    if (currentPage > 0) {
+    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
   return (
     <div>
-      <Page page={currentPage} />
+      <Page pageNumber={currentPage} />
       <BackButton onClick={handleBackClick} />
       <NextButton onClick={handleNextClick} />
     </div>
