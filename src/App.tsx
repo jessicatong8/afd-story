@@ -5,6 +5,8 @@ import NextButton from "./components/NextButton";
 
 function App() {
   const numPages = 33;
+  var nextIsActive = true;
+  var backIsActive = true;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   console.log(currentPage);
@@ -24,11 +26,11 @@ function App() {
   return (
     <section className="flex items-center justify-evenly">
       {/* <h1 className="text-3xl font-bold underline">Hello World</h1> */}
-      <BackButton onClick={handleBackClick} />
+      <BackButton isActive={backIsActive} onClick={handleBackClick} />
       <div>
-        <Page pageNumber={currentPage} />
+        <Page pageNumber={currentPage} numPages={numPages} />
       </div>
-      <NextButton onClick={handleNextClick} />
+      <NextButton isActive={nextIsActive} onClick={handleNextClick} />
     </section>
   );
 }

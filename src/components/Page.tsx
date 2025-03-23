@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-interface Prop {
+interface Props {
   pageNumber: number;
+  numPages: number;
 }
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
 // console.log(images);
 
-const Page = ({ pageNumber }: Prop) => {
+const Page = ({ pageNumber, numPages }: Props) => {
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Function to load an image dynamically
@@ -44,7 +45,7 @@ const Page = ({ pageNumber }: Prop) => {
       if (pageNumber > 1 && !newCache[pageNumber - 1]) {
         newCache[pageNumber - 1] = await loadImage(pageNumber - 1);
       }
-      if (pageNumber < 33 && !newCache[pageNumber + 1]) {
+      if (pageNumber < numPages && !newCache[pageNumber + 1]) {
         newCache[pageNumber + 1] = await loadImage(pageNumber + 1);
       }
       console.log(newCache);
