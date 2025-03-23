@@ -6,13 +6,14 @@ import DoorUI from "./DoorUI";
 interface Props {
   pageNumber: number;
   numPages: number;
+  handleNext: () => void;
 }
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
 // console.log(images);
 
-const Page = ({ pageNumber, numPages }: Props) => {
+const Page = ({ pageNumber, numPages, handleNext }: Props) => {
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Function to load an image dynamically
@@ -70,7 +71,7 @@ const Page = ({ pageNumber, numPages }: Props) => {
             />
 
             {/* page 3 door opening */}
-            <div>{pageNumber === 3 && <DoorUI />}</div>
+            <div>{pageNumber === 3 && <DoorUI handleClick={handleNext} />}</div>
           </div>
         ) : (
           <p>Loading...</p>

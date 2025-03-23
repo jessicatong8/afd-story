@@ -36,7 +36,11 @@ function ReadPage() {
       {/* <h1 className="text-3xl font-bold underline">Hello World</h1> */}
       <BackButton isActive={backIsActive} onClick={handleBack} />
       <div>
-        <Page pageNumber={currentPage} numPages={numPages} />
+        <Page
+          pageNumber={currentPage}
+          numPages={numPages}
+          handleNext={handleNext}
+        />
       </div>
       <NextButton isActive={nextIsActive} onClick={handleNext} />
     </section>
