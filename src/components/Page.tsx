@@ -61,7 +61,7 @@ const Page = ({ pageNumber, numPages, handleNext }: Props) => {
     <div>
       <div className=" w-full h-screen flex justify-center items-center">
         {imageCache[pageNumber] ? (
-          <div className="relative border-8 border-amber-500">
+          <div className="relative border-2 border-amber-500">
             <LazyLoadImage
               src={imageCache[pageNumber]}
               alt={`Page ${pageNumber}`}
@@ -71,7 +71,9 @@ const Page = ({ pageNumber, numPages, handleNext }: Props) => {
             />
 
             {/* page 3 door opening */}
-            <div>{pageNumber === 3 && <DoorUI handleClick={handleNext} />}</div>
+            <span>
+              {pageNumber === 3 && <DoorUI handleClick={handleNext} />}
+            </span>
           </div>
         ) : (
           <p>Loading...</p>
