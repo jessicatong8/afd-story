@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Page from "./components/Page";
-import BackButton from "./components/BackButton";
-import NextButton from "./components/NextButton";
+import Page from "../components/Page";
+import BackButton from "../components/BackButton";
+import NextButton from "../components/NextButton";
 
-function App() {
+function ReadPage() {
   const numPages = 33;
   var nextIsActive = true;
   var backIsActive = true;
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default ReadPage;
