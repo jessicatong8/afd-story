@@ -7,20 +7,21 @@ import NextButton from "../components/NextButton";
 
 function ReadPage() {
   const numPages = 33;
-  var nextIsActive = true;
-  var backIsActive = true;
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   console.log(currentPage);
 
+  const [nextIsActive, setNextActive] = useState<boolean>(true);
+  const [backIsActive, setBackActive] = useState<boolean>(true);
+
   const handleNext = () => {
-    if (currentPage < numPages) {
+    if (nextIsActive && currentPage < numPages) {
       setCurrentPage(currentPage + 1);
     }
   };
 
   const handleBack = () => {
-    if (currentPage > 1) {
+    if (backIsActive && currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };

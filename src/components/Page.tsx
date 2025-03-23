@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import DoorUI from "./DoorUI";
 
 interface Props {
   pageNumber: number;
@@ -18,13 +19,13 @@ const Page = ({ pageNumber, numPages }: Props) => {
   const loadImage = async (page: number) => {
     const path = `/src/assets/pages/pg_${page}.png`;
 
-    console.log(`Trying to load image for page: ${page}`); // Debugging: check page number
-    console.log(`Image path: ${path}`); // Debugging: check the generated path
+    // console.log(`Trying to load image for page: ${page}`); // Debugging: check page number
+    // console.log(`Image path: ${path}`); // Debugging: check the generated path
 
     if (images[path]) {
       console.log(`Found image for page: ${page}`); // Debugging: found image
       const imageModule = (await images[path]()) as { default: string };
-      console.log(`Image URL: ${imageModule.default}`); // Debugging: check the image URL
+      // console.log(`Image URL: ${imageModule.default}`); // Debugging: check the image URL
       return imageModule.default;
     }
     console.log(`No image found for page: ${page}`); // Debugging: image not found
@@ -37,7 +38,7 @@ const Page = ({ pageNumber, numPages }: Props) => {
 
       // Load current page
       if (!newCache[pageNumber]) {
-        console.log(`Loading image for page ${pageNumber}`);
+        // console.log(`Loading image for page ${pageNumber}`);
         newCache[pageNumber] = await loadImage(pageNumber);
       }
 
@@ -48,7 +49,7 @@ const Page = ({ pageNumber, numPages }: Props) => {
       if (pageNumber < numPages && !newCache[pageNumber + 1]) {
         newCache[pageNumber + 1] = await loadImage(pageNumber + 1);
       }
-      console.log(newCache);
+      // console.log(newCache);
       setImageCache(newCache);
     };
 
@@ -56,18 +57,25 @@ const Page = ({ pageNumber, numPages }: Props) => {
   }, [pageNumber]);
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      {imageCache[pageNumber] ? (
-        <LazyLoadImage
-          src={imageCache[pageNumber]}
-          alt={`Page ${pageNumber}`}
-          effect="blur"
-          className="max-w-full max-h-screen object-contain"
-          // width="100%"
-        />
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div>
+      <div className=" w-full h-screen flex justify-center items-center">
+        {imageCache[pageNumber] ? (
+          <div className="relative border-8 border-amber-500">
+            <LazyLoadImage
+              src={imageCache[pageNumber]}
+              alt={`Page ${pageNumber}`}
+              effect="blur"
+              className="max-w-full max-h-screen object-contain"
+              // width="100%"
+            />
+
+            {/* page 3 door opening */}
+            <div>{pageNumber === 3 && <DoorUI />}</div>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };
