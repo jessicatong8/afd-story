@@ -22,12 +22,14 @@ function App() {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello World</h1>
-      <Page pageNumber={currentPage} />
+    <section className="flex items-center justify-evenly">
+      {/* <h1 className="text-3xl font-bold underline">Hello World</h1> */}
       <BackButton onClick={handleBackClick} />
+      <div>
+        <Page pageNumber={currentPage} />
+      </div>
       <NextButton onClick={handleNextClick} />
-    </div>
+    </section>
   );
 }
 

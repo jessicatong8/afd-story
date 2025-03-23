@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@media (orientation: portrait) {
+    .hide-portrait {
+      display: none !important;
+    }
+  }

@@ -55,13 +55,14 @@ const Page = ({ pageNumber }: Prop) => {
   }, [pageNumber]);
 
   return (
-    <div>
+    <div className="w-full h-screen flex justify-center items-center">
       {imageCache[pageNumber] ? (
         <LazyLoadImage
           src={imageCache[pageNumber]}
           alt={`Page ${pageNumber}`}
           effect="blur"
-          width="100%"
+          className="max-w-full max-h-screen object-contain"
+          // width="100%"
         />
       ) : (
         <p>Loading...</p>
