@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSwipeable } from "react-swipeable";
+
 import Page from "../components/Page";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton";
@@ -11,26 +13,31 @@ function ReadPage() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   console.log(currentPage);
 
-  const handleNextClick = () => {
+  const handleNext = () => {
     if (currentPage < numPages) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  const handleBackClick = () => {
+  const handleBack = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleNext(),
+    onSwipedRight: () => handleBack(),
+  });
+
   return (
-    <section className="flex items-center justify-evenly">
+    <section {...swipeHandlers} className="flex items-center justify-evenly">
       {/* <h1 className="text-3xl font-bold underline">Hello World</h1> */}
-      <BackButton isActive={backIsActive} onClick={handleBackClick} />
+      <BackButton isActive={backIsActive} onClick={handleBack} />
       <div>
         <Page pageNumber={currentPage} numPages={numPages} />
       </div>
-      <NextButton isActive={nextIsActive} onClick={handleNextClick} />
+      <NextButton isActive={nextIsActive} onClick={handleNext} />
     </section>
   );
 }
