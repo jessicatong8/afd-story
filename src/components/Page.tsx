@@ -21,7 +21,7 @@ const Page = () => {
     // console.log(`Image path: ${path}`); // Debugging: check the generated path
 
     if (images[path]) {
-      console.log(`Found image for page: ${page}`); // Debugging: found image
+      // console.log(`Found image for page: ${page}`); // Debugging: found image
       const imageModule = (await images[path]()) as { default: string };
       // console.log(`Image URL: ${imageModule.default}`); // Debugging: check the image URL
       return imageModule.default;
@@ -54,11 +54,25 @@ const Page = () => {
     loadImages();
   }, [currentPage]);
 
-  // handle swipe gestures, swipe left or right to turn the
+  // handle swipe gestures, swipe left or right to control page navigation
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => handleNext(),
     onSwipedRight: () => handleBack(),
   });
+
+  // handle key presses, use left and right arrow keys to control page navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        handleBack();
+      } else if (event.key === "ArrowRight") {
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentPage]);
 
   return (
     <div
