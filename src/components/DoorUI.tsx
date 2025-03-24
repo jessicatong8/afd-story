@@ -1,12 +1,15 @@
 import { useState } from "react";
+import { useReadContext } from "./ReadContext";
 
-interface Props {
-  handleClick: () => void;
-}
-const DoorUI = ({ handleClick }: Props) => {
+// interface Props {
+//   handleClick: () => void;
+// }
+const DoorUI = () => {
+  const { handleNext } = useReadContext();
+
   const [strokeWidth, setStrokeWidth] = useState("10");
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleNext}>
       <svg
         className="absolute top-[33%] left-[13.5%] -translate-x-[50%]
        -translate-y-[50%] w-full h-full scale-48 cursor-pointer"

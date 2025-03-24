@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useReadContext } from "./ReadContext";
+import { useSwipeable } from "react-swipeable";
 import DoorUI from "./DoorUI";
-
-interface Props {
-  pageNumber: number;
-  numPages: number;
-  handleNext: () => void;
-}
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
 // console.log(images);
 
-const Page = ({ pageNumber, numPages, handleNext }: Props) => {
+const Page = () => {
+  const { currentPage, numPages, handleBack, handleNext } = useReadContext();
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Function to load an image dynamically
@@ -38,47 +35,49 @@ const Page = ({ pageNumber, numPages, handleNext }: Props) => {
       const newCache: Record<number, string> = { ...imageCache };
 
       // Load current page
-      if (!newCache[pageNumber]) {
-        // console.log(`Loading image for page ${pageNumber}`);
-        newCache[pageNumber] = await loadImage(pageNumber);
+      if (!newCache[currentPage]) {
+        // console.log(`Loading image for page ${currentPage}`);
+        newCache[currentPage] = await loadImage(currentPage);
       }
 
       // Preload previous and next pages
-      if (pageNumber > 1 && !newCache[pageNumber - 1]) {
-        newCache[pageNumber - 1] = await loadImage(pageNumber - 1);
+      if (currentPage > 1 && !newCache[currentPage - 1]) {
+        newCache[currentPage - 1] = await loadImage(currentPage - 1);
       }
-      if (pageNumber < numPages && !newCache[pageNumber + 1]) {
-        newCache[pageNumber + 1] = await loadImage(pageNumber + 1);
+      if (currentPage < numPages && !newCache[currentPage + 1]) {
+        newCache[currentPage + 1] = await loadImage(currentPage + 1);
       }
       // console.log(newCache);
       setImageCache(newCache);
     };
 
     loadImages();
-  }, [pageNumber]);
+  }, [currentPage]);
+
+  // handle swipe gestures, swipe left or right to turn the
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => handleNext(),
+    onSwipedRight: () => handleBack(),
+  });
 
   return (
-    <div>
-      <div className=" w-full h-screen flex justify-center items-center">
-        {imageCache[pageNumber] ? (
-          <div className="relative border-2 border-amber-500">
-            <LazyLoadImage
-              src={imageCache[pageNumber]}
-              alt={`Page ${pageNumber}`}
-              effect="blur"
-              className="max-w-full max-h-screen object-contain"
-              // width="100%"
-            />
-
-            {/* page 3 door opening */}
-            <span>
-              {pageNumber === 3 && <DoorUI handleClick={handleNext} />}
-            </span>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+    <div
+      {...swipeHandlers}
+      className=" w-full h-screen flex justify-center items-center"
+    >
+      {imageCache[currentPage] ? (
+        <div className="relative border-2 border-amber-500">
+          <LazyLoadImage
+            src={imageCache[currentPage]}
+            alt={`Page ${currentPage}`}
+            effect="blur"
+            className="max-w-full max-h-screen object-contain"
+          />
+          <span>{currentPage === 3 && <DoorUI />}</span>
+        </div>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };

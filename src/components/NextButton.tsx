@@ -1,16 +1,13 @@
 import { FaArrowRight } from "react-icons/fa6";
+import { useReadContext } from "./ReadContext";
 
-interface Props {
-  onClick: () => void;
-  isActive: boolean;
-}
-
-const NextButton = ({ onClick, isActive }: Props) => {
+const NextButton = () => {
+  const { handleNext, nextIsActive } = useReadContext();
   return (
     <button
       className={`hidden lg:flex w-12 h-12 items-center justify-center rounded-full text-white hide-portrait  
-        ${isActive ? "bg-sky-400  hover:bg-sky-500 transition" : "bg-gray-400"}`}
-      onClick={onClick}
+        ${nextIsActive ? "bg-sky-400  hover:bg-sky-500 transition" : "bg-gray-400"}`}
+      onClick={handleNext}
     >
       <FaArrowRight className="text-lg" />
     </button>
