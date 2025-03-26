@@ -26,12 +26,14 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const handleNext = () => {
     if (nextIsActive && currentPage < numPages) {
       setCurrentPage(currentPage + 1);
+      // console.log("handleNext called");
     }
   };
 
   const handleBack = () => {
     if (backIsActive && currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      // console.log("handleBack called");
     }
   };
 

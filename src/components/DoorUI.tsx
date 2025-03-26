@@ -12,11 +12,11 @@ const DoorUI = () => {
     <button onClick={handleNext}>
       <svg
         className="absolute top-[33%] left-[13.5%] -translate-x-[50%]
-       -translate-y-[50%] w-full h-full scale-48 cursor-pointer"
+       -translate-y-[50%]  scale-80 cursor-pointer border-2"
         onMouseEnter={() => setStrokeWidth("20")}
         onMouseLeave={() => setStrokeWidth("10")}
-        // width="269"
-        // height="483"
+        width="269"
+        height="483"
         viewBox="0 0 269 483"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

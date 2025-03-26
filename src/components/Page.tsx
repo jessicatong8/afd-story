@@ -11,6 +11,8 @@ const images = import.meta.glob("/src/assets/pages/*.png");
 
 const Page = () => {
   const { currentPage, numPages, handleBack, handleNext } = useReadContext();
+  console.log(currentPage);
+
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Function to load an image dynamically
