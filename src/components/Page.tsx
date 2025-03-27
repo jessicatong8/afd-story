@@ -88,7 +88,7 @@ const Page = () => {
       className=" w-full h-screen flex justify-center items-center"
     >
       {imageCache[currentPage] ? (
-        <div className="relative border-2 border-amber-500">
+        <div className="relative border-2 border-sky-200">
           <LazyLoadImage
             src={imageCache[currentPage]}
             alt={`Page ${currentPage}`}
