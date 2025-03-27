@@ -4,7 +4,9 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { useReadContext } from "./ReadContext";
 import { useSwipeable } from "react-swipeable";
 import DoorUI from "./DoorUI";
-import { useParams, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import DumplingWrapper from "./DumplingWrapper";
+import DumplingFilling from "./DumplingFilling";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -96,6 +98,8 @@ const Page = () => {
             className="max-w-full max-h-screen object-contain"
           />
           <span>{currentPage === 3 && <DoorUI />}</span>
+          <span>{currentPage === 15 && <DumplingWrapper />}</span>
+          <span>{currentPage === 15 && <DumplingFilling />}</span>
         </div>
       ) : (
         <p>Loading...</p>
