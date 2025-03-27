@@ -8,14 +8,14 @@ import { useParams, Navigate } from "react-router-dom";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
-// console.log(images);
+console.log(images);
 
 const Page = () => {
   const { currentPage, numPages, handleBack, handleNext } = useReadContext();
   console.log(currentPage);
 
   // Check if pageNumber is invalid before rendering
-  if (isNaN(currentPage) || currentPage < 1 || currentPage > numPages) {
+  if (isNaN(currentPage) || currentPage < 0 || currentPage > numPages) {
     return <Navigate to="/not-found" replace />; //replace to avoid the browser back button leading back to an invalid page
   }
 
@@ -49,7 +49,7 @@ const Page = () => {
       }
 
       // Preload previous and next pages
-      if (currentPage > 1 && !newCache[currentPage - 1]) {
+      if (currentPage > 0 && !newCache[currentPage - 1]) {
         newCache[currentPage - 1] = await loadImage(currentPage - 1);
       }
       if (currentPage < numPages && !newCache[currentPage + 1]) {

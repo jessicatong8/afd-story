@@ -20,7 +20,7 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const navigate = useNavigate();
   const params = useParams<{ pageNumber: string }>(); // Get page number from URL
   console.log(params);
-  const currentPage = parseInt(params.pageNumber ?? "1", 10); // converts string from url to a number, default is 1
+  const currentPage = parseInt(params.pageNumber ?? "0", 10); // converts string from url to a number, default is 1
 
   // fix so that invalid numbers redirect to page not found
 
@@ -40,7 +40,7 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const handleBack = () => {
-    if (backIsActive && currentPage > 1) {
+    if (backIsActive && currentPage > 0) {
       navigate(`/read/${currentPage - 1}`);
       // console.log("handleBack called");
     }
