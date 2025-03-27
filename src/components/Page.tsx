@@ -4,6 +4,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { useReadContext } from "./ReadContext";
 import { useSwipeable } from "react-swipeable";
 import DoorUI from "./DoorUI";
+import { useParams, Navigate } from "react-router-dom";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -12,6 +13,11 @@ const images = import.meta.glob("/src/assets/pages/*.png");
 const Page = () => {
   const { currentPage, numPages, handleBack, handleNext } = useReadContext();
   console.log(currentPage);
+
+  // Check if pageNumber is invalid before rendering
+  if (isNaN(currentPage) || currentPage < 1 || currentPage > numPages) {
+    return <Navigate to="/not-found" replace />; //replace to avoid the browser back button leading back to an invalid page
+  }
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 

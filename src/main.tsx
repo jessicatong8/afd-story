@@ -12,8 +12,12 @@ const router = createBrowserRouter([
     element: <HomePage />,
     errorElement: <NotFoundPage />,
   },
+  // {
+  //   path: "/read",
+  //   element: <ReadPage />,
+  // },
   {
-    path: "/read",
+    path: "/read/:pageNumber",
     element: <ReadPage />,
   },
 ]);

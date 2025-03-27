@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Context for the ReadPage component, contains all states and functions related to vieweing and navigating the story
 interface ReadContextType {
@@ -16,8 +17,16 @@ const ReadContext = createContext<ReadContextType | undefined>(undefined);
 export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const navigate = useNavigate();
+  const params = useParams<{ pageNumber: string }>(); // Get page number from URL
+  console.log(params);
+  const currentPage = parseInt(params.pageNumber ?? "1", 10); // converts string from url to a number, default is 1
+
+  // fix so that invalid numbers redirect to page not found
+
   const numPages = 33;
-  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  // const [currentPage, setCurrentPage] = useState<number>(1);
 
   const [nextIsActive, setNextActive] = useState<boolean>(true);
   const [backIsActive, setBackActive] = useState<boolean>(true);
@@ -25,14 +34,14 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
   // Functions to be provided by the context
   const handleNext = () => {
     if (nextIsActive && currentPage < numPages) {
-      setCurrentPage(currentPage + 1);
+      navigate(`/read/${currentPage + 1}`);
       // console.log("handleNext called");
     }
   };
 
   const handleBack = () => {
     if (backIsActive && currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      navigate(`/read/${currentPage - 1}`);
       // console.log("handleBack called");
     }
   };
