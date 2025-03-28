@@ -13,13 +13,27 @@ const images = import.meta.glob("/src/assets/pages/*.png");
 console.log(images);
 
 const Page = () => {
-  const { currentPage, numPages, handleBack, handleNext } = useReadContext();
+  const {
+    currentPage,
+    numPages,
+    nextIsActive,
+    handleBack,
+    handleNext,
+    toggleNext,
+  } = useReadContext();
+
   console.log(currentPage);
+  // console.log(nextIsActive);
 
   // Check if pageNumber is invalid before rendering
   if (isNaN(currentPage) || currentPage < 0 || currentPage > numPages) {
     return <Navigate to="/not-found" replace />; //replace to avoid the browser back button leading back to an invalid page
   }
+
+  // disable navigatoin to the next page depending on the current page to facilitate UI
+  useEffect(() => {
+    toggleNext(currentPage !== 3);
+  }, [currentPage]);
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
@@ -82,7 +96,7 @@ const Page = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentPage]);
+  }, [currentPage, nextIsActive]);
 
   return (
     <div

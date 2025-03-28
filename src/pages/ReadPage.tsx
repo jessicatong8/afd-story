@@ -18,7 +18,7 @@ function ReadPage() {
           </div>
           <NextButton />
         </section>
-        <ProgressBar />
+        {/* <ProgressBar /> */}
       </ReadContextProvider>
     </div>
   );

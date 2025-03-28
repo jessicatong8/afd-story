@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useReadContext } from "./ReadContext";
+import { useNavigate } from "react-router-dom";
 
-// interface Props {
-//   handleClick: () => void;
-// }
 const DoorUI = () => {
-  const { handleNext } = useReadContext();
+  const { toggleNext } = useReadContext();
+  const navigate = useNavigate();
+
+  const onClick = () => {
+    toggleNext(true);
+    navigate(`/read/4`);
+  };
 
   const [strokeWidth, setStrokeWidth] = useState("10");
+
   return (
-    <button onClick={handleNext}>
+    <button onClick={onClick}>
       <svg
         className="absolute top-[33%] left-[13.5%] -translate-x-[50%]
        -translate-y-[50%] w-1/2 h-auto scale-55 cursor-pointer"

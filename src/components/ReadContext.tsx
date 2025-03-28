@@ -7,6 +7,8 @@ interface ReadContextType {
   handleBack: () => void;
   nextIsActive: boolean;
   backIsActive: boolean;
+  toggleNext: (state: boolean) => void;
+  toggleBack: (state: boolean) => void;
   currentPage: number;
   numPages: number;
 }
@@ -33,9 +35,11 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Functions to be provided by the context
   const handleNext = () => {
+    // console.log("handleNext called");
+    // console.log(nextIsActive);
     if (nextIsActive && currentPage < numPages) {
       navigate(`/read/${currentPage + 1}`);
-      // console.log("handleNext called");
+      // console.log("page flipped");
     }
   };
 
@@ -44,6 +48,14 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
       navigate(`/read/${currentPage - 1}`);
       // console.log("handleBack called");
     }
+  };
+
+  const toggleNext = (state: boolean) => {
+    setNextActive(state);
+  };
+
+  const toggleBack = (state: boolean) => {
+    setBackActive(state);
   };
 
   return (
@@ -55,6 +67,8 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
         backIsActive,
         currentPage,
         numPages,
+        toggleNext,
+        toggleBack,
       }}
     >
       {children}
