@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useReadContext } from "./ReadContext";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useReadContext } from "./ReadContext";
 import { useSwipeable } from "react-swipeable";
-import DoorUI from "./DoorUI";
 import { Navigate } from "react-router-dom";
+
+import { DndContext } from "@dnd-kit/core";
+
+import DoorUI from "./DoorUI";
 import DumplingWrapper from "./DumplingWrapper";
 import DumplingFilling from "./DumplingFilling";
 
@@ -103,21 +107,24 @@ const Page = () => {
       {...swipeHandlers}
       className=" w-full h-screen flex justify-center items-center"
     >
-      {imageCache[currentPage] ? (
-        <div className="relative border-2 border-sky-200">
-          <LazyLoadImage
-            src={imageCache[currentPage]}
-            alt={`Page ${currentPage}`}
-            effect="blur"
-            className="max-w-full max-h-screen object-contain"
-          />
-          <span>{currentPage === 3 && <DoorUI />}</span>
-          <span>{currentPage === 15 && <DumplingWrapper />}</span>
-          <span>{currentPage === 15 && <DumplingFilling />}</span>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <DndContext>
+        {imageCache[currentPage] ? (
+          <div className="relative border-2 border-sky-200">
+            <LazyLoadImage
+              src={imageCache[currentPage]}
+              alt={`Page ${currentPage}`}
+              effect="blur"
+              className="max-w-full max-h-screen object-contain"
+            />
+            <span>{currentPage === 3 && <DoorUI />}</span>
+
+            <span>{currentPage === 15 && <DumplingFilling />}</span>
+            <span>{currentPage === 15 && <DumplingWrapper />}</span>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </DndContext>
     </div>
   );
 };
