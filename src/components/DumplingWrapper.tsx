@@ -1,11 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import DumplingFilling from "./DumplingFilling";
-import React from "react";
 
-// interface Props {
-//   dropped: boolean;
-//   children?: React.ReactNode; // Accept children
-// }
 const DumplingWrapper = () => {
   const { isOver, setNodeRef } = useDroppable({
     id: "dumpling-wrapper",
