@@ -7,6 +7,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import { restrictToParentElement } from "@dnd-kit/modifiers";
 
 import DumplingWrapper from "./DumplingWrapper";
 import DumplingFilling from "./DumplingFilling";
@@ -28,17 +29,19 @@ const DumplingUI = () => {
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
-    <div>
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        {!isDropped ? filling : null}
-        {/* If not dropped, show filling outside wrapper */}
+    <DndContext
+      modifiers={[restrictToParentElement]}
+      sensors={sensors}
+      onDragEnd={handleDragEnd}
+    >
+      {!isDropped ? filling : null}
+      {/* If not dropped, show filling outside wrapper */}
 
-        <DumplingWrapper dropped={isDropped}>
-          {isDropped ? filling : null}
-          {/* If filling is dropped, render inside wrapper */}
-        </DumplingWrapper>
-      </DndContext>
-    </div>
+      <DumplingWrapper dropped={isDropped}>
+        {isDropped ? filling : null}
+        {/* If filling is dropped, render inside wrapper */}
+      </DumplingWrapper>
+    </DndContext>
   );
 };
 

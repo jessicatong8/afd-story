@@ -112,9 +112,9 @@ const Page = () => {
             effect="blur"
             className="max-w-full max-h-screen object-contain"
           />
-          <span>{currentPage === 3 && <DoorUI />}</span>
+          {currentPage === 3 && <DoorUI />}
 
-          <span>{currentPage === 15 && <DumplingUI />}</span>
+          {currentPage === 15 && <DumplingUI />}
         </div>
       ) : (
         <p>Loading...</p>
