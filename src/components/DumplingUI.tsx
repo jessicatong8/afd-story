@@ -5,24 +5,29 @@ import DumplingWrapper from "./DumplingWrapper";
 import DumplingFilling from "./DumplingFilling";
 
 const DumplingUI = () => {
-  type Position = { x: number; y: number } | null;
+  const [isDropped, setIsDropped] = useState(false);
+  console.log("isDropped state:" + isDropped);
 
-  const [position, setPosition] = useState<Position>(null);
+  const filling = <DumplingFilling dropped={isDropped} />;
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+    console.log("over:" + over);
     if (active && over) {
-      setPosition({ x: 100, y: 100 });
-      console.log("dropped");
-    } else {
-      //   setIsDropped(false);
-      //   console.log("not dropped");
+      setIsDropped(true);
     }
   };
+
   return (
     <div>
       <DndContext onDragEnd={handleDragEnd}>
-        <DumplingFilling position={position} />
-        <DumplingWrapper />
+        {!isDropped ? filling : null}
+        {/* If not dropped, show filling outside wrapper */}
+
+        <DumplingWrapper dropped={isDropped}>
+          {isDropped ? filling : null}
+          {/* If filling is dropped, render inside wrapper */}
+        </DumplingWrapper>
       </DndContext>
     </div>
   );

@@ -6,31 +6,29 @@ import { CSS } from "@dnd-kit/utilities";
 //   transform: CSS.Translate.toString(transform),
 // }
 interface Props {
-  position: { x: number; y: number } | null;
+  //   position: { x: number; y: number } | null;
+  dropped: boolean;
 }
-const DumplingFilling = ({ position }: Props) => {
+const DumplingFilling = ({ dropped }: Props) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: "draggable",
   });
-  const style = position
-    ? {
-        transform: `translate3d(${position.x}px, ${position.y}px)`,
-      }
-    : transform
-      ? {
-          transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        }
-      : undefined;
 
-  //   const droppedStyle = "bg-green-400";
+  // updates position of the element as it is dragged
+  const style = {
+    transform: CSS.Translate.toString(transform),
+  };
+
+  //   console.log("filling: " + dropped);
   return (
     <div
       ref={setNodeRef}
       style={style}
       {...listeners}
       {...attributes}
-      className="w-1/8 h-1/8 bg-blue-400 rounded-full absolute top-[15%] left-[30%] -translate-x-[50%]
-  -translate-y-[50%]"
+      className={`   bg-blue-400 w-1/8 aspect-square rounded-full absolute  -translate-x-[50%]
+        -translate-y-[50%] 
+        ${!dropped ? "scale-100 top-[15%] left-[30%]" : "scale-125 top-[20%] left-[50%]"}`}
     ></div>
   );
 };
