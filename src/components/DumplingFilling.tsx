@@ -20,14 +20,14 @@ const DumplingFilling = ({ dropped, id }: Props) => {
 
   const fillingColors = ["bg-red-300", "bg-green-300", "bg-blue-300"];
   const outsidePositions = [
-    "top-[15%] left-[30%]",
-    "top-[10%] left-[50%]",
-    "top-[15%] left-[70%]",
+    "top-[15%] left-[25%]",
+    "top-[12%] left-[50%]",
+    "top-[15%] left-[75%]",
   ];
   const insidePositions = [
-    "top-[20%] left-[50%]",
-    "top-[40%] left-[60%]",
-    "top-[60%] left-[40%]",
+    "top-[40%] left-[50%]",
+    "top-[58%] left-[60%]",
+    "top-[70%] left-[40%]",
   ];
 
   const color = fillingColors[id];
@@ -43,7 +43,7 @@ const DumplingFilling = ({ dropped, id }: Props) => {
       {...attributes}
       className={`${color} w-1/8 aspect-square rounded-full absolute  -translate-x-[50%]
         -translate-y-[50%] 
-        ${!dropped ? `scale-100 ${outsidePos} ` : `scale-125 ${insidePos}`}`}
+        ${!dropped ? outsidePos : insidePos}`}
     ></div>
   );
 };
