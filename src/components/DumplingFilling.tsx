@@ -7,6 +7,7 @@ interface Props {
 const DumplingFilling = ({ dropped }: Props) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: "draggable",
+    disabled: dropped,
   });
 
   // updates position of the element as it is dragged
@@ -21,7 +22,7 @@ const DumplingFilling = ({ dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`   bg-blue-400 w-1/8 aspect-square rounded-full absolute  -translate-x-[50%]
+      className={`bg-blue-400 w-1/8 aspect-square rounded-full absolute  -translate-x-[50%]
         -translate-y-[50%] 
         ${!dropped ? "scale-100 top-[15%] left-[30%]" : "scale-125 top-[20%] left-[50%]"}`}
     ></div>
