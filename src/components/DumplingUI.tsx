@@ -16,7 +16,8 @@ const DumplingUI = () => {
   const [isDropped, setIsDropped] = useState(false);
   console.log("isDropped state:" + isDropped);
 
-  const filling = <DumplingFilling dropped={isDropped} />;
+  const filling = <DumplingFilling id={2} dropped={isDropped} />;
+  const dumplingFillings = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -34,11 +35,19 @@ const DumplingUI = () => {
       sensors={sensors}
       onDragEnd={handleDragEnd}
     >
-      {!isDropped ? filling : null}
+      {!isDropped
+        ? dumplingFillings.map((filling) => (
+            <DumplingFilling
+              key={filling.id} // Assign a unique 'key' prop
+              id={filling.id}
+              dropped={isDropped}
+            />
+          ))
+        : null}
       {/* If not dropped, show filling outside wrapper */}
 
       <DumplingWrapper dropped={isDropped}>
-        {isDropped ? filling : null}
+        {isDropped ? [filling] : null}
         {/* If filling is dropped, render inside wrapper */}
       </DumplingWrapper>
     </DndContext>
