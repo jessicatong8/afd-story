@@ -53,8 +53,7 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`${color} w-1/8 aspect-square rounded-full absolute  -translate-x-[50%]
-        -translate-y-[50%] 
+      className={`${color} w-1/8 aspect-square rounded-full absolute -translate-x-[50%] -translate-y-[50%] 
         ${isDropping || hasBeenDropped ? insidePos : outsidePos}`} // if this filling is being dropped or has already been dropped then render inside the wrapper
     ></div>
   );
