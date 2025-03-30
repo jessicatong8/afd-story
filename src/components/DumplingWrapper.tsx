@@ -14,7 +14,7 @@ const DumplingWrapper = ({ dropped, children }: Props) => {
   return (
     <div
       ref={setNodeRef}
-      className="absolute top-[20%] left-[0%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-80 border-1"
+      className="absolute top-[20%] left-[0%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-80"
     >
       {dropped ? children : null}
     </div>
