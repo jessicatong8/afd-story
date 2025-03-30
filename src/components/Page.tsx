@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 
 import DoorUI from "./DoorUI";
 import DumplingUI from "./DumplingUI";
+import DumplingGivingUI from "./DumplingGivingUI";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -115,6 +116,7 @@ const Page = () => {
           {currentPage === 3 && <DoorUI />}
 
           {currentPage === 15 && <DumplingUI />}
+          {currentPage === 17 && <DumplingGivingUI />}
         </div>
       ) : (
         <p>Loading...</p>
