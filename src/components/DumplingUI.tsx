@@ -1,5 +1,12 @@
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useState } from "react";
+import {
+  DndContext,
+  DragEndEvent,
+  TouchSensor,
+  MouseSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 
 import DumplingWrapper from "./DumplingWrapper";
 import DumplingFilling from "./DumplingFilling";
@@ -12,15 +19,17 @@ const DumplingUI = () => {
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    console.log("over:" + over);
+    // console.log("over:" + over);
     if (active && over) {
       setIsDropped(true);
     }
   };
 
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
+
   return (
     <div>
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         {!isDropped ? filling : null}
         {/* If not dropped, show filling outside wrapper */}
 

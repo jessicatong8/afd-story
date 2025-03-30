@@ -1,12 +1,7 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
-// Within your component that receives `transform` from `useDraggable`:
-// const style = {
-//   transform: CSS.Translate.toString(transform),
-// }
 interface Props {
-  //   position: { x: number; y: number } | null;
   dropped: boolean;
 }
 const DumplingFilling = ({ dropped }: Props) => {
