@@ -6,6 +6,7 @@ import {
   MouseSensor,
   useSensor,
   useSensors,
+  DragStartEvent,
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 
@@ -15,7 +16,7 @@ import { useReadContext } from "./ReadContext";
 import { useNavigate } from "react-router-dom";
 
 const DumplingUI = () => {
-  const { toggleNext } = useReadContext();
+  const { toggleNext, toggleBack } = useReadContext();
   const navigate = useNavigate();
 
   //List of dumplings to be displayed by thier IDs
@@ -27,16 +28,21 @@ const DumplingUI = () => {
   const [dropped, setDropped] = useState(() =>
     Array(dumplingFillings.length).fill(false)
   ); // make this smarter (list comprehension)
-  console.log(dropped);
+  //   console.log(dropped);
 
   // turn to next page when all dumplings have been dropped
   if (dropped.every(Boolean)) {
     toggleNext(true);
-    navigate(`/read/16`);
+    setTimeout(() => {
+      navigate(`/read/16`); // make this transition nicer
+    }, 500);
   }
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+    setTimeout(() => {
+      toggleBack(true); // delay enabling back so swipe actions don't trigger navigation upon dropping
+    }, 200);
     if (active && over) {
       const fillingID = Number(active.id); //cast id to a number
       setActiveID(fillingID);
@@ -47,6 +53,9 @@ const DumplingUI = () => {
       });
     }
   };
+  const handleDragStart = (event: DragStartEvent) => {
+    toggleBack(false); // disable going back when dragging so swipe actions don't trigger navigation
+  };
 
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
@@ -54,6 +63,7 @@ const DumplingUI = () => {
     <DndContext
       modifiers={[restrictToParentElement]}
       sensors={sensors}
+      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
       {dumplingFillings.map((filling) => (
