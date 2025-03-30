@@ -31,9 +31,9 @@ const Page = () => {
     return <Navigate to="/not-found" replace />; //replace to avoid the browser back button leading back to an invalid page
   }
 
-  // disable navigatoin to the next page depending on the current page to facilitate UI
+  // disable navigation to the next page depending on the current page to facilitate UI
   useEffect(() => {
-    toggleNext(currentPage !== 3);
+    toggleNext(currentPage !== 3 && currentPage !== 15);
   }, [currentPage]);
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images

@@ -11,8 +11,13 @@ import { restrictToParentElement } from "@dnd-kit/modifiers";
 
 import DumplingWrapper from "./DumplingWrapper";
 import DumplingFilling from "./DumplingFilling";
+import { useReadContext } from "./ReadContext";
+import { useNavigate } from "react-router-dom";
 
 const DumplingUI = () => {
+  const { toggleNext } = useReadContext();
+  const navigate = useNavigate();
+
   //List of dumplings to be displayed by thier IDs
   const dumplingFillings = [{ id: 0 }, { id: 1 }, { id: 2 }];
 
@@ -23,6 +28,12 @@ const DumplingUI = () => {
     Array(dumplingFillings.length).fill(false)
   ); // make this smarter (list comprehension)
   console.log(dropped);
+
+  // turn to next page when all dumplings have been dropped
+  if (dropped.every(Boolean)) {
+    toggleNext(true);
+    navigate(`/read/16`);
+  }
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
