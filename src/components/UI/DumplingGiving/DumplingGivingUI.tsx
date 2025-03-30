@@ -10,7 +10,7 @@ import {
 } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 
-import { useReadContext } from "./ReadContext";
+import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
 import DumplingHeart from "./DumplingHeart";
 import DumplingDrop from "./DumplingDrop";

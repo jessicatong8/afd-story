@@ -6,9 +6,9 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 
-import DoorUI from "./DoorUI";
-import DumplingUI from "./DumplingUI";
-import DumplingGivingUI from "./DumplingGivingUI";
+import DoorUI from "./UI/DoorUI";
+import DumplingUI from "./UI/DumplingFilling/DumplingUI";
+import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
