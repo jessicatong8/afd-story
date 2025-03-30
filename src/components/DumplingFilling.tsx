@@ -3,15 +3,27 @@ import { CSS } from "@dnd-kit/utilities";
 
 interface Props {
   id: number;
-  dropped: boolean;
+  activeID: number;
+  dropped: boolean[];
 }
-const DumplingFilling = ({ dropped, id }: Props) => {
+const DumplingFilling = ({ id, activeID, dropped }: Props) => {
+  const isDropping = id === activeID; // this is the filling currently being dropped
+  const hasBeenDropped = dropped[id]; // this filling has already been dropped
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: id,
-    disabled: dropped,
+    disabled: hasBeenDropped,
   });
 
-  console.log(id);
+  //   console.log(
+  //     "filling: " +
+  //       id +
+  //       " active dragging: " +
+  //       activeID +
+  //       " this dropped: " +
+  //       isDropping +
+  //       " has been dropped: " +
+  //       dropped[id]
+  //   );
 
   // updates position of the element as it is dragged
   const style = {
@@ -43,7 +55,7 @@ const DumplingFilling = ({ dropped, id }: Props) => {
       {...attributes}
       className={`${color} w-1/8 aspect-square rounded-full absolute  -translate-x-[50%]
         -translate-y-[50%] 
-        ${!dropped ? outsidePos : insidePos}`}
+        ${isDropping || hasBeenDropped ? insidePos : outsidePos}`} // if this filling is being dropped or has already been dropped then render inside the wrapper
     ></div>
   );
 };

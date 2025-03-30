@@ -2,11 +2,11 @@ import { useDroppable } from "@dnd-kit/core";
 import DumplingFilling from "./DumplingFilling";
 import React from "react";
 
-interface Props {
-  dropped: boolean;
-  children?: React.ReactNode; // Accept children
-}
-const DumplingWrapper = ({ dropped, children }: Props) => {
+// interface Props {
+//   dropped: boolean;
+//   children?: React.ReactNode; // Accept children
+// }
+const DumplingWrapper = () => {
   const { isOver, setNodeRef } = useDroppable({
     id: "dumpling-wrapper",
   });
@@ -15,9 +15,7 @@ const DumplingWrapper = ({ dropped, children }: Props) => {
     <div
       ref={setNodeRef}
       className="absolute top-[20%] left-[0%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-80"
-    >
-      {dropped ? children : null}
-    </div>
+    ></div>
   );
 };
 
