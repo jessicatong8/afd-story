@@ -1,9 +1,26 @@
+import { useDroppable } from "@dnd-kit/core";
+
+// interface Props {
+//   dropped: boolean;
+// }
 const DumplingWrapper = () => {
+  const { isOver, setNodeRef } = useDroppable({
+    id: "dumpling-wrapper",
+  });
+  const style = {
+    color: isOver ? "green" : undefined,
+  };
+  //   const className = dropped
+  //     ? "absolute top-[57%] left-[48%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-79 border-1"
+  //     : "absolute top-[57%] left-[48%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-79 border-8";
   return (
-    <div>
-      <svg
+    <div
+      ref={setNodeRef}
+      className="absolute top-[20%] left-[0%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-79 border-1"
+    >
+      {/* <svg
         className="absolute top-[57%] left-[48%] -translate-x-[50%]
-       -translate-y-[50%] w-full h-auto scale-79 border-2"
+       -translate-y-[50%] w-full h-auto scale-79 border-1"
         width="777"
         height="595"
         viewBox="0 0 777 595"
@@ -16,7 +33,7 @@ const DumplingWrapper = () => {
           stroke-opacity="0.5"
           stroke-width="10"
         />
-      </svg>
+      </svg> */}
     </div>
   );
 };
