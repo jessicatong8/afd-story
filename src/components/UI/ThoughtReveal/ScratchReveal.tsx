@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useLayoutEffect, useEffect, useRef } from "react";
 import ScratchCard from "react-scratchcard-v2";
 
 import dumplingImage from "/src/assets/heart-dumpling.png";
@@ -8,7 +8,12 @@ const ScratchReveal = () => {
   const [size, setSize] = useState({ width: 300, height: 300 }); // State to store the size
   //   console.log(size);
 
-  useEffect(() => {
+  //   if (containerRef.current) {
+  //     const { offsetWidth, offsetHeight } = containerRef.current;
+  //     console.log(offsetWidth, offsetHeight);
+  //   }
+
+  useLayoutEffect(() => {
     // Runs after the component mounts
     const updateSize = () => {
       if (containerRef.current) {
@@ -18,7 +23,7 @@ const ScratchReveal = () => {
         // console.log("Updated size: " + size.width + ", " + size.height); // Debugging: check the updated size
       }
     };
-    setTimeout(updateSize, 0); // Delay measuring until after render
+    requestAnimationFrame(updateSize);
     window.addEventListener("resize", updateSize); // Listen for resizes
     return () => window.removeEventListener("resize", updateSize); // Cleanup
     // console.log("useEffect: " + size);
@@ -32,13 +37,11 @@ const ScratchReveal = () => {
   return (
     <div
       ref={containerRef}
-      className="w-1/2 h-1/2 absolute -translate-x-[50%]-translate-y-[50%] 
-        top-[0%] left-[0%] border-2"
+      className="w-1/4 h-1/4 absolute -translate-x-[50%]-translate-y-[50%] 
+        top-[10%] left-[60%] border-2 scale-100"
     >
-      <span>{size.width}</span>
-      <span>{size.height}</span>
-
       <ScratchCard
+        key={`${size.width}-${size.height}`}
         width={size.width}
         height={size.height}
         image={dumplingImage}
