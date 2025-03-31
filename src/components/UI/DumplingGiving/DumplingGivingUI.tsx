@@ -14,31 +14,13 @@ import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
 import DumplingHeart from "./DumplingHeart";
 import DumplingDrop from "./DumplingDrop";
+import Arrow from "./Arrow";
 
 const DumplingGivingUI = () => {
   const { toggleNext, toggleBack } = useReadContext();
   const navigate = useNavigate();
 
   const [isDropped, setIsDropped] = useState(false);
-
-  //   //List of dumplings to be displayed by thier IDs
-  //   const dumplingFillings = [{ id: 0 }, { id: 1 }, { id: 2 }];
-
-  //   // ID of filling that is being actively dragged
-  //   const [activeID, setActiveID] = useState<number>(-1);
-  //   // tracks which dumplings have already been dropped with boolean list
-  //   const [dropped, setDropped] = useState(() =>
-  //     Array(dumplingFillings.length).fill(false)
-  //   ); // make this smarter (list comprehension)
-  //   //   console.log(dropped);
-
-  //   // turn to next page when all dumplings have been dropped
-  //   if (dropped.every(Boolean)) {
-  //     toggleNext(true);
-  //     setTimeout(() => {
-  //       navigate(`/read/16`); // make this transition nicer
-  //     }, 500);
-  //   }
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -64,6 +46,7 @@ const DumplingGivingUI = () => {
     >
       <DumplingHeart dropped={isDropped} />
       <DumplingDrop />
+      <Arrow dropped={isDropped} />
     </DndContext>
   );
 };
