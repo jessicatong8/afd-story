@@ -12,7 +12,7 @@ import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
-console.log(images);
+// console.log(images);
 
 const Page = () => {
   const {
@@ -24,7 +24,7 @@ const Page = () => {
     toggleNext,
   } = useReadContext();
 
-  console.log(currentPage);
+  // console.log(currentPage);
   // console.log(nextIsActive);
 
   // Check if pageNumber is invalid before rendering
