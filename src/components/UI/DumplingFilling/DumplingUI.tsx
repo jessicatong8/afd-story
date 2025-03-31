@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   DndContext,
   DragEndEvent,
@@ -28,15 +28,16 @@ const DumplingUI = () => {
   const [dropped, setDropped] = useState(() =>
     Array(dumplingFillings.length).fill(false)
   ); // make this smarter (list comprehension)
-  //   console.log(dropped);
 
   // turn to next page when all dumplings have been dropped
-  if (dropped.every(Boolean)) {
-    toggleNext(true);
-    setTimeout(() => {
-      navigate(`/read/16`); // make this transition nicer
-    }, 500);
-  }
+  useEffect(() => {
+    if (dropped.every(Boolean)) {
+      toggleNext(true);
+      setTimeout(() => {
+        navigate(`/read/16`); // make this transition nicer
+      }, 500);
+    }
+  }, [dropped]);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
