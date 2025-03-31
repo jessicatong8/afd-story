@@ -9,6 +9,7 @@ import { Navigate } from "react-router-dom";
 import DoorUI from "./UI/DoorUI";
 import DumplingUI from "./UI/DumplingFilling/DumplingUI";
 import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
+import ScratchReveal from "./UI/ThoughtReveal/ScratchReveal";
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -34,7 +35,7 @@ const Page = () => {
 
   // disable navigation to the next page depending on the current page to facilitate UI
   useEffect(() => {
-    toggleNext(currentPage !== 3 && currentPage !== 15);
+    toggleNext(currentPage !== 3 && currentPage !== 5 && currentPage !== 15);
   }, [currentPage]);
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
@@ -114,6 +115,7 @@ const Page = () => {
             className="max-w-full max-h-screen object-contain"
           />
           {currentPage === 3 && <DoorUI />}
+          {currentPage === 5 && <ScratchReveal />}
 
           {currentPage === 15 && <DumplingUI />}
           {currentPage === 17 && <DumplingGivingUI />}
