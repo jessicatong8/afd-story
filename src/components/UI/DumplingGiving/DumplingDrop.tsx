@@ -12,10 +12,10 @@ const DumplingDrop = ({ dropped, dragging }: Props) => {
   return (
     <div
       ref={setNodeRef}
-      className={` w-1/7 scale-95 aspect-square absolute -translate-x-[50%]-translate-y-[50%] 
-        top-[72%] left-[19%]
+      className={` w-1/7 scale-95 aspect-square absolute 
+        top-[72%] left-[19%] z-0 transition-all
         ${isOver ? "scale-110" : ""}
-        ${!dragging ? "invisible" : ""}
+        ${dragging ? "opacity-100" : "opacity-0"}
         `}
     >
       <img src={dropArea} />

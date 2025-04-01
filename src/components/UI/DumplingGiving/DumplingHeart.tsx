@@ -10,14 +10,15 @@ const DumplingHeart = ({ dropped }: Props) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
       id: "draggable",
+      disabled: dropped,
     });
   // updates position of the element as it is dragged
   const style = {
     transform: CSS.Translate.toString(transform),
   };
 
-  const initialPos = "top-[78%] left-[62%]";
-  const droppedPos = "top-[72%] left-[19%]";
+  const initialPos = "top-[78%] left-[61%]";
+  const droppedPos = "top-[72%] left-[19%] transition-none";
 
   const glowSVG = (
     <defs>
@@ -69,14 +70,16 @@ const DumplingHeart = ({ dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`w-1/7 aspect-square absolute
-        ${dropped ? droppedPos : initialPos} `}
+      className={`w-1/7 aspect-square absolute cursor-grab z-10 scale-90  hover:scale-105
+        ${dropped ? droppedPos : initialPos}
+         ${isDragging ? "transition-none scale-105" : "transition-transform"} `}
     >
-      <img src={dumplingImage} className="w-full absolute z-1 " />
+      {/* image of dumpling */}
+      <img src={dumplingImage} className="w-full absolute z-20 " />
+      {/* svg for border glow/shadow */}
       <svg
-        className={`w-full h-auto absolute scale-102 z-0
-          ${dropped ? "invisible" : ""} 
-        `}
+        className={`w-full h-auto absolute scale-102 z-10
+          ${dropped ? "invisible" : ""} `}
         width="205"
         height="190"
         viewBox="0 0 205 190"

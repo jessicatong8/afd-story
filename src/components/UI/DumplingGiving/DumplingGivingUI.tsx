@@ -14,7 +14,6 @@ import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
 import DumplingHeart from "./DumplingHeart";
 import DumplingDrop from "./DumplingDrop";
-import Arrow from "./Arrow";
 
 const DumplingGivingUI = () => {
   const { toggleNext, toggleBack } = useReadContext();
