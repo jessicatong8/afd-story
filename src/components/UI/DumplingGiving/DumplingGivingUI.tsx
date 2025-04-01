@@ -21,9 +21,11 @@ const DumplingGivingUI = () => {
   const navigate = useNavigate();
 
   const [isDropped, setIsDropped] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+    setIsDragging(false);
     setTimeout(() => {
       toggleBack(true); // delay enabling back so swipe actions don't trigger navigation upon dropping
     }, 200);
@@ -32,6 +34,7 @@ const DumplingGivingUI = () => {
     }
   };
   const handleDragStart = (event: DragStartEvent) => {
+    setIsDragging(true);
     toggleBack(false); // disable going back when dragging so swipe actions don't trigger navigation
   };
 
@@ -45,8 +48,8 @@ const DumplingGivingUI = () => {
       onDragEnd={handleDragEnd}
     >
       <DumplingHeart dropped={isDropped} />
-      <DumplingDrop />
-      <Arrow dropped={isDropped} />
+      <DumplingDrop dropped={isDropped} dragging={isDragging} />
+      {/* <Arrow dropped={isDropped} /> */}
     </DndContext>
   );
 };
