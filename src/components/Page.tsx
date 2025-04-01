@@ -35,7 +35,7 @@ const Page = () => {
 
   // disable navigation to the next page depending on the current page to facilitate UI
   useEffect(() => {
-    toggleNext(currentPage !== 3 && currentPage !== 15);
+    toggleNext(currentPage !== 3 && currentPage !== 5 && currentPage !== 15);
   }, [currentPage]);
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images

@@ -1,17 +1,17 @@
 import { useState, useLayoutEffect, useEffect, useRef } from "react";
 import ScratchCard from "react-scratchcard-v2";
 
-import dumplingImage from "/src/assets/heart-dumpling.png";
+import image from "/src/assets/thought-cloud.png";
+import { useReadContext } from "../../ReadContext";
+import ThoughtBubbleGlow from "./ThoughtBubbleGlow";
+import { useNavigate } from "react-router-dom";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
-  const [size, setSize] = useState({ width: 300, height: 300 }); // State to store the size
-  //   console.log(size);
-
-  //   if (containerRef.current) {
-  //     const { offsetWidth, offsetHeight } = containerRef.current;
-  //     console.log(offsetWidth, offsetHeight);
-  //   }
+  const [size, setSize] = useState({ width: 478, height: 352 }); // State to store the size
+  const { handleNext, toggleNext, toggleBack } = useReadContext();
+  const navigate = useNavigate();
+  const [isRevealed, setIsRevealed] = useState(false); // State to track whether the card has been revealed
 
   useLayoutEffect(() => {
     // Runs after the component mounts
@@ -29,24 +29,43 @@ const ScratchReveal = () => {
     // console.log("useEffect: " + size);
   }, []);
 
-  // Second effect: Debugging to confirm state updates
+  // Debugging to confirm state updates
   useEffect(() => {
     console.log("Updated size:", size.width, size.height);
   }, [size]); // Runs whenever `size` changes
 
+  const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
+
+  // turn to next page when revealed
+  useEffect(() => {
+    if (isRevealed) {
+      toggleNext(true);
+      setTimeout(() => {
+        navigate(`/read/6`); // make this transition nicer
+      }, 1500);
+    }
+  }, [isRevealed]);
+
   return (
     <div
       ref={containerRef}
-      className="w-1/4 h-1/4 absolute -translate-x-[50%]-translate-y-[50%] 
-        top-[10%] left-[60%] border-2 scale-100"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      //   onDragStart={() => toggleBack(false)}
+      //   onDragEnd={() => toggleBack(true)}
+      className="w-1/2 h-1/3 absolute 
+        top-[3.5%] left-[24%] scale-95 cursor-pointer"
     >
+      <ThoughtBubbleGlow hover={isHovered} />
+
       <ScratchCard
         key={`${size.width}-${size.height}`}
         width={size.width}
         height={size.height}
-        image={dumplingImage}
-        finishPercent={90}
-        onComplete={() => console.log("scratch complete")}
+        image={image}
+        finishPercent={70}
+        fadeOutOnComplete={true}
+        onComplete={() => setIsRevealed(true)}
       ></ScratchCard>
     </div>
   );
