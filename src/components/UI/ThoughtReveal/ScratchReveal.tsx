@@ -35,6 +35,13 @@ const ScratchReveal = () => {
   }, [size]); // Runs whenever `size` changes
 
   const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
+  const [isDragging, setIsDragging] = useState(false); // State to track mouse is being dragged to reveal the card
+  const [strokeWidth, setStrokeWidth] = useState("10"); // State to track strokeWidth of the glow
+
+  useEffect(() => {
+    isHovered || isDragging ? setStrokeWidth("15") : strokeWidth;
+    !isDragging && !isHovered ? setStrokeWidth("10") : strokeWidth;
+  });
 
   // turn to next page when revealed
   useEffect(() => {
@@ -50,13 +57,15 @@ const ScratchReveal = () => {
     <div
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
+      onMouseDown={() => setIsDragging(true)}
+      onMouseUp={() => setIsDragging(false)}
       onMouseLeave={() => setIsHovered(false)}
       //   onDragStart={() => toggleBack(false)}
       //   onDragEnd={() => toggleBack(true)}
       className="w-1/2 h-1/3 absolute 
         top-[3.5%] left-[24%] scale-95 cursor-pointer"
     >
-      <ThoughtBubbleGlow hover={isHovered} />
+      <ThoughtBubbleGlow strokeWidth={strokeWidth} />
 
       <ScratchCard
         key={`${size.width}-${size.height}`}
