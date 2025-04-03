@@ -54,7 +54,7 @@ const DoorUI = () => {
               result="shape"
             />
             <feGaussianBlur
-              stdDeviation="2"
+              stdDeviation="3"
               result="effect1_foregroundBlur_1731_717"
             />
           </filter>
