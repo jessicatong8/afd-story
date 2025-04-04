@@ -16,7 +16,7 @@ const DoorUI = () => {
   return (
     <button onClick={onClick}>
       <svg
-        className="absolute top-[33%] left-[13.5%] -translate-x-[50%]
+        className="absolute top-[29%] left-[13.5%] -translate-x-[50%]
        -translate-y-[50%] w-1/2 h-auto scale-55 cursor-pointer"
         onMouseEnter={() => setStrokeWidth("20")}
         onMouseLeave={() => setStrokeWidth("10")}
