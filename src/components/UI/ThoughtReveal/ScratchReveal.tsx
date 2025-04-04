@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
   const [size, setSize] = useState({ width: 478, height: 352 }); // State to store the size
-  const { handleNext, toggleNext, toggleBack } = useReadContext();
+  const { toggleNext, toggleBack } = useReadContext();
   const navigate = useNavigate();
   const [isRevealed, setIsRevealed] = useState(false); // State to track whether the card has been revealed
 
@@ -19,7 +19,7 @@ const ScratchReveal = () => {
       if (containerRef.current) {
         const { offsetWidth, offsetHeight } = containerRef.current;
         setSize({ width: offsetWidth, height: offsetHeight }); // Update the size
-        console.log("container size: " + offsetWidth + ", " + offsetHeight);
+        // console.log("container size: " + offsetWidth + ", " + offsetHeight);
         // console.log("Updated size: " + size.width + ", " + size.height); // Debugging: check the updated size
       }
     };
@@ -29,10 +29,10 @@ const ScratchReveal = () => {
     // console.log("useEffect: " + size);
   }, []);
 
-  // Debugging to confirm state updates
-  useEffect(() => {
-    console.log("Updated size:", size.width, size.height);
-  }, [size]); // Runs whenever `size` changes
+  //   // Debugging to confirm state updates
+  //   useEffect(() => {
+  //     console.log("Updated size:", size.width, size.height);
+  //   }, [size]); // Runs whenever `size` changes
 
   const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
   const [isDragging, setIsDragging] = useState(false); // State to track mouse is being dragged to reveal the card
