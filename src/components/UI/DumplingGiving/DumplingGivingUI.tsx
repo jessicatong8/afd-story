@@ -47,7 +47,7 @@ const DumplingGivingUI = () => {
       onDragEnd={handleDragEnd}
     >
       <DumplingHeart dropped={isDropped} />
-      <DumplingDrop dropped={isDropped} dragging={isDragging} />
+      <DumplingDrop dragging={isDragging} />
       {/* <Arrow dropped={isDropped} /> */}
     </DndContext>
   );

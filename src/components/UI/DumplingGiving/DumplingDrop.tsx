@@ -2,10 +2,9 @@ import { useDroppable } from "@dnd-kit/core";
 import dropArea from "/src/assets/UI/DumplingGiving/heart-dumpling_drop.svg";
 
 interface Props {
-  dropped: boolean;
   dragging: boolean;
 }
-const DumplingDrop = ({ dropped, dragging }: Props) => {
+const DumplingDrop = ({ dragging }: Props) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "droppable",
   });
