@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect, useEffect, useRef } from "react";
 import ScratchCard from "react-scratchcard-v2";
 
-import image from "/src/assets/thought-cloud.png";
+import image from "/src/assets/UI/ThoughtCloud/thought-cloud.png";
 import { useReadContext } from "../../ReadContext";
 import ThoughtBubbleGlow from "./ThoughtBubbleGlow";
 import { useNavigate } from "react-router-dom";
