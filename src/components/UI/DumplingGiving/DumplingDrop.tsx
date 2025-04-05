@@ -1,5 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import dropArea from "/src/assets/heart-dumpling_drop.svg";
+import dropArea from "/src/assets/UI/DumplingGiving/heart-dumpling_drop.svg";
 
 interface Props {
   dropped: boolean;

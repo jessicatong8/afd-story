@@ -1,6 +1,10 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 
+import happyImage from "/src/assets/UI/DumplingFilling/happy.png";
+import heartImage from "/src/assets/UI/DumplingFilling/heart.png";
+import timeImage from "/src/assets/UI/DumplingFilling/time.png";
+
 interface Props {
   id: number;
   activeID: number;
@@ -9,10 +13,11 @@ interface Props {
 const DumplingFilling = ({ id, activeID, dropped }: Props) => {
   const isDropping = id === activeID; // this is the filling currently being dropped
   const hasBeenDropped = dropped[id]; // this filling has already been dropped
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: id,
-    disabled: hasBeenDropped,
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: id,
+      disabled: hasBeenDropped,
+    });
 
   //   console.log(
   //     "filling: " +
@@ -37,12 +42,13 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
     "top-[15%] left-[75%]",
   ];
   const insidePositions = [
-    "top-[40%] left-[50%]",
-    "top-[58%] left-[60%]",
-    "top-[70%] left-[40%]",
+    "top-[40%] left-[50%] transition-none",
+    "top-[58%] left-[60%] transition-none",
+    "top-[70%] left-[40%] transition-none",
   ];
 
   const color = fillingColors[id];
+  const image = [happyImage, heartImage, timeImage];
   const outsidePos = outsidePositions[id];
   const insidePos = insidePositions[id];
 
@@ -53,9 +59,57 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`${color} w-1/8 aspect-square rounded-full absolute -translate-x-[50%] -translate-y-[50%] 
-        ${isDropping || hasBeenDropped ? insidePos : outsidePos}`} // if this filling is being dropped or has already been dropped then render inside the wrapper
-    ></div>
+      className={`w-1/7 aspect-square rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-pointer hover:scale-110
+        ${isDropping || hasBeenDropped ? insidePos : outsidePos}
+         ${isDragging ? "transition-none" : "transition-transform"}`} // if this filling is being dropped or has already been dropped then render inside the wrapper
+    >
+      <img src={image[id]} className="absolute w-full h-auto z-20" />
+      <svg
+        className={`absolute w-full h-auto z-10
+          ${isDropping || hasBeenDropped ? "invisible" : ""}
+        `}
+        width="152"
+        height="152"
+        viewBox="0 0 152 152"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g filter="url(#filter0_f_2237_940)">
+          <circle cx="76" cy="76" r="62" fill="white" />
+          <circle
+            cx="76"
+            cy="76"
+            r="67"
+            stroke="#FFDD53"
+            stroke-opacity="0.7"
+            stroke-width="10"
+          />
+        </g>
+        <defs>
+          <filter
+            id="filter0_f_2237_940"
+            x="0"
+            y="0"
+            width="152"
+            height="152"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="2"
+              result="effect1_foregroundBlur_2237_940"
+            />
+          </filter>
+        </defs>
+      </svg>
+    </div>
   );
 };
 

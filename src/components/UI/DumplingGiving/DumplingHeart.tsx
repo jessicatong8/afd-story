@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import dumplingImage from "/src/assets/heart-dumpling_thick.png";
+import dumplingImage from "/src/assets/UI/DumplingGiving/heart-dumpling_thick.png";
 
 interface Props {
   dropped: boolean;
