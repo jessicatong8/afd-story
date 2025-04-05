@@ -42,12 +42,11 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
     "top-[15%] left-[75%]",
   ];
   const insidePositions = [
-    "top-[40%] left-[50%] transition-none",
-    "top-[58%] left-[60%] transition-none",
-    "top-[70%] left-[40%] transition-none",
+    "top-[40%] left-[50%] transition-none scale-150",
+    "top-[58%] left-[60%] transition-none scale-150",
+    "top-[70%] left-[40%] transition-none scale-150",
   ];
 
-  const color = fillingColors[id];
   const image = [happyImage, heartImage, timeImage];
   const outsidePos = outsidePositions[id];
   const insidePos = insidePositions[id];
@@ -59,14 +58,15 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`w-1/7 aspect-square rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-pointer hover:scale-110
+      className={`w-1/7 h-1/7 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab hover:scale-150
         ${isDropping || hasBeenDropped ? insidePos : outsidePos}
-         ${isDragging ? "transition-none" : "transition-transform"}`} // if this filling is being dropped or has already been dropped then render inside the wrapper
+         ${isDragging ? "scale-150 transition-none cursor-grabbing" : "transition-transform"}
+     `} // if this filling is being dropped or has already been dropped then render inside the wrapper
     >
       <img src={image[id]} className="absolute w-full h-auto z-20" />
       <svg
         className={`absolute w-full h-auto z-10
-          ${isDropping || hasBeenDropped ? "invisible" : ""}
+          ${isDragging || isDropping || hasBeenDropped ? "invisible" : ""}
         `}
         width="152"
         height="152"
@@ -82,7 +82,7 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
             r="67"
             stroke="#FFDD53"
             stroke-opacity="0.7"
-            stroke-width="10"
+            stroke-width="8"
           />
         </g>
         <defs>

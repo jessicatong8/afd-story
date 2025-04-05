@@ -7,7 +7,7 @@ import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 
 import DoorUI from "./UI/DoorUI";
-import DumplingUI from "./UI/DumplingFilling/DumplingUI";
+import DumplingFillingUI from "./UI/DumplingFilling/DumplingFillingUI";
 import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
 import ScratchReveal from "./UI/ThoughtReveal/ScratchReveal";
 
@@ -116,8 +116,7 @@ const Page = () => {
           />
           {currentPage === 3 && <DoorUI />}
           {currentPage === 5 && <ScratchReveal />}
-
-          {currentPage === 15 && <DumplingUI />}
+          {currentPage === 15 && <DumplingFillingUI />}
           {currentPage === 17 && <DumplingGivingUI />}
         </div>
       ) : (

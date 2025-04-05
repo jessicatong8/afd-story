@@ -15,7 +15,7 @@ import DumplingFilling from "./DumplingFilling";
 import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
 
-const DumplingUI = () => {
+const DumplingFillingUI = () => {
   const { toggleNext, toggleBack } = useReadContext();
   const navigate = useNavigate();
 
@@ -27,20 +27,18 @@ const DumplingUI = () => {
   // tracks which dumplings have already been dropped with boolean list
   const [dropped, setDropped] = useState(() =>
     Array(dumplingFillings.length).fill(false)
-  ); // make this smarter (list comprehension)
+  );
+  // State to track if a filling is being dragged
+  const [isDragging, setIsDragging] = useState(false);
 
-  // turn to next page when all dumplings have been dropped
-  useEffect(() => {
-    if (dropped.every(Boolean)) {
-      toggleNext(true);
-      setTimeout(() => {
-        navigate(`/read/16`); // make this transition nicer
-      }, 500);
-    }
-  }, [dropped]);
+  const handleDragStart = (event: DragStartEvent) => {
+    setIsDragging(true);
+    toggleBack(false); // disable going back when dragging so swipe actions don't trigger navigation
+  };
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+    setIsDragging(false);
     setTimeout(() => {
       toggleBack(true); // delay enabling back so swipe actions don't trigger navigation upon dropping
     }, 200);
@@ -54,13 +52,21 @@ const DumplingUI = () => {
       });
     }
   };
-  const handleDragStart = (event: DragStartEvent) => {
-    toggleBack(false); // disable going back when dragging so swipe actions don't trigger navigation
-  };
+
+  // turn to next page when all dumplings have been dropped
+  useEffect(() => {
+    if (dropped.every(Boolean)) {
+      toggleNext(true);
+      setTimeout(() => {
+        navigate(`/read/16`); // make this transition nicer
+      }, 1000);
+    }
+  }, [dropped]);
 
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
+    // <div className="relative border-2">
     <DndContext
       modifiers={[restrictToParentElement]}
       sensors={sensors}
@@ -76,9 +82,10 @@ const DumplingUI = () => {
         />
       ))}
 
-      <DumplingWrapper />
+      <DumplingWrapper dragging={isDragging} />
     </DndContext>
+    // </div>
   );
 };
 
-export default DumplingUI;
+export default DumplingFillingUI;

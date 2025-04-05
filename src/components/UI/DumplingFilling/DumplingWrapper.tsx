@@ -1,6 +1,11 @@
 import { useDroppable } from "@dnd-kit/core";
+import dropArea from "/src/assets/UI/DumplingFilling/wrapper_glow.svg";
 
-const DumplingWrapper = () => {
+interface Props {
+  dragging: boolean;
+}
+
+const DumplingWrapper = ({ dragging }: Props) => {
   const { isOver, setNodeRef } = useDroppable({
     id: "dumpling-wrapper",
   });
@@ -8,8 +13,13 @@ const DumplingWrapper = () => {
   return (
     <div
       ref={setNodeRef}
-      className="absolute top-[20%] left-[0%] -translate-x-[50%]-translate-y-[50%] w-full h-3/4 scale-80"
-    ></div>
+      className={`absolute top-[19.5%] left-[-2%] w-full h-3/4 scale-79 transition-all
+      ${isOver ? "scale-82" : ""}
+      ${dragging ? "opacity-100" : "opacity-0"}
+      `}
+    >
+      <img src={dropArea} />
+    </div>
   );
 };
 
