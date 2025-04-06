@@ -132,6 +132,7 @@ const Page = () => {
           {currentPage === 15 && <DumplingFillingUI />}
           {currentPage === 17 && <DumplingGivingUI />}
           {currentPage === 20 && <LoveLanguagesUI />}
+          {currentPage === 28 && <LoveLanguagesUI />}
         </div>
       ) : (
         <p>Loading...</p>
