@@ -39,16 +39,17 @@ const ScratchReveal = () => {
   const [strokeWidth, setStrokeWidth] = useState("10"); // State to track strokeWidth of the glow
 
   useEffect(() => {
-    isHovered || isDragging ? setStrokeWidth("15") : strokeWidth;
+    isHovered || isDragging ? setStrokeWidth("18") : strokeWidth;
     !isDragging && !isHovered ? setStrokeWidth("10") : strokeWidth;
+    isDragging ? toggleBack(false) : toggleBack(true);
   });
 
   // turn to next page when revealed
   useEffect(() => {
     if (isRevealed) {
-      toggleNext(true);
       setTimeout(() => {
         navigate(`/read/6`); // make this transition nicer
+        toggleNext(true);
       }, 1500);
     }
   }, [isRevealed]);
@@ -57,11 +58,13 @@ const ScratchReveal = () => {
     <div
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
+      onTouchStart={() => setIsDragging(true)}
       onMouseDown={() => setIsDragging(true)}
       onMouseUp={() => setIsDragging(false)}
+      onTouchEnd={() => setIsDragging(false)}
       onMouseLeave={() => setIsHovered(false)}
-      //   onDragStart={() => toggleBack(false)}
-      //   onDragEnd={() => toggleBack(true)}
+      onDragStart={() => toggleBack(false)}
+      onDragEnd={() => toggleBack(true)}
       className="w-1/2 h-1/3 absolute 
         top-[3.5%] left-[24%] scale-95 cursor-pointer"
     >
