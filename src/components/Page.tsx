@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { useReadContext } from "./ReadContext";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -6,10 +6,14 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 
-import DoorUI from "./UI/DoorUI";
+// import DoorUI from "./UI/DoorUI";
 import DumplingFillingUI from "./UI/DumplingFilling/DumplingFillingUI";
 import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
 import ScratchReveal from "./UI/ThoughtReveal/ScratchReveal";
+import LoveLanguagesUI from "./UI/LoveLanguages/LoveLanguagesUI";
+
+const DoorUIImport = () => import("./UI/DoorUI");
+const DoorUI = lazy(DoorUIImport);
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -35,7 +39,16 @@ const Page = () => {
 
   // disable navigation to the next page depending on the current page to facilitate UI
   useEffect(() => {
-    toggleNext(currentPage !== 3 && currentPage !== 5 && currentPage !== 15);
+    toggleNext(
+      currentPage !== 3 &&
+        currentPage !== 5 &&
+        currentPage !== 15 &&
+        currentPage !== 17
+    );
+    // preload UI components
+    if (currentPage === 2) {
+      DoorUIImport(); // triggers preload!
+    }
   }, [currentPage]);
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
@@ -107,17 +120,18 @@ const Page = () => {
       className=" w-full h-screen flex justify-center items-center"
     >
       {imageCache[currentPage] ? (
-        <div className="relative border-2 border-sky-200">
+        <div className="relative border-2 border-sky-200 m-0 p-0">
           <LazyLoadImage
             src={imageCache[currentPage]}
             alt={`Page ${currentPage}`}
             effect="blur"
-            className="max-w-full max-h-screen object-contain"
+            className="block max-w-screen max-h-screen object-contain"
           />
           {currentPage === 3 && <DoorUI />}
           {currentPage === 5 && <ScratchReveal />}
           {currentPage === 15 && <DumplingFillingUI />}
           {currentPage === 17 && <DumplingGivingUI />}
+          {currentPage === 20 && <LoveLanguagesUI />}
         </div>
       ) : (
         <p>Loading...</p>

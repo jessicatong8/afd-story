@@ -11,13 +11,12 @@ import {
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 
 import { useReadContext } from "../../ReadContext";
-import { useNavigate } from "react-router-dom";
 import DumplingHeart from "./DumplingHeart";
 import DumplingDrop from "./DumplingDrop";
+import LoveLanguagesUI from "../LoveLanguages/LoveLanguagesUI";
 
 const DumplingGivingUI = () => {
-  const { toggleNext, toggleBack } = useReadContext();
-  const navigate = useNavigate();
+  const { toggleBack } = useReadContext();
 
   const [isDropped, setIsDropped] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -48,7 +47,7 @@ const DumplingGivingUI = () => {
     >
       <DumplingHeart dropped={isDropped} />
       <DumplingDrop dragging={isDragging} />
-      {/* <Arrow dropped={isDropped} /> */}
+      {isDropped && <LoveLanguagesUI />}
     </DndContext>
   );
 };
