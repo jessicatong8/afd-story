@@ -42,9 +42,9 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
     "top-[15%] left-[75%]",
   ];
   const insidePositions = [
-    "top-[40%] left-[50%] transition-none scale-150",
-    "top-[58%] left-[60%] transition-none scale-150",
-    "top-[70%] left-[40%] transition-none scale-150",
+    "top-[40%] left-[50%] transition-none scale-100",
+    "top-[58%] left-[60%] transition-none scale-100",
+    "top-[70%] left-[40%] transition-none scale-100",
   ];
 
   const image = [happyImage, heartImage, timeImage];
@@ -58,9 +58,9 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`w-1/7 h-1/7 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab hover:scale-150
+      className={`w-1/5 h-1/5 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab scale-75 hover:scale-100
         ${isDropping || hasBeenDropped ? insidePos : outsidePos}
-         ${isDragging ? "scale-150 transition-none cursor-grabbing" : "transition-transform"}
+         ${isDragging ? "scale-100 transition-none cursor-grabbing" : "transition-transform"}
      `} // if this filling is being dropped or has already been dropped then render inside the wrapper
     >
       <img src={image[id]} className="absolute w-full h-auto z-20" />
@@ -80,7 +80,7 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
             cx="76"
             cy="76"
             r="67"
-            stroke="#FFDD53"
+            stroke="#FFEC5B"
             stroke-opacity="0.7"
             stroke-width="8"
           />
