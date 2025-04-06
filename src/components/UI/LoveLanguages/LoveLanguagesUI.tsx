@@ -4,6 +4,9 @@ import { useReadContext } from "../../ReadContext";
 const Words20 = lazy(() => import("./Words20"));
 const Food17 = lazy(() => import("./Food17"));
 const Touch28 = lazy(() => import("./Touch28"));
+const Gift29 = lazy(() => import("./Gift29"));
+const Service30 = lazy(() => import("./Service30"));
+const Time31 = lazy(() => import("./Time31"));
 
 const LoveLanguagesUI = () => {
   const { currentPage, toggleNext } = useReadContext();
@@ -15,6 +18,9 @@ const LoveLanguagesUI = () => {
     17: Food17,
     20: Words20,
     28: Touch28,
+    29: Gift29,
+    30: Service30,
+    31: Time31,
   };
   const ComponentToRender = componentMap[currentPage];
 
@@ -39,26 +45,10 @@ const LoveLanguagesUI = () => {
       onTouchEnd={() => setClicked(false)}
       className={`${!clicked && "cursor-pointer"}`}
     >
-      {currentPage === 17 && (
-        <>
-          <Suspense fallback={<span></span>}>
-            <ComponentToRender clicked={clicked} hover={hover} />
-          </Suspense>
-        </>
-      )}
-      {currentPage === 20 && (
-        <>
-          <Suspense fallback={<span></span>}>
-            <ComponentToRender clicked={clicked} hover={hover} />
-          </Suspense>
-        </>
-      )}
-      {currentPage === 28 && (
-        <>
-          <Suspense fallback={<span></span>}>
-            <ComponentToRender clicked={clicked} hover={hover} />
-          </Suspense>
-        </>
+      {[17, 20, 28, 29, 30, 31].includes(currentPage) && (
+        <Suspense fallback={<span></span>}>
+          <ComponentToRender clicked={clicked} hover={hover} />
+        </Suspense>
       )}
     </button>
   );
