@@ -18,8 +18,8 @@ const DoorUI = () => {
       <svg
         className="absolute top-[29%] left-[14%] -translate-x-[50%]
        -translate-y-[50%] w-1/4 h-auto scale-112 cursor-pointer"
-        onMouseEnter={() => setStrokeWidth("20")}
-        onTouchStart={() => setStrokeWidth("20")}
+        onMouseEnter={() => setStrokeWidth("18")}
+        onTouchStart={() => setStrokeWidth("18")}
         onMouseLeave={() => setStrokeWidth("10")}
         width="269"
         height="483"
