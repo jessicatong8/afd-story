@@ -57,9 +57,9 @@ const DumplingFillingUI = () => {
   useEffect(() => {
     if (dropped.every(Boolean)) {
       toggleNext(true);
-      setTimeout(() => {
-        navigate(`/read/16`); // make this transition nicer
-      }, 1000);
+      // setTimeout(() => {
+      //   navigate(`/read/16`); // make this transition nicer
+      // }, 1000);
     }
   }, [dropped]);
 
