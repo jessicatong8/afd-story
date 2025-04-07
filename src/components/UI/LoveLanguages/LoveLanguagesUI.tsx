@@ -33,9 +33,9 @@ const LoveLanguagesUI = () => {
   //     toggleNext(false);
   //   }, [currentPage]);
 
-  //   useEffect(() => {
-  //     clicked ? toggleNext(true) : toggleNext(false);
-  //   }, [clicked]);
+  useEffect(() => {
+    clicked ? toggleNext(true) : toggleNext(false);
+  }, [clicked]);
 
   const handleClick = () => {
     setClicked(true);

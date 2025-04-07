@@ -134,7 +134,11 @@ const Page = () => {
           {currentPage === 5 && <ScratchReveal />}
           {currentPage === 15 && <DumplingFillingUI />}
           {currentPage === 17 && <DumplingGivingUI />}
-          {[20, 28, 29, 30, 31].includes(currentPage) && <LoveLanguagesUI />}
+          {currentPage === 20 && <LoveLanguagesUI />}
+          {currentPage === 28 && <LoveLanguagesUI />}
+          {currentPage === 29 && <LoveLanguagesUI />}
+          {currentPage === 30 && <LoveLanguagesUI />}
+          {currentPage === 31 && <LoveLanguagesUI />}
         </div>
       ) : (
         <p>Loading...</p>
