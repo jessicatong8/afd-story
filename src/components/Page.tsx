@@ -7,13 +7,25 @@ import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 
 // import DoorUI from "./UI/DoorUI";
-import DumplingFillingUI from "./UI/DumplingFilling/DumplingFillingUI";
-import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
-import ScratchReveal from "./UI/ThoughtReveal/ScratchReveal";
-import LoveLanguagesUI from "./UI/LoveLanguages/LoveLanguagesUI";
+// import DumplingFillingUI from "./UI/DumplingFilling/DumplingFillingUI";
+// import DumplingGivingUI from "./UI/DumplingGiving/DumplingGivingUI";
+// import ScratchReveal from "./UI/ThoughtReveal/ScratchReveal";
+// import LoveLanguagesUI from "./UI/LoveLanguages/LoveLanguagesUI";
 
+// import UI elements lazily
 const DoorUIImport = () => import("./UI/DoorUI");
 const DoorUI = lazy(DoorUIImport);
+const ScratchRevealImport = () => import("./UI/ThoughtReveal/ScratchReveal");
+const ScratchReveal = lazy(ScratchRevealImport);
+const DumplingFillingUIImport = () =>
+  import("./UI/DumplingFilling/DumplingFillingUI");
+const DumplingFillingUI = lazy(DumplingFillingUIImport);
+const DumplingGivingUIImport = () =>
+  import("./UI/DumplingGiving/DumplingGivingUI");
+const DumplingGivingUI = lazy(DumplingGivingUIImport);
+const LoveLanguagesUIImport = () =>
+  import("./UI/LoveLanguages/LoveLanguagesUI");
+const LoveLanguagesUI = lazy(LoveLanguagesUIImport);
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -40,19 +52,22 @@ const Page = () => {
     return <Navigate to="/not-found" replace />; //replace to avoid the browser back button leading back to an invalid page
   }
 
-  // disable navigation to the next page depending on the current page to facilitate UI
   useEffect(() => {
+    // there's probably a better way to do this with a dictionary, would be nice to preload components in a range like the pages
     // setImageLoaded(false);
+    // disable navigation to the next page depending on the current page to facilitate UI
     toggleNext(
       currentPage !== 3 &&
         currentPage !== 5 &&
         currentPage !== 15 &&
         currentPage !== 17
     );
-    // preload UI components
-    if (currentPage === 2) {
-      DoorUIImport(); // triggers preload!
-    }
+    // preload UI components 2 pages before rendering
+    currentPage === 1 && DoorUIImport();
+    currentPage === 3 && ScratchRevealImport();
+    currentPage === 13 && DumplingFillingUIImport();
+    currentPage === 15 && DumplingGivingUIImport();
+    currentPage === 15 && LoveLanguagesUIImport();
   }, [currentPage]);
 
   // Function to load an image dynamically
@@ -76,26 +91,25 @@ const Page = () => {
     const loadImages = async () => {
       const newCache: Record<number, string> = { ...imageCache };
 
-      // Load current page
-      if (!newCache[currentPage]) {
-        // console.log(`Loading image for page ${currentPage}`);
-        newCache[currentPage] = await loadImage(currentPage);
+      const pagesToLoad = [
+        currentPage - 2,
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        currentPage + 2,
+      ];
+
+      for (const page of pagesToLoad) {
+        if (page >= 0 && page <= numPages && !newCache[page]) {
+          newCache[page] = await loadImage(page);
+        }
       }
 
-      // Preload previous and next pages
-      if (currentPage > 0 && !newCache[currentPage - 1]) {
-        newCache[currentPage - 1] = await loadImage(currentPage - 1);
-      }
-      if (currentPage < numPages && !newCache[currentPage + 1]) {
-        newCache[currentPage + 1] = await loadImage(currentPage + 1);
-      }
-      // console.log(newCache);
       setImageCache(newCache);
     };
 
     loadImages();
   }, [currentPage]);
-
   // handle swipe gestures, swipe left or right to control page navigation
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => handleNext(),
