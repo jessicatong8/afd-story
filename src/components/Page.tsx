@@ -29,8 +29,11 @@ const Page = () => {
     toggleNext,
   } = useReadContext();
 
+  const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
+  // const [imageLoaded, setImageLoaded] = useState(false);
+
   // console.log(currentPage);
-  // console.log(nextIsActive);
+  // console.log(imageLoaded);
 
   // Check if pageNumber is invalid before rendering
   if (isNaN(currentPage) || currentPage < 0 || currentPage > numPages) {
@@ -39,6 +42,7 @@ const Page = () => {
 
   // disable navigation to the next page depending on the current page to facilitate UI
   useEffect(() => {
+    // setImageLoaded(false);
     toggleNext(
       currentPage !== 3 &&
         currentPage !== 5 &&
@@ -50,8 +54,6 @@ const Page = () => {
       DoorUIImport(); // triggers preload!
     }
   }, [currentPage]);
-
-  const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Function to load an image dynamically
   const loadImage = async (page: number) => {
@@ -125,6 +127,7 @@ const Page = () => {
             src={imageCache[currentPage]}
             alt={`Page ${currentPage}`}
             effect="blur"
+            // onLoad={() => setImageLoaded(true)}
             className="block max-w-screen max-h-screen object-contain"
           />
           {currentPage === 3 && <DoorUI />}

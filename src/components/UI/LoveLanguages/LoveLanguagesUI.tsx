@@ -9,7 +9,7 @@ const Service30 = lazy(() => import("./Service30"));
 const Time31 = lazy(() => import("./Time31"));
 
 const LoveLanguagesUI = () => {
-  const { currentPage, toggleNext } = useReadContext();
+  const { currentPage, toggleNext, nextIsActive } = useReadContext();
 
   const componentMap: Record<
     number,
@@ -27,14 +27,23 @@ const LoveLanguagesUI = () => {
   const [clicked, setClicked] = useState(false);
   const [hover, setHover] = useState(false);
 
-  useEffect(() => {
-    clicked ? toggleNext(true) : toggleNext(false);
-  }, [clicked]);
+  //   useEffect(() => {
+  //     console.log("useEffect");
+  //     setClicked(false);
+  //     toggleNext(false);
+  //   }, [currentPage]);
+
+  //   useEffect(() => {
+  //     clicked ? toggleNext(true) : toggleNext(false);
+  //   }, [clicked]);
 
   const handleClick = () => {
     setClicked(true);
     toggleNext(true);
   };
+
+  console.log("nextIsActive: " + nextIsActive);
+  console.log("clicked: " + clicked);
 
   return (
     <button
