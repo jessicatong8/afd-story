@@ -1,20 +1,18 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useReadContext } from "../../ReadContext";
 
-const Words20 = lazy(() => import("./Words20"));
-const Food17 = lazy(() => import("./Food17"));
-const Touch28 = lazy(() => import("./Touch28"));
-const Gift29 = lazy(() => import("./Gift29"));
-const Service30 = lazy(() => import("./Service30"));
-const Time31 = lazy(() => import("./Time31"));
+import Words20 from "./Words20";
+import Food17 from "./Food17";
+import Touch28 from "./Touch28";
+import Gift29 from "./Gift29";
+import Service30 from "./Service30";
+import Time31 from "./Time31";
 
 const LoveLanguagesUI = () => {
   const { currentPage, toggleNext, nextIsActive } = useReadContext();
+  console.log(currentPage);
 
-  const componentMap: Record<
-    number,
-    React.LazyExoticComponent<React.ComponentType<any>>
-  > = {
+  const componentMap: Record<number, React.ComponentType<any>> = {
     17: Food17,
     20: Words20,
     28: Touch28,
@@ -27,12 +25,6 @@ const LoveLanguagesUI = () => {
   const [clicked, setClicked] = useState(false);
   const [hover, setHover] = useState(false);
 
-  //   useEffect(() => {
-  //     console.log("useEffect");
-  //     setClicked(false);
-  //     toggleNext(false);
-  //   }, [currentPage]);
-
   useEffect(() => {
     clicked ? toggleNext(true) : toggleNext(false);
   }, [clicked]);
@@ -41,9 +33,6 @@ const LoveLanguagesUI = () => {
     setClicked(true);
     toggleNext(true);
   };
-
-  console.log("nextIsActive: " + nextIsActive);
-  console.log("clicked: " + clicked);
 
   return (
     <button
@@ -55,9 +44,7 @@ const LoveLanguagesUI = () => {
       className={`${!clicked && "cursor-pointer"}`}
     >
       {[17, 20, 28, 29, 30, 31].includes(currentPage) && (
-        <Suspense fallback={<span></span>}>
-          <ComponentToRender clicked={clicked} hover={hover} />
-        </Suspense>
+        <ComponentToRender clicked={clicked} hover={hover} />
       )}
     </button>
   );
