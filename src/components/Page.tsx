@@ -136,13 +136,13 @@ const Page = () => {
       className=" w-full h-screen flex justify-center items-center"
     >
       {imageCache[currentPage] ? (
-        <div className="relative border-2 border-sky-200 m-0 p-0">
+        <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 m-0 p-0">
           <LazyLoadImage
             src={imageCache[currentPage]}
             alt={`Page ${currentPage}`}
             effect="blur"
             // onLoad={() => setImageLoaded(true)}
-            className="block max-w-screen max-h-screen object-contain"
+            className="object-contain"
           />
           {currentPage === 3 && <DoorUI />}
           {currentPage === 5 && <ScratchReveal />}
