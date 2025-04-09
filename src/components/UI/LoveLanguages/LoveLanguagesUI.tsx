@@ -40,7 +40,7 @@ const LoveLanguagesUI = () => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onTouchStart={() => setClicked(true)}
-      onTouchEnd={() => setClicked(false)}
+      //   onTouchEnd={() => setClicked(false)}
       className={`${!clicked && "cursor-pointer"}`}
     >
       {[17, 20, 28, 29, 30, 31].includes(currentPage) && (

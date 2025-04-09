@@ -46,7 +46,12 @@ const ScratchReveal = () => {
 
   // turn to next page when revealed
   useEffect(() => {
-    isRevealed && toggleNext(true);
+    if (isRevealed) {
+      setTimeout(() => {
+        toggleNext(true);
+        toggleBack(true);
+      }, 1000);
+    }
     // if (isRevealed) {
     //   setTimeout(() => {
     //     navigate(`/read/6`); // make this transition nicer
