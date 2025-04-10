@@ -5,6 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
 // import DoorUI from "./UI/DoorUI";
 // import DumplingFillingUI from "./UI/DumplingFilling/DumplingFillingUI";
@@ -39,6 +40,7 @@ const Page = () => {
     handleBack,
     handleNext,
     toggleNext,
+    direction,
   } = useReadContext();
 
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
@@ -46,6 +48,7 @@ const Page = () => {
 
   // console.log(currentPage);
   // console.log(imageLoaded);
+  // console.log(direction);
 
   // Check if pageNumber is invalid before rendering
   if (isNaN(currentPage) || currentPage < 0 || currentPage > numPages) {
@@ -130,33 +133,67 @@ const Page = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentPage, nextIsActive]);
 
+  const animationVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? "-100%" : "100%",
+      opacity: 0,
+    }),
+  };
+
   return (
     <div
       {...swipeHandlers}
-      className=" w-full h-screen flex justify-center items-center"
+      className="w-full h-screen flex justify-center items-center"
     >
-      {imageCache[currentPage] ? (
-        <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 m-0 p-0">
-          <LazyLoadImage
-            src={imageCache[currentPage]}
-            alt={`Page ${currentPage}`}
-            effect="blur"
-            // onLoad={() => setImageLoaded(true)}
-            className="object-contain"
-          />
-          {currentPage === 3 && <DoorUI />}
-          {currentPage === 5 && <ScratchReveal />}
-          {currentPage === 15 && <DumplingFillingUI />}
-          {currentPage === 17 && <DumplingGivingUI />}
-          {currentPage === 20 && <LoveLanguagesUI />}
-          {currentPage === 28 && <LoveLanguagesUI />}
-          {currentPage === 29 && <LoveLanguagesUI />}
-          {currentPage === 30 && <LoveLanguagesUI />}
-          {currentPage === 31 && <LoveLanguagesUI />}
+      <AnimatePresence custom={direction} initial={false}>
+        <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
+          {imageCache[currentPage] ? (
+            <motion.div
+              className="absolute"
+              custom={direction}
+              variants={animationVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                // type: "spring",
+                // stiffness: 500,
+                // damping: 30,
+                // mass: 0.2,
+                duration: 0.4,
+              }}
+              key={currentPage}
+            >
+              <LazyLoadImage
+                src={imageCache[currentPage]}
+                alt={`Page ${currentPage}`}
+                // effect="blur"
+                // onLoad={() => setImageLoaded(true)}
+                className="object-contain"
+              />
+              {currentPage === 3 && <DoorUI />}
+              {currentPage === 5 && <ScratchReveal />}
+              {currentPage === 15 && <DumplingFillingUI />}
+              {currentPage === 17 && <DumplingGivingUI />}
+              {currentPage === 20 && <LoveLanguagesUI />}
+              {currentPage === 28 && <LoveLanguagesUI />}
+              {currentPage === 29 && <LoveLanguagesUI />}
+              {currentPage === 30 && <LoveLanguagesUI />}
+              {currentPage === 31 && <LoveLanguagesUI />}
+            </motion.div>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      </AnimatePresence>
     </div>
   );
 };
