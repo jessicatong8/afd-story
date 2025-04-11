@@ -8,31 +8,34 @@ import { useNavigate } from "react-router-dom";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
-  const [size, setSize] = useState({ width: 478, height: 352 }); // State to store the size
+  const [size, setSize] = useState({ width: 0, height: 0 }); // State to store the size of the ScratchCard
   const { toggleNext, toggleBack } = useReadContext();
-  const navigate = useNavigate();
   const [isRevealed, setIsRevealed] = useState(false); // State to track whether the card has been revealed
 
-  useLayoutEffect(() => {
-    // Runs after the component mounts
-    const updateSize = () => {
-      if (containerRef.current) {
-        const { offsetWidth, offsetHeight } = containerRef.current;
-        setSize({ width: offsetWidth, height: offsetHeight }); // Update the size
-        // console.log("container size: " + offsetWidth + ", " + offsetHeight);
-        // console.log("Updated size: " + size.width + ", " + size.height); // Debugging: check the updated size
+  // Update size of the ScratchCard whenever size of the parent div changes
+
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { width, height } = entry.contentRect;
+        setSize({ width, height });
       }
+    });
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
     };
-    requestAnimationFrame(updateSize);
-    window.addEventListener("resize", updateSize); // Listen for resizes
-    return () => window.removeEventListener("resize", updateSize); // Cleanup
-    // console.log("useEffect: " + size);
   }, []);
 
-  // Debugging to confirm state updates
-  useEffect(() => {
-    console.log("Updated size:", size.width, size.height);
-  }, [size]); // Runs whenever `size` changes
+  // // Debugging to confirm state updates
+  // useEffect(() => {
+  //   console.log("Updated size:", size.width, size.height);
+  // }, [size]); // Runs whenever `size` changes
 
   const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
   const [isDragging, setIsDragging] = useState(false); // State to track mouse is being dragged to reveal the card
@@ -44,7 +47,7 @@ const ScratchReveal = () => {
     isDragging ? toggleBack(false) : toggleBack(true);
   });
 
-  // turn to next page when revealed
+  // enable navigation when revealed
   useEffect(() => {
     if (isRevealed) {
       setTimeout(() => {
@@ -76,15 +79,18 @@ const ScratchReveal = () => {
     >
       <ThoughtBubbleGlow strokeWidth={strokeWidth} />
 
-      <ScratchCard
-        key={`${size.width}-${size.height}`}
-        width={size.width}
-        height={size.height}
-        image={image}
-        finishPercent={70}
-        fadeOutOnComplete={true}
-        onComplete={() => setIsRevealed(true)}
-      ></ScratchCard>
+      {/* conditionally render when size is valid */}
+      {size.width > 0 && size.height > 0 && (
+        <ScratchCard
+          key={`${size.width}-${size.height}`}
+          width={size.width}
+          height={size.height}
+          image={image}
+          finishPercent={70}
+          fadeOutOnComplete={true}
+          onComplete={() => setIsRevealed(true)}
+        />
+      )}
     </div>
   );
 };
