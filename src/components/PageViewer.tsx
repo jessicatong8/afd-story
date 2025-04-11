@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useReadContext } from "./ReadContext";
-import { useEffect, useState } from "react";
 
 interface Props {
   pageNum: number;
@@ -19,47 +18,40 @@ const PageViewer = ({
 }: Props) => {
   //   const { currentPage, direction } = useReadContext();
 
-  //   const [isActive, setIsActive] = useState(pageNum === currentPage);
-  //   const [isPrevious, setIsPrevious] = useState(pageNum === currentPage - 1);
-  //   const [isNext, setIsNext] = useState(pageNum === currentPage + 1);
-
-  //   useEffect(() => {
-  //     setIsActive(pageNum === currentPage);
-  //     setIsPrevious(pageNum === currentPage - 1);
-  //     setIsNext(pageNum === currentPage + 1);
-  //   }, [currentPage]);
-  //   console.log(direction);
-
   const isActive = pageNum === currentPage;
-  const isPrevious = pageNum === currentPage - 1;
-  const isNext = pageNum === currentPage + 1;
 
-  //   const [prevPage, setPrevPage] = useState(false);
-  //   useEffect(() => {
-  //     if (direction > 0) {
-  //       setPrevPage(pageNum === currentPage - 1);
-  //     } else if (direction < 0) {
-  //       setPrevPage(pageNum === currentPage + 1);
-  //     }
-  //   }, [currentPage]);
+  const animationVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction > 0 ? "-100%" : "100%",
+      opacity: 0,
+    }),
+  };
 
-  //   console.log(pageNum);
-  //   console.log("isPrevious: " + isPrevious);
-  //   console.log("isActive: " + isActive);
-  //   console.log("isNext: " + isNext);
+  console.log(currentPage);
+  console.log(pageNum, isActive);
 
   return (
-    <div
-      id={`${pageNum}`}
-      className={`absolute w-full h-full transition-transform duration-700 ease-in-out
-        ${isActive ? "translate-x-0" : ""}
-        ${isPrevious ? "-translate-x-full" : ""}
-        ${isNext ? "translate-x-full" : ""}
-        `}
+    <motion.div
+      key={pageNum}
+      custom={direction}
+      variants={animationVariants}
+      initial={isActive ? "enter" : "center"} // Only animate the active page
+      animate={isActive ? "center" : "center"} // Keep the previous and next pages static
+      exit={isActive ? "exit" : "center"} // Only animate the active page out
+      transition={{ duration: 0.4 }}
+      className={`absolute ${isActive ? "visible" : "invisible"}`} // Only make the active page visible
     >
       <img src={imageSrc} alt={`Page ${pageNum}`} className="object-contain" />
       {children}
-    </div>
+    </motion.div>
   );
 };
 
