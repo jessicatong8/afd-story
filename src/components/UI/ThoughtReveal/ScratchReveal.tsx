@@ -29,10 +29,10 @@ const ScratchReveal = () => {
     // console.log("useEffect: " + size);
   }, []);
 
-  //   // Debugging to confirm state updates
-  //   useEffect(() => {
-  //     console.log("Updated size:", size.width, size.height);
-  //   }, [size]); // Runs whenever `size` changes
+  // Debugging to confirm state updates
+  useEffect(() => {
+    console.log("Updated size:", size.width, size.height);
+  }, [size]); // Runs whenever `size` changes
 
   const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
   const [isDragging, setIsDragging] = useState(false); // State to track mouse is being dragged to reveal the card
