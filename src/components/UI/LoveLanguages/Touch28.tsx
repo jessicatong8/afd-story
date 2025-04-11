@@ -8,7 +8,7 @@ const Touch28 = ({ clicked, hover }: Props) => {
   return (
     <span>
       <svg
-        className={`absolute w-1/2 h-1/2 scale-104 top-[65.2%] left-[32%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        className={`absolute w-1/2 h-1/2 scale-104 top-[67.3%] left-[32%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
         ${clicked ? "opacity-0" : "opacity-100"}
         `}
         width="510"
@@ -51,7 +51,7 @@ const Touch28 = ({ clicked, hover }: Props) => {
       </svg>
       <img
         src={text}
-        className={`absolute w-1/2 scale-110 h-auto top-[63.7%] left-[35.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-110 h-auto top-[65.8%] left-[35.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

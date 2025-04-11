@@ -137,7 +137,7 @@ const Page = () => {
         <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
           {imageCache[currentPage] ? (
             <motion.div
-              className="absolute"
+              className="absolute w-full h-full"
               custom={direction}
               variants={animationVariants}
               initial="enter"
