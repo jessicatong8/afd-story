@@ -17,7 +17,7 @@ const DumplingHeart = ({ dropped }: Props) => {
     transform: CSS.Translate.toString(transform),
   };
 
-  const initialPos = "top-[78%] left-[61%]";
+  const initialPos = "top-[78%] left-[61.5%]";
   const droppedPos = "top-[72%] left-[19%] transition-none";
 
   const glowSVG = (
@@ -78,7 +78,7 @@ const DumplingHeart = ({ dropped }: Props) => {
       <img src={dumplingImage} className="w-full absolute z-20 " />
       {/* svg for border glow/shadow */}
       <svg
-        className={`w-full h-auto absolute scale-102 z-10
+        className={`w-full h-auto absolute scale-105 z-10
           ${dropped ? "invisible" : ""} `}
         width="205"
         height="190"

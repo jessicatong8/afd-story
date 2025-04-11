@@ -8,7 +8,7 @@ const Time31 = ({ clicked, hover }: Props) => {
   return (
     <span>
       <svg
-        className={`absolute w-1/2 h-1/2 scale-112 top-[64.1%] left-[31.7%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        className={`absolute w-1/2 h-1/2 scale-112 top-[62.7%] left-[31.7%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
         ${clicked ? "opacity-0" : "opacity-100"}
         `}
         width="557"
@@ -52,7 +52,7 @@ const Time31 = ({ clicked, hover }: Props) => {
 
       <img
         src={text}
-        className={`absolute w-1/2 scale-116 h-auto top-[62.7%] left-[35.4%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-116 h-auto top-[61.1%] left-[35.4%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

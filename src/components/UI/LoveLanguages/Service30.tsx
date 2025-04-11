@@ -8,7 +8,7 @@ const Service30 = ({ clicked, hover }: Props) => {
   return (
     <span>
       <svg
-        className={`absolute w-1/2 h-1/2 scale-103 top-[77.7%] left-[30.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        className={`absolute w-1/2 h-1/2 scale-104 top-[75.8%] left-[30.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
         ${clicked ? "opacity-0" : "opacity-100"}
         `}
         width="516"
@@ -52,7 +52,7 @@ const Service30 = ({ clicked, hover }: Props) => {
 
       <img
         src={text}
-        className={`absolute w-1/2 scale-102 h-auto top-[75.4%] left-[32.6%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-102 h-auto top-[73.7%] left-[32.6%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>
