@@ -1,8 +1,8 @@
 import { lazy, useEffect, useState } from "react";
 import { useReadContext } from "./ReadContext";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
+// import "react-lazy-load-image-component/src/effects/blur.css";
 import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -164,15 +164,15 @@ const Page = () => {
               animate="center"
               exit="exit"
               transition={{
-                // type: "spring",
-                // stiffness: 500,
-                // damping: 30,
-                // mass: 0.2,
-                duration: 0.4,
+                type: "spring",
+                stiffness: 500,
+                damping: 30,
+                mass: 0.5,
+                duration: 0.2,
               }}
               key={currentPage}
             >
-              <LazyLoadImage
+              <img
                 src={imageCache[currentPage]}
                 alt={`Page ${currentPage}`}
                 // effect="blur"
