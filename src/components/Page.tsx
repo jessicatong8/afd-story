@@ -1,11 +1,8 @@
 import { lazy, useEffect, useState } from "react";
 import { useReadContext } from "./ReadContext";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import PageViewer from "./PageViewer";
 
 // import UI elements lazily
@@ -116,24 +113,9 @@ const Page = () => {
   }, [currentPage]);
 
   // Disable navigation to next page for UI pages
-  // useEffect(() => {
-  //   toggleNext(![3, 5, 15, 17].includes(currentPage));
-  // }, [currentPage]);
-
-  // const animationVariants = {
-  //   enter: (direction: number) => ({
-  //     x: direction > 0 ? "100%" : "-100%",
-  //     opacity: 0,
-  //   }),
-  //   center: {
-  //     x: 0,
-  //     opacity: 1,
-  //   },
-  //   exit: (direction: number) => ({
-  //     x: direction > 0 ? "-100%" : "100%",
-  //     opacity: 0,
-  //   }),
-  // };
+  useEffect(() => {
+    toggleNext(![3, 5, 15, 17].includes(currentPage));
+  }, [currentPage]);
 
   return (
     <div
@@ -141,64 +123,37 @@ const Page = () => {
       className="w-full h-screen flex justify-center items-center"
     >
       <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
-        <AnimatePresence custom={direction} initial={false}>
-          {[currentPage - 1, currentPage, currentPage + 1].map((pageNum) => {
-            if (!imageCache[pageNum]) return null;
+        {[currentPage - 1, currentPage, currentPage + 1].map((pageNum) => {
+          if (!imageCache[pageNum]) return null;
 
-            const childComponents = (
-              <>
-                {pageNum === 3 && <DoorUI />}
-                {pageNum === 5 && <ScratchReveal />}
-                {pageNum === 15 && <DumplingFillingUI />}
-                {pageNum === 17 && <DumplingGivingUI />}
-                {currentPage === 20 && <LoveLanguagesUI />}
-                {currentPage === 28 && <LoveLanguagesUI />}
-                {currentPage === 29 && <LoveLanguagesUI />}
-                {currentPage === 30 && <LoveLanguagesUI />}
-                {currentPage === 31 && <LoveLanguagesUI />}
-              </>
-            );
+          const childComponents = (
+            <>
+              {pageNum === 3 && <DoorUI />}
+              {pageNum === 5 && <ScratchReveal />}
+              {pageNum === 15 && <DumplingFillingUI />}
+              {pageNum === 17 && <DumplingGivingUI />}
+              {currentPage === 20 && <LoveLanguagesUI />}
+              {currentPage === 28 && <LoveLanguagesUI />}
+              {currentPage === 29 && <LoveLanguagesUI />}
+              {currentPage === 30 && <LoveLanguagesUI />}
+              {currentPage === 31 && <LoveLanguagesUI />}
+            </>
+          );
 
-            return (
-              <PageViewer
-                key={pageNum}
-                pageNum={pageNum}
-                currentPage={currentPage}
-                direction={direction}
-                imageSrc={imageCache[pageNum]}
-              >
-                {childComponents}
-              </PageViewer>
-            );
-          })}
-        </AnimatePresence>
+          return (
+            <PageViewer
+              key={pageNum}
+              pageNum={pageNum}
+              currentPage={currentPage}
+              direction={direction}
+              imageSrc={imageCache[pageNum]}
+            >
+              {childComponents}
+            </PageViewer>
+          );
+        })}
       </div>
     </div>
-    // <div
-    //   {...swipeHandlers}
-    //   className="w-full h-screen flex justify-center items-center"
-    // >
-    //   {imageCache[currentPage] ? (
-    //     <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
-    //       <img
-    //         src={imageCache[currentPage]}
-    //         alt={`Page ${currentPage}`}
-    //         className="object-contain"
-    //       />
-    //       {currentPage === 3 && <DoorUI />}
-    //       {currentPage === 5 && <ScratchReveal />}
-    //       {currentPage === 15 && <DumplingFillingUI />}
-    //       {currentPage === 17 && <DumplingGivingUI />}
-    //       {currentPage === 20 && <LoveLanguagesUI />}
-    //       {currentPage === 28 && <LoveLanguagesUI />}
-    //       {currentPage === 29 && <LoveLanguagesUI />}
-    //       {currentPage === 30 && <LoveLanguagesUI />}
-    //       {currentPage === 31 && <LoveLanguagesUI />}
-    //     </div>
-    //   ) : (
-    //     <p>Loading...</p>
-    //   )}
-    // </div>
   );
 };
 
