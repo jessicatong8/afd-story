@@ -116,9 +116,9 @@ const Page = () => {
   }, [currentPage]);
 
   // Disable navigation to next page for UI pages
-  // useEffect(() => {
-  //   toggleNext(![3, 5, 15, 17].includes(currentPage));
-  // }, [currentPage]);
+  useEffect(() => {
+    toggleNext(![3, 5, 15, 17].includes(currentPage));
+  }, [currentPage]);
 
   // const animationVariants = {
   //   enter: (direction: number) => ({
@@ -140,7 +140,7 @@ const Page = () => {
       {...swipeHandlers}
       className="w-full h-screen flex justify-center items-center"
     >
-      <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
+      <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-hidden">
         <AnimatePresence custom={direction} initial={false}>
           {[currentPage - 1, currentPage, currentPage + 1].map((pageNum) => {
             if (!imageCache[pageNum]) return null;
