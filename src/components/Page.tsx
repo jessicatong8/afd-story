@@ -114,7 +114,7 @@ const Page = () => {
   }, [currentPage]);
 
   const getAnimationVariants = () => {
-    if (currentPage === 16) {
+    if (currentPage === 16 || currentPage === 6) {
       return {
         enter: () => ({
           scale: 0,
@@ -128,6 +128,22 @@ const Page = () => {
         },
         exit: () => ({
           scale: 0,
+          x: "0%",
+          opacity: 0,
+        }),
+      };
+    }
+    if (currentPage === 4) {
+      return {
+        enter: () => ({
+          x: "0%",
+          opacity: 0,
+        }),
+        center: {
+          x: 0,
+          opacity: 1,
+        },
+        exit: () => ({
           x: "0%",
           opacity: 0,
         }),
@@ -154,9 +170,9 @@ const Page = () => {
   };
 
   const getAnimationTransition = () => {
-    if (currentPage === 16) {
+    if (currentPage === 16 || currentPage === 6 || currentPage === 4) {
       return {
-        // ease: "easeOut",
+        ease: "easeOut",
         duration: 0.2,
       };
     }
