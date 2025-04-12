@@ -66,11 +66,11 @@ const ScratchReveal = () => {
     <div
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
-      onTouchStart={() => setIsDragging(true)}
-      onMouseDown={() => setIsDragging(true)}
-      onMouseUp={() => setIsDragging(false)}
-      onTouchEnd={() => setIsDragging(false)}
       onMouseLeave={() => setIsHovered(false)}
+      // onMouseDown={() => setIsDragging(true)}
+      // onMouseUp={() => setIsDragging(false)}
+      onTouchStart={() => setIsDragging(true)}
+      onTouchEnd={() => setIsDragging(false)}
       onDragStart={() => toggleBack(false)}
       onDragEnd={() => toggleBack(true)}
       className="w-1/2 h-1/3 absolute 
