@@ -47,7 +47,11 @@ const DumplingGivingUI = () => {
     >
       <DumplingHeart dropped={isDropped} />
       <DumplingDrop dragging={isDragging} />
-      {isDropped && <LoveLanguagesUI />}
+      <span
+        className={`transition-opacity ${isDropped ? "opacity-100" : "opacity-0"}`}
+      >
+        <LoveLanguagesUI />
+      </span>
     </DndContext>
   );
 };
