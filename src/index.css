@@ -13,3 +13,9 @@
 @theme {
   --color-yellow-glow: #FFEC5B;
 }
+
+@layer utilities {
+  .animate-pulse-fast {
+    animation: pulse 1.5s infinite;
+  }
+}

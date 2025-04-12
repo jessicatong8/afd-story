@@ -9,8 +9,8 @@ import Service30 from "./Service30";
 import Time31 from "./Time31";
 
 const LoveLanguagesUI = () => {
-  const { currentPage, toggleNext, nextIsActive } = useReadContext();
-  console.log(currentPage);
+  const { currentPage, toggleNext } = useReadContext();
+  // console.log(currentPage);
 
   const componentMap: Record<number, React.ComponentType<any>> = {
     17: Food17,
@@ -44,7 +44,7 @@ const LoveLanguagesUI = () => {
       className={`${!clicked && "cursor-pointer"}`}
     >
       {[17, 20, 28, 29, 30, 31].includes(currentPage) && (
-        <ComponentToRender clicked={clicked} hover={hover} />
+        <ComponentToRender clicked={clicked} hover={hover} opacity="0.9" />
       )}
     </button>
   );

@@ -77,7 +77,7 @@ const DumplingFilling = ({ id, activeID, dropped, completed }: Props) => {
         style={style}
         {...listeners}
         {...attributes}
-        className={`w-1/5 h-1/5 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab scale-75 hover:scale-100 
+        className={`w-1/5 h-1/5 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab scale-75 hover:scale-100
         ${isDropping || hasBeenDropped ? insidePos : outsidePos}
          ${isDragging ? "scale-100 transition-none cursor-grabbing" : "transition-transform"}
      `} // if this filling is being dropped or has already been dropped then render inside the wrapper
@@ -87,7 +87,7 @@ const DumplingFilling = ({ id, activeID, dropped, completed }: Props) => {
           className="absolute w-full h-auto z-20 pointer-events-none"
         />
         <svg
-          className={`absolute w-full h-auto z-10
+          className={`absolute w-full h-auto z-10 animate-pulse-fast hover:animate-none
           ${isDragging || isDropping || hasBeenDropped ? "invisible" : ""}
         `}
           width="152"

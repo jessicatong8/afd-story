@@ -3,13 +3,14 @@ import text from "/src/assets/UI/LoveLanguages/30_service.png";
 interface Props {
   clicked: boolean;
   hover: boolean;
+  opacity: string;
 }
-const Service30 = ({ clicked, hover }: Props) => {
+const Service30 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
       <svg
         className={`absolute w-1/2 h-1/2 scale-104 top-[78.2%] left-[30.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
-        ${clicked ? "opacity-0" : "opacity-100"}
+        ${clicked ? "opacity-0" : "opacity-100 animate-pulse-fast"}
         `}
         width="516"
         height="395"
@@ -21,7 +22,7 @@ const Service30 = ({ clicked, hover }: Props) => {
           <path
             d="M500.483 234.213C501.383 221.453 501.091 208.135 499.742 194.376C488.899 83.7377 411.91 25.6791 264.44 15.8208C116.969 5.96259 16.6668 85.9285 15.0402 200.401C13.4137 314.874 60.5827 371.836 256.849 379.504C412.617 385.59 480.959 335.096 497.11 258.688"
             stroke="#FFEC5B"
-            stroke-opacity="0.7"
+            stroke-opacity={opacity}
             stroke-width={clicked || hover ? "20" : "10"}
           />
         </g>

@@ -3,13 +3,14 @@ import text from "/src/assets/UI/LoveLanguages/20_words.png";
 interface Props {
   clicked: boolean;
   hover: boolean;
+  opacity: string;
 }
-const Words20 = ({ clicked, hover }: Props) => {
+const Words20 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
       <svg
-        className={`absolute w-1/2 h-1/2 scale-114 top-[62.5%] left-[36.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
-        ${clicked ? "opacity-0" : "opacity-100"}
+        className={`absolute w-1/2 h-1/2 scale-114 top-[62.6%] left-[36.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        ${clicked ? "opacity-0 " : "opacity-100 animate-pulse-fast"}
         `}
         width="569"
         height="360"
@@ -21,7 +22,7 @@ const Words20 = ({ clicked, hover }: Props) => {
           <path
             d="M389.315 27.4282C357.468 19.6661 321.699 14.3436 282.518 11.5811C113.518 -0.33421 15.222 92.7662 10.7515 186.66C6.28104 280.554 82.8156 347.923 287.655 349.557C492.494 351.19 559.212 278.063 558.124 180.552C557.381 113.926 507.884 65.0244 422.694 36.9302"
             stroke="#FFEC5B"
-            stroke-opacity="0.7"
+            stroke-opacity={opacity}
             stroke-width={clicked || hover ? "20" : "10"}
           />
         </g>

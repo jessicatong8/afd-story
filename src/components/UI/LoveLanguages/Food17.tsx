@@ -5,13 +5,14 @@ import smile from "/src/assets/UI/LoveLanguages/17_smile.png";
 interface Props {
   clicked: boolean;
   hover: boolean;
+  opacity: string;
 }
-const Food17 = ({ clicked, hover }: Props) => {
+const Food17 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
       <svg
-        className={`absolute w-1/2 h-1/2 scale-108 top-[19.6%] left-[40%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
-                ${clicked ? "opacity-0" : "opacity-100"}
+        className={`absolute w-1/2 h-1/2 scale-108 top-[19.6%] left-[40%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000 
+                ${clicked ? "opacity-0 animate-none" : "opacity-100 animate-pulse-fast"}
                 `}
         width="636"
         height="342"
@@ -23,7 +24,7 @@ const Food17 = ({ clicked, hover }: Props) => {
           <path
             d="M516.072 310.415C464.121 325.613 394.055 332 306.509 332C84.9097 332 -0.162892 281.216 10.9563 169.912C22.0756 58.6075 210.403 10 306.509 10C402.615 9.99996 612.3 48.7451 625.008 169.912C631.938 235.983 602.498 278.194 538.362 302.92"
             stroke="#FFEC5B"
-            stroke-opacity="0.7"
+            stroke-opacity={opacity}
             stroke-width={clicked || hover ? "20" : "10"}
           />
         </g>

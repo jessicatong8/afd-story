@@ -3,13 +3,14 @@ import text from "/src/assets/UI/LoveLanguages/28_touch.png";
 interface Props {
   clicked: boolean;
   hover: boolean;
+  opacity: string;
 }
-const Touch28 = ({ clicked, hover }: Props) => {
+const Touch28 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
       <svg
         className={`absolute w-1/2 h-1/2 scale-104 top-[67.3%] left-[32%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
-        ${clicked ? "opacity-0" : "opacity-100"}
+        ${clicked ? "opacity-0" : "opacity-100 animate-pulse-fast"}
         `}
         width="510"
         height="388"
@@ -21,7 +22,7 @@ const Touch28 = ({ clicked, hover }: Props) => {
           <path
             d="M499.38 249.2C500.897 231.875 499.627 212.869 495.607 192.222C471.078 66.2346 382.028 19.7329 253.517 10C119.815 10 23.6922 79.2118 11.4276 199.251C-0.8369 319.29 64.7515 372.28 253.517 377.688C397.953 381.825 477.453 344.808 495.839 270.754"
             stroke="#FFEC5B"
-            stroke-opacity="0.7"
+            stroke-opacity={opacity}
             stroke-width={clicked || hover ? "20" : "10"}
           />
         </g>
