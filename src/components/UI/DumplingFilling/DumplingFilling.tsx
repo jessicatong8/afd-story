@@ -4,13 +4,15 @@ import { CSS } from "@dnd-kit/utilities";
 import happyImage from "/src/assets/UI/DumplingFilling/happy.png";
 import heartImage from "/src/assets/UI/DumplingFilling/heart.png";
 import timeImage from "/src/assets/UI/DumplingFilling/time.png";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   id: number;
   activeID: number;
   dropped: boolean[];
+  completed: boolean;
 }
-const DumplingFilling = ({ id, activeID, dropped }: Props) => {
+const DumplingFilling = ({ id, activeID, dropped, completed }: Props) => {
   const isDropping = id === activeID; // this is the filling currently being dropped
   const hasBeenDropped = dropped[id]; // this filling has already been dropped
   const { attributes, listeners, setNodeRef, transform, isDragging } =
@@ -35,7 +37,6 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
     transform: CSS.Translate.toString(transform),
   };
 
-  const fillingColors = ["bg-red-300", "bg-green-300", "bg-blue-300"];
   const outsidePositions = [
     "top-[15%] left-[25%]",
     "top-[12%] left-[50%]",
@@ -51,68 +52,87 @@ const DumplingFilling = ({ id, activeID, dropped }: Props) => {
   const outsidePos = outsidePositions[id];
   const insidePos = insidePositions[id];
 
+  // const animationVariants = {{
+  //   complete: { scale: [1, 1.5, 1] }
+  // }
+
+  // }
+
   //   console.log("filling: " + dropped);
+
+  const getAnimation = () => {
+    return completed && { scale: [1, 1.5, 0] };
+  };
+
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...listeners}
-      {...attributes}
-      className={`w-1/5 h-1/5 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab scale-75 hover:scale-100 
+    <AnimatePresence>
+      <motion.div
+        animate={getAnimation()}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        //        whileHover={{
+        //   scale: 1.2,
+        //   transition: { duration: 1 },
+        // }}
+        ref={setNodeRef}
+        style={style}
+        {...listeners}
+        {...attributes}
+        className={`w-1/5 h-1/5 rounded-full absolute -translate-x-[50%] -translate-y-[50%] z-10 cursor-grab scale-75 hover:scale-100 
         ${isDropping || hasBeenDropped ? insidePos : outsidePos}
          ${isDragging ? "scale-100 transition-none cursor-grabbing" : "transition-transform"}
      `} // if this filling is being dropped or has already been dropped then render inside the wrapper
-    >
-      <img
-        src={image[id]}
-        className="absolute w-full h-auto z-20 pointer-events-none"
-      />
-      <svg
-        className={`absolute w-full h-auto z-10
+      >
+        <img
+          src={image[id]}
+          className="absolute w-full h-auto z-20 pointer-events-none"
+        />
+        <svg
+          className={`absolute w-full h-auto z-10
           ${isDragging || isDropping || hasBeenDropped ? "invisible" : ""}
         `}
-        width="152"
-        height="152"
-        viewBox="0 0 152 152"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g filter="url(#filter0_f_2237_940)">
-          <circle cx="76" cy="76" r="62" fill="white" />
-          <circle
-            cx="76"
-            cy="76"
-            r="67"
-            stroke="#FFEC5B"
-            stroke-opacity="0.7"
-            stroke-width="8"
-          />
-        </g>
-        <defs>
-          <filter
-            id="filter0_f_2237_940"
-            x="0"
-            y="0"
-            width="152"
-            height="152"
-            filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
-          >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
-            <feBlend
-              mode="normal"
-              in="SourceGraphic"
-              in2="BackgroundImageFix"
-              result="shape"
+          width="152"
+          height="152"
+          viewBox="0 0 152 152"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_f_2237_940)">
+            <circle cx="76" cy="76" r="62" fill="white" />
+            <circle
+              cx="76"
+              cy="76"
+              r="67"
+              stroke="#FFEC5B"
+              stroke-opacity="0.7"
+              stroke-width="8"
             />
-            <feGaussianBlur
-              stdDeviation="2"
-              result="effect1_foregroundBlur_2237_940"
-            />
-          </filter>
-        </defs>
-      </svg>
-    </div>
+          </g>
+          <defs>
+            <filter
+              id="filter0_f_2237_940"
+              x="0"
+              y="0"
+              width="152"
+              height="152"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feGaussianBlur
+                stdDeviation="2"
+                result="effect1_foregroundBlur_2237_940"
+              />
+            </filter>
+          </defs>
+        </svg>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

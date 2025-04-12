@@ -31,6 +31,9 @@ const DumplingFillingUI = () => {
   // State to track if a filling is being dragged
   const [isDragging, setIsDragging] = useState(false);
 
+  //State to track if interaction is complete (all fillings dropped)
+  const [isComplete, setIsComplete] = useState(false);
+
   const handleDragStart = (event: DragStartEvent) => {
     setIsDragging(true);
     toggleBack(false); // disable going back when dragging so swipe actions don't trigger navigation
@@ -56,10 +59,11 @@ const DumplingFillingUI = () => {
   // turn to next page when all dumplings have been dropped
   useEffect(() => {
     if (dropped.every(Boolean)) {
+      setIsComplete(true);
       toggleNext(true);
-      // setTimeout(() => {
-      //   navigate(`/read/16`); // make this transition nicer
-      // }, 1000);
+      setTimeout(() => {
+        navigate(`/read/16`); // make this transition nicer
+      }, 600);
     }
   }, [dropped]);
 
@@ -79,6 +83,7 @@ const DumplingFillingUI = () => {
           id={filling.id}
           activeID={activeID}
           dropped={dropped}
+          completed={isComplete}
         />
       ))}
 

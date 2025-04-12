@@ -113,19 +113,60 @@ const Page = () => {
     preload();
   }, [currentPage]);
 
-  const animationVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? "100%" : "-100%",
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction > 0 ? "-100%" : "100%",
-      opacity: 0,
-    }),
+  const getAnimationVariants = () => {
+    if (currentPage === 16) {
+      return {
+        enter: () => ({
+          scale: 0,
+          x: "0%",
+          opacity: 0,
+        }),
+        center: {
+          scale: 1,
+          x: 0,
+          opacity: 1,
+        },
+        exit: () => ({
+          scale: 0,
+          x: "0%",
+          opacity: 0,
+        }),
+      };
+    }
+
+    return {
+      enter: (direction: number) => ({
+        scale: 0.5,
+        x: direction > 0 ? "100%" : "-100%",
+        opacity: 0,
+      }),
+      center: {
+        scale: 1,
+        x: 0,
+        opacity: 1,
+      },
+      exit: (direction: number) => ({
+        scale: 0.5,
+        x: direction > 0 ? "-100%" : "100%",
+        opacity: 0,
+      }),
+    };
+  };
+
+  const getAnimationTransition = () => {
+    if (currentPage === 16) {
+      return {
+        // ease: "easeOut",
+        duration: 0.2,
+      };
+    }
+    return {
+      type: "spring",
+      stiffness: 500,
+      damping: 30,
+      mass: 0.5,
+      duration: 0.2,
+    };
   };
 
   return (
@@ -139,17 +180,11 @@ const Page = () => {
             <motion.div
               className="absolute w-full h-full"
               custom={direction}
-              variants={animationVariants}
+              variants={getAnimationVariants()}
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{
-                type: "spring",
-                stiffness: 500,
-                damping: 30,
-                mass: 0.5,
-                duration: 0.2,
-              }}
+              transition={getAnimationTransition()}
               key={currentPage}
             >
               <img
