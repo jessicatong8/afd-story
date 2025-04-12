@@ -154,7 +154,7 @@ const Page = () => {
             >
               <img
                 src={imageCache[currentPage]}
-                className="absolute object-contain pointer-events-none z-0"
+                className="object-contain pointer-events-none"
               />
               {currentPage === 3 && <DoorUI />}
               {currentPage === 5 && <ScratchReveal />}

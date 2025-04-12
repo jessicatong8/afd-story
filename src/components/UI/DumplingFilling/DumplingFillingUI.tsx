@@ -15,8 +15,6 @@ import DumplingFilling from "./DumplingFilling";
 import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
 
-import heart_dumpling from "/src/assets/UI/DumplingFilling/pg_16.png";
-
 const DumplingFillingUI = () => {
   const { toggleNext, toggleBack } = useReadContext();
   const navigate = useNavigate();
@@ -32,8 +30,6 @@ const DumplingFillingUI = () => {
   );
   // State to track if a filling is being dragged
   const [isDragging, setIsDragging] = useState(false);
-  // State to track when interation is complete (all dumplings have been dropped)
-  const [isComplete, setIsComplete] = useState(false);
 
   const handleDragStart = (event: DragStartEvent) => {
     setIsDragging(true);
@@ -61,19 +57,16 @@ const DumplingFillingUI = () => {
   useEffect(() => {
     if (dropped.every(Boolean)) {
       toggleNext(true);
-      toggleBack(true);
-
-      setTimeout(() => {
-        setIsComplete(true);
-        // navigate(`/read/16`); // make this transition nicer
-      }, 500);
+      // setTimeout(() => {
+      //   navigate(`/read/16`); // make this transition nicer
+      // }, 1000);
     }
   }, [dropped]);
 
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
-    // <div className="absolute w-full h-full border-2">
+    // <div className="relative border-2">
     <DndContext
       modifiers={[restrictToParentElement]}
       sensors={sensors}
@@ -88,10 +81,6 @@ const DumplingFillingUI = () => {
           dropped={dropped}
         />
       ))}
-      <img
-        src={heart_dumpling}
-        className={`absolute object-contain transition-opacity duration-500 ease-out ${isComplete ? "opacity-100 z-30" : "opacity-0 z-0"}`}
-      />
 
       <DumplingWrapper dragging={isDragging} />
     </DndContext>
