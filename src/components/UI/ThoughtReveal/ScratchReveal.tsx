@@ -4,7 +4,6 @@ import ScratchCard from "react-scratchcard-v2";
 import image from "/src/assets/UI/ThoughtCloud/thought-cloud.png";
 import { useReadContext } from "../../ReadContext";
 import ThoughtBubbleGlow from "./ThoughtBubbleGlow";
-import { useNavigate } from "react-router-dom";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
@@ -77,7 +76,11 @@ const ScratchReveal = () => {
       className="w-1/2 h-1/3 absolute 
         top-[3.5%] left-[24%] scale-95 cursor-pointer"
     >
-      <ThoughtBubbleGlow strokeWidth={strokeWidth} />
+      <span
+        className={`transition-opacity duration-1000 ${isRevealed ? "opacity-0" : "opacity-100"}`}
+      >
+        <ThoughtBubbleGlow strokeWidth={strokeWidth} />
+      </span>
 
       {/* conditionally render when size is valid */}
       {size.width > 0 && size.height > 0 && (
