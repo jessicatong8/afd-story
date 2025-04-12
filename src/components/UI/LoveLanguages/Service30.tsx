@@ -52,7 +52,7 @@ const Service30 = ({ clicked, hover }: Props) => {
 
       <img
         src={text}
-        className={`absolute w-1/2 scale-102 h-auto top-[75.9%] left-[32.6%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-102 h-auto top-[75.9%] left-[32.6%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

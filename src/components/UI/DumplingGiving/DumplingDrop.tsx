@@ -12,12 +12,12 @@ const DumplingDrop = ({ dragging }: Props) => {
     <div
       ref={setNodeRef}
       className={` w-1/7 scale-100 aspect-square absolute 
-        top-[72%] left-[19%] z-0 transition-all
+        top-[72%] left-[19%] z-0 transition-all 
         ${isOver ? "scale-120" : ""}
         ${dragging ? "opacity-100" : "opacity-0"}
         `}
     >
-      <img src={dropArea} />
+      <img src={dropArea} className="pointer-events-none" />
     </div>
   );
 };

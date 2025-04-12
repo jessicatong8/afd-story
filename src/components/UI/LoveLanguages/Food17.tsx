@@ -53,16 +53,16 @@ const Food17 = ({ clicked, hover }: Props) => {
       </svg>
       <img
         src={dialogue}
-        className={`absolute w-1/2 scale-100 h-auto top-[20%] left-[40%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-100 h-auto top-[20%] left-[40%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none
        ${clicked ? "opacity-0" : "opacity-100"}`}
       />
       <img
         src={smile}
-        className={`absolute w-1/12 scale-40 h-auto top-[53.2%] left-[31.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300`}
+        className="absolute w-1/12 scale-40 h-auto top-[53.2%] left-[31.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none"
       />
       <img
         src={text}
-        className={`absolute w-1/2 scale-100 h-auto top-[19.7%] left-[40%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-100 h-auto top-[19.7%] left-[40%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

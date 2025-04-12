@@ -75,7 +75,10 @@ const DumplingHeart = ({ dropped }: Props) => {
          ${isDragging ? "transition-none scale-105 cursor-grabbing" : "transition-transform"} `}
     >
       {/* image of dumpling */}
-      <img src={dumplingImage} className="w-full absolute z-20 " />
+      <img
+        src={dumplingImage}
+        className="w-full absolute z-20 pointer-events-none"
+      />
       {/* svg for border glow/shadow */}
       <svg
         className={`w-full h-auto absolute scale-105 z-10

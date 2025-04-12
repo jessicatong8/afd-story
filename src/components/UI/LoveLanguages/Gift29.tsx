@@ -52,7 +52,7 @@ const Gift29 = ({ clicked, hover }: Props) => {
 
       <img
         src={text}
-        className={`absolute w-1/2 scale-122 h-auto top-[70.6%] left-[65.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-122 h-auto top-[70.6%] left-[65.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

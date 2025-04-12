@@ -152,7 +152,10 @@ const Page = () => {
               }}
               key={currentPage}
             >
-              <img src={imageCache[currentPage]} className="object-contain" />
+              <img
+                src={imageCache[currentPage]}
+                className="object-contain pointer-events-none"
+              />
               {currentPage === 3 && <DoorUI />}
               {currentPage === 5 && <ScratchReveal />}
               {currentPage === 15 && <DumplingFillingUI />}

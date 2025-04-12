@@ -18,7 +18,7 @@ const DumplingWrapper = ({ dragging }: Props) => {
       ${dragging ? "opacity-100" : "opacity-0"}
       `}
     >
-      <img src={dropArea} />
+      <img src={dropArea} className="pointer-events-none" />
     </div>
   );
 };

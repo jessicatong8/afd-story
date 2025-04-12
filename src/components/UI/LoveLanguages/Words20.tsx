@@ -8,7 +8,7 @@ const Words20 = ({ clicked, hover }: Props) => {
   return (
     <span>
       <svg
-        className={`absolute w-1/2 h-1/2 scale-114 top-[62.3%] left-[36.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        className={`absolute w-1/2 h-1/2 scale-114 top-[62.5%] left-[36.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
         ${clicked ? "opacity-0" : "opacity-100"}
         `}
         width="569"
@@ -52,7 +52,7 @@ const Words20 = ({ clicked, hover }: Props) => {
 
       <img
         src={text}
-        className={`absolute w-1/2 scale-100 h-auto top-[60%] left-[35.5%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-100 h-auto top-[60%] left-[35.5%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

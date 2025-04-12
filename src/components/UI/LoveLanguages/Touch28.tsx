@@ -51,7 +51,7 @@ const Touch28 = ({ clicked, hover }: Props) => {
       </svg>
       <img
         src={text}
-        className={`absolute w-1/2 scale-110 h-auto top-[65.8%] left-[35.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300
+        className={`absolute w-1/2 scale-110 h-auto top-[65.8%] left-[35.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none
        ${clicked ? "opacity-100" : "opacity-0"}`}
       />
     </span>

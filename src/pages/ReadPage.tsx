@@ -23,7 +23,7 @@ function ReadPage() {
       <ReadContextProvider>
         <section className="flex items-center justify-evenly">
           <BackButton />
-          <div>
+          <div className="select-none">
             <Page />
           </div>
           <NextButton />
