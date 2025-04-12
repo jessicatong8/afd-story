@@ -17,8 +17,8 @@ const DumplingHeart = ({ dropped }: Props) => {
     transform: CSS.Translate.toString(transform),
   };
 
-  const initialPos = "top-[78%] left-[61.5%]";
-  const droppedPos = "top-[72%] left-[19%] transition-none";
+  const initialStyle = "top-[78%] left-[61.5%] cursor-grab hover:scale-105";
+  const droppedStyle = "top-[72%] left-[19%] transition-none";
 
   const glowSVG = (
     <defs>
@@ -70,8 +70,8 @@ const DumplingHeart = ({ dropped }: Props) => {
       style={style}
       {...listeners}
       {...attributes}
-      className={`w-1/7 aspect-square absolute cursor-grab z-10 scale-90  hover:scale-105
-        ${dropped ? droppedPos : initialPos}
+      className={`w-1/7 aspect-square absolute not-odd:z-10 scale-90  
+        ${dropped ? droppedStyle : initialStyle}
          ${isDragging ? "transition-none scale-105 cursor-grabbing" : "transition-transform"} `}
     >
       {/* image of dumpling */}
