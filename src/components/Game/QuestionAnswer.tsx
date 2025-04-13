@@ -22,8 +22,6 @@ const QuestionAnswer = ({ question, state }: Props) => {
     9: "Mia helps her mom make dumplings for New Year's Eve dinner. Which love language is Mia using?",
   };
 
-  // Emma spends lots of time drawing mom a special card for Mother’s Day.
-
   const answerText: Record<number, string> = {
     1: "Mom is showing love through food by remembering what Mia likes and cooking with lots of care.",
     2: "By saying she loves Mia out loud, mom is using the love language of words to show Mia she cares.",
