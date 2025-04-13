@@ -1,9 +1,17 @@
-import image from "../../assets/game/8_emma_mom_sick.png";
+const images = import.meta.glob("/src/assets/game/*.png", { eager: true });
 
-const Scenario = () => {
+const imageArray = Object.values(images).map((mod: any) => mod.default);
+console.log(imageArray);
+
+interface Props {
+  question: number;
+}
+
+const Scenario = ({ question }: Props) => {
+  console.log(question - 1);
   return (
     <div className="w-1/3 h-1/3">
-      <img src={image} />
+      <img src={imageArray[question - 1]} />
     </div>
   );
 };
