@@ -18,6 +18,8 @@ const DumplingGivingUI = lazy(DumplingGivingUIImport);
 const LoveLanguagesUIImport = () =>
   import("./UI/LoveLanguages/LoveLanguagesUI");
 const LoveLanguagesUI = lazy(LoveLanguagesUIImport);
+const StoryEndPageImport = () => import("../pages/StoryEndPage");
+const StoryEndPage = lazy(StoryEndPageImport);
 
 // Import all images dynamically from the assets folder
 const images = import.meta.glob("/src/assets/pages/*.png");
@@ -85,6 +87,7 @@ const Page = () => {
     5: ScratchRevealImport,
     15: DumplingFillingUIImport,
     17: DumplingGivingUIImport,
+    32: StoryEndPageImport,
   };
 
   // Preload 3 pages back and forth around current page

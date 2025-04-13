@@ -26,7 +26,7 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // fix so that invalid numbers redirect to page not found
 
-  const numPages = 33;
+  const numPages = 32;
 
   // const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -42,6 +42,9 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
       setDirection(1);
       navigate(`/read/${currentPage + 1}`);
       // console.log("page flipped");
+    }
+    if (currentPage === numPages) {
+      navigate("/read/end");
     }
   };
 
