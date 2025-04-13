@@ -23,11 +23,11 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
     2: "words",
     3: "touch",
     4: "gift",
-    5: "service",
-    6: "time",
-    7: "food",
-    8: "words",
-    9: "touch",
+    5: "time",
+    6: "service",
+    7: "words",
+    8: "service",
+    9: "food",
   };
 
   const correctResponse = correctAnswers[question];
@@ -43,19 +43,19 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {Object.entries(buttonContent).map(([key, label]) => {
         let bgColor = "bg-white";
 
         if (state === "correct" && key === correctResponse) {
-          bgColor = "bg-green-300";
+          bgColor = "bg-green-400";
         }
 
         if (state === "wrong") {
           if (key === clickedAnswer) {
-            bgColor = "bg-red-300";
+            bgColor = "bg-red-400";
           } else if (key === correctResponse) {
-            bgColor = "bg-green-300";
+            bgColor = "bg-green-400";
           }
         }
 
