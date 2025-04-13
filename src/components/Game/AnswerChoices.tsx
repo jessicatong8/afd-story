@@ -48,14 +48,14 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
         let bgColor = "bg-white";
 
         if (state === "correct" && key === correctResponse) {
-          bgColor = "bg-green-400";
+          bgColor = "bg-green-correct";
         }
 
         if (state === "wrong") {
           if (key === clickedAnswer) {
-            bgColor = "bg-red-400";
+            bgColor = "bg-red-wrong";
           } else if (key === correctResponse) {
-            bgColor = "bg-green-400";
+            bgColor = "bg-green-correct";
           }
         }
 

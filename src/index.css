@@ -12,6 +12,8 @@
 
 @theme {
   --color-yellow-glow: #FFEC5B;
+  --color-green-correct: #1BC237;
+  --color-red-wrong: #F63E3E;
 }
 
 @layer utilities {
