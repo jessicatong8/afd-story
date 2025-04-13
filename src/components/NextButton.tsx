@@ -8,7 +8,7 @@ const NextButton = () => {
     <button onClick={handleNext}>
       <FaChevronRight
         className={`hidden lg:flex w-12 h-12 items-center justify-center rounded-full hide-portrait 
-        ${nextIsActive ? "text-sky-300  hover:text-sky-500 active:text-sky-500 transition cursor-pointer" : "text-gray-300"}`}
+        ${nextIsActive ? "text-sky-300  hover:text-sky-500 active:text-sky-500 transition cursor-pointer" : "text-gray-300 cursor-not-allowed"}`}
       />
     </button>
   );
