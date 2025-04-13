@@ -1,11 +1,13 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
-import ReadPage from "./pages/ReadPage";
+import HomePage from "./pages/HomePage"; // load immediately
 import NotFoundPage from "./pages/NotFoundPage";
-import GamePage from "./pages/GamePage";
+
+const ReadPage = lazy(() => import("./pages/ReadPage"));
+const GamePage = lazy(() => import("./pages/GamePage"));
+const StoryEndPage = lazy(() => import("./pages/StoryEndPage"));
 
 const router = createBrowserRouter([
   {
@@ -15,11 +17,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/read/:pageNumber",
-    element: <ReadPage />,
+    element: (
+      <Suspense fallback={<div>Loading page...</div>}>
+        <ReadPage />
+      </Suspense>
+    ),
   },
   {
     path: "/game",
-    element: <GamePage />,
+    element: (
+      <Suspense fallback={<div>Loading game...</div>}>
+        <GamePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/read/end",
+    element: (
+      <Suspense fallback={<div>Loading ending...</div>}>
+        <StoryEndPage />
+      </Suspense>
+    ),
   },
 ]);
 
