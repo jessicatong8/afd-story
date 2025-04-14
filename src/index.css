@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Open Sans', sans-serif;
+  }
+}
 
 @media (orientation: portrait) {
     .hide-portrait {
@@ -14,6 +21,9 @@
   --color-yellow-glow: #FFEC5B;
   --color-green-correct: #1BC237;
   --color-red-wrong: #F63E3E;
+  --color-blue-primary: #7DD4FF;
+  --color-blue-secondary: #2FB1F2;
+  --font-open: 'Open Sans', 'sans-serif'
 }
 
 @layer utilities {
