@@ -16,6 +16,13 @@ const GamePage = () => {
     "unanswered" | "correct" | "wrong"
   >("unanswered");
 
+  const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    responseState === "correct" && setScore(score + 1);
+    console.log("score: " + score);
+  }, [responseState]);
+
   // On mount, randomize question order
   //   useEffect(() => {
   //     const storedOrder = localStorage.getItem("questionOrder");
@@ -51,7 +58,7 @@ const GamePage = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6 p-6">
+    <div className="flex flex-col justify-center items-center gap-6 p-6 text-lg">
       <Scenario question={questionNumber} />
       <QuestionAnswer question={questionNumber} state={responseState} />
       <AnswerChoices

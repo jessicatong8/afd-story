@@ -44,7 +44,11 @@ const QuestionAnswer = ({ question, state }: Props) => {
     }
   }, [state]);
 
-  return <div className="bg-blue-50 px-4 py-2 rounded"> {text}</div>;
+  return (
+    <div className="bg-blue-50 px-6 py-6 rounded flex justify-center items-center">
+      <p className="text-center">{text}</p>
+    </div>
+  );
 };
 
 export default QuestionAnswer;
