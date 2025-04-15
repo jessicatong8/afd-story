@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "./pages/HomePage"; // load immediately
 import NotFoundPage from "./pages/NotFoundPage";
+import LunchBoxOpen from "./components/Game/LunchBoxOpen";
 
 const ReadPage = lazy(() => import("./pages/ReadPage"));
 const GamePage = lazy(() => import("./pages/GamePage"));
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
     element: (
       <Suspense fallback={<div>Loading ending...</div>}>
         <StoryEndPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/game/start",
+    element: (
+      <Suspense fallback={<div>Loading ending...</div>}>
+        <LunchBoxOpen />
       </Suspense>
     ),
   },

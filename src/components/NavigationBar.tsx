@@ -14,7 +14,7 @@ const NavigationBar = () => {
         <Link to={`/read/0`} className="flex justify-center items-center">
           Read
         </Link>
-        <Link to={`/game`} className="flex justify-center items-center">
+        <Link to={`/game/start`} className="flex justify-center items-center">
           Game
         </Link>
       </div>
