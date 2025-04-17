@@ -10,7 +10,7 @@ interface Props {
 const Scenario = ({ question }: Props) => {
   console.log(question - 1);
   return (
-    <div className="w-1/3 h-1/3">
+    <div className="w-sm max-w-full">
       <img src={imageArray[question - 1]} />
     </div>
   );

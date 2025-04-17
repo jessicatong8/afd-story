@@ -27,7 +27,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
     food: "food",
     words: "words",
     touch: "touch",
-    gift: "gift",
+    gifts: "gifts",
     service: "service",
     time: "time",
   };
@@ -36,7 +36,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
     1: "food",
     2: "words",
     3: "touch",
-    4: "gift",
+    4: "gifts",
     5: "time",
     6: "service",
     7: "words",
@@ -57,7 +57,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
   };
 
   return (
-    <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div className="flex flex-wrap justify-center items-center gap-4 w-full h-full">
       {Object.entries(buttonContent).map(([key, label]) => {
         let bgColor = "bg-white";
 
@@ -77,12 +77,16 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
           <button
             key={key + "_button"}
             onClick={() => handleClick(key)}
-            className={`flex flex-row gap-4 items-center
-              font-bold
-              ${bgColor} text-black border-2 border-gray-200 px-4 py-2 md:py-4 rounded transition-color`}
+            className={`flex flex-row items-center 
+              font-bold w-90 h-18 max-w-full px-6 gap-3 sm:px-8 sm:gap-4
+              ${bgColor} text-black border-2 border-gray-200 rounded-lg transition-color `}
             disabled={state !== "unanswered"} // disable buttons after an answer is selected
           >
-            <img src={icons[`${key}.svg`]} alt={label} className="w-12" />
+            <img
+              src={icons[`${key}.svg`]}
+              alt={label}
+              className="w-10 sm:w-12"
+            />
             {`The love language of ${label}`}
           </button>
         );

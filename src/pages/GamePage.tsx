@@ -58,7 +58,7 @@ const GamePage = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-6 p-6 text-lg">
+    <div className="flex flex-col justify-center items-center gap-6 p-6 text-sm xs:text-base">
       <Scenario question={questionNumber} />
       <QuestionAnswer question={questionNumber} state={responseState} />
       <AnswerChoices
