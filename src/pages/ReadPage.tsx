@@ -3,9 +3,10 @@ import { ReadContextProvider } from "../components/ReadContext";
 import Page from "../components/Page";
 import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton";
-import NavigationBar from "../components/NavigationBar";
 import ProgressBar from "../components/ProgressBar";
 import { useEffect } from "react";
+
+import AutoHideNavController from "../components/AutoHideNavClick";
 
 function ReadPage() {
   useEffect(() => {
@@ -17,13 +18,14 @@ function ReadPage() {
       document.body.classList.remove("overflow-hidden");
     };
   }, []);
+
   return (
-    <div>
-      {/* <NavigationBar /> */}
+    <div className="w-screen h-screen relative">
       <ReadContextProvider>
+        <AutoHideNavController />
         <section className="flex items-center justify-evenly">
           <BackButton />
-          <div className="select-none">
+          <div className="select-none z-0">
             <Page />
           </div>
           <NextButton />
