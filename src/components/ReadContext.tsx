@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-// Context for the ReadPage component, contains all states and functions related to vieweing and navigating the story
+// Context for the ReadPage component, contains all states and functions related to viewing and navigating the story
 interface ReadContextType {
   handleNext: () => void;
   handleBack: () => void;
