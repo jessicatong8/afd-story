@@ -116,38 +116,18 @@ const Page = () => {
     preload();
   }, [currentPage]);
 
+  const isStaticPage = [4, 6, 16].includes(currentPage);
+
   const getAnimationVariants = () => {
-    if (currentPage === 16 || currentPage === 6) {
+    if (isStaticPage) {
       return {
         enter: () => ({
-          scale: 0,
-          x: "0%",
           opacity: 0,
         }),
         center: {
-          scale: 1,
-          x: 0,
           opacity: 1,
         },
         exit: () => ({
-          scale: 0,
-          x: "0%",
-          opacity: 0,
-        }),
-      };
-    }
-    if (currentPage === 4) {
-      return {
-        enter: () => ({
-          x: "0%",
-          opacity: 0,
-        }),
-        center: {
-          x: 0,
-          opacity: 1,
-        },
-        exit: () => ({
-          x: "0%",
           opacity: 0,
         }),
       };
@@ -172,21 +152,16 @@ const Page = () => {
     };
   };
 
-  const getAnimationTransition = () => {
-    if (currentPage === 16 || currentPage === 6 || currentPage === 4) {
-      return {
-        ease: "easeOut",
-        duration: 0.2,
-      };
-    }
-    return {
-      type: "spring",
-      stiffness: 500,
-      damping: 30,
-      mass: 0.5,
-      duration: 0.2,
-    };
-  };
+  const getAnimationTransition = () =>
+    isStaticPage
+      ? { ease: "easeOut", duration: 0.2 }
+      : {
+          type: "spring",
+          stiffness: 500,
+          damping: 30,
+          mass: 0.5,
+          duration: 0.2,
+        };
 
   return (
     <div
