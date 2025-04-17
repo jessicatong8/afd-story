@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 
 @layer base {
@@ -25,7 +27,8 @@
   --color-blue-primary: #7DD4FF;
   --color-blue-secondary: #2FB1F2;
   --color-blue-tertiary: #E2F3FF;
-  --font-open: 'Open Sans', 'sans-serif',
+  --font-open: 'Open Sans', 'sans-serif';
+  --font-grand: 'Grandstander', 'cursive';
 }
 
 @layer utilities {
