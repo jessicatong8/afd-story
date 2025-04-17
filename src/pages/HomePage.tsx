@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import cover from "/cover_button_right.png";
 import NavigationBar from "../components/NavigationBar";
+
 const HomePage = () => {
   return (
-    <div>
-      <NavigationBar />
-      <div className="flex flex-col justify-center items-center m-6 gap-6">
+    <>
+      <div className="flex flex-col justify-center items-center gap-6">
+        <NavigationBar />
         <div className=" relative flex justify-center w-full h-full lg:max-w-1/2">
           <img src={cover} className="w-full h-auto object-cover shadow-md" />
           <Link
@@ -17,7 +18,7 @@ const HomePage = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
