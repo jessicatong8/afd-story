@@ -3,9 +3,19 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../../assets/game/startPage/lunchbox_open.png";
 
-const LunchBoxOpen = () => {
+const GameStartAnimation = () => {
   const [fadeOut, setFadeOut] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // This updates the URL without reloading the page
+    navigate("/game/start", { replace: true }); // `replace: true` to avoid adding to history stack
+  }, []);
+
+  useEffect(() => {
+    // Eagerly import game component after this one renders
+    import("../../pages/GamePage");
+  }, []);
 
   useEffect(() => {
     const fadeTimer = setTimeout(() => {
@@ -35,9 +45,8 @@ const LunchBoxOpen = () => {
             transition-opacity duration-100 ease-out ${fadeOut ? "opacity-0" : "opacity-100"}`}
     >
       <img src={image} className="pointer-events-none" />
-      {}
     </motion.div>
   );
 };
 
-export default LunchBoxOpen;
+export default GameStartAnimation;

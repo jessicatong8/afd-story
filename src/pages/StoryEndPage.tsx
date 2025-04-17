@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import { useEffect, useState } from "react";
-import LunchBoxOpen from "../components/Game/LunchBoxOpen";
+import LunchBoxOpen from "../components/Game/GameStartAnimation";
 import { AnimatePresence, motion } from "framer-motion";
 
 const StoryEndPage = () => {
@@ -11,10 +11,6 @@ const StoryEndPage = () => {
   const handleGameStart = () => {
     setClicked(true);
   };
-  useEffect(() => {
-    // Eagerly import game component after this one renders
-    import("./GamePage");
-  }, []);
 
   return (
     <AnimatePresence>
@@ -54,7 +50,6 @@ const StoryEndPage = () => {
           </div>
         </motion.div>
       )}
-      {/* {clicked && <LunchBoxOpen />} */}
     </AnimatePresence>
   );
 };
