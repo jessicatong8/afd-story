@@ -169,7 +169,7 @@ const Page = () => {
       {...swipeHandlers}
       className="w-full h-screen flex justify-center items-center"
     >
-      <LeftClickDetector onLeftClick={() => handleBack()} />
+      {/* <LeftClickDetector onLeftClick={() => handleBack()} /> */}
       <AnimatePresence custom={direction} initial={false}>
         <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
           {imageCache[currentPage] ? (
