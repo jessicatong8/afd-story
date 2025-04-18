@@ -38,7 +38,7 @@ const ScratchReveal = () => {
   // }, [size]); // Runs whenever `size` changes
 
   const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
-  const [isDragging, setIsDragging] = useState(false); // State to track mouse is being dragged to reveal the card
+  const [isDragging, setIsDragging] = useState(false); // State to track when touch input is dragging to reveal the card
   const [strokeWidth, setStrokeWidth] = useState("10"); // State to track strokeWidth of the glow
 
   useEffect(() => {
@@ -55,12 +55,6 @@ const ScratchReveal = () => {
         toggleBack(true);
       }, 1000);
     }
-    // if (isRevealed) {
-    //   setTimeout(() => {
-    //     navigate(`/read/6`); // make this transition nicer
-    //     toggleNext(true);
-    //   }, 1500);
-    // }
   }, [isRevealed]);
 
   return (
@@ -72,10 +66,16 @@ const ScratchReveal = () => {
       // onMouseUp={() => setIsDragging(false)}
       onTouchStart={() => setIsDragging(true)}
       onTouchEnd={() => setIsDragging(false)}
-      onDragStart={() => toggleBack(false)}
-      onDragEnd={() => toggleBack(true)}
-      className="w-1/2 h-1/3 absolute 
-        top-[3.5%] left-[24%] scale-95 cursor-pointer"
+      // onDragStart={(e) => {
+      //   e.stopPropagation();
+      //   toggleBack(false);
+      // }}
+      // onDragEnd={(e) => {
+      //   e.stopPropagation();
+      //   toggleBack(true);
+      // }}
+      className={`w-1/2 h-1/3 absolute 
+        top-[3.5%] left-[24%] scale-95 ${!isRevealed && "cursor-pointer"}`}
     >
       <img
         src={pointer}
