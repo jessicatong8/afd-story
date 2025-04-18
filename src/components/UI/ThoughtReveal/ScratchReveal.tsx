@@ -42,10 +42,14 @@ const ScratchReveal = () => {
   const [strokeWidth, setStrokeWidth] = useState("10"); // State to track strokeWidth of the glow
 
   useEffect(() => {
-    isHovered || isDragging ? setStrokeWidth("18") : strokeWidth;
-    !isDragging && !isHovered ? setStrokeWidth("10") : strokeWidth;
-    isDragging ? toggleBack(false) : toggleBack(true);
-  });
+    if (isHovered || isDragging) {
+      setStrokeWidth("18");
+    } else {
+      setStrokeWidth("10");
+    }
+
+    toggleBack(!isDragging); // true when not dragging, false when dragging
+  }, [isHovered, isDragging]); // Add dependencies
 
   // enable navigation when revealed
   useEffect(() => {

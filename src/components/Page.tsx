@@ -3,6 +3,7 @@ import { useReadContext } from "./ReadContext";
 import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import LeftClickDetector from "./LeftClickDetector";
 
 // import UI elements lazily
 const DoorUIImport = () => import("./UI/DoorUI");
@@ -168,6 +169,7 @@ const Page = () => {
       {...swipeHandlers}
       className="w-full h-screen flex justify-center items-center"
     >
+      <LeftClickDetector onLeftClick={() => handleBack()} />
       <AnimatePresence custom={direction} initial={false}>
         <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
           {imageCache[currentPage] ? (
