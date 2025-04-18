@@ -16,7 +16,12 @@ const DoorUI = () => {
   const [strokeWidth, setStrokeWidth] = useState("10");
 
   return (
-    <button onClick={onClick}>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+    >
       <img
         src={pointer}
         style={{ strokeWidth: 1.2 }}

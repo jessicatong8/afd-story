@@ -36,7 +36,10 @@ const LoveLanguagesUI = () => {
 
   return (
     <button
-      onClick={handleClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleClick();
+      }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       // onTouchStart={() => setClicked(true)}
