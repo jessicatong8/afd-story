@@ -79,8 +79,9 @@ const ScratchReveal = () => {
     >
       <img
         src={pointer}
-        className="absolute w-1/6 h-auto scale-120 -translate-x-[50%] -translate-y-[50%] top-[61%] left-[101%] z-30 text-blue-400 fill-orange-100
-      animate-bounce"
+        className={`absolute w-1/6 h-auto scale-120 -translate-x-[50%] -translate-y-[50%] top-[61%] left-[101%] z-30 text-blue-400 fill-orange-100
+      animate-bounce transition-opacity duration-1000
+      ${isRevealed ? "opacity-0" : "opacity-100"}`}
       />
 
       <span
@@ -96,7 +97,7 @@ const ScratchReveal = () => {
           width={size.width}
           height={size.height}
           image={image}
-          finishPercent={70}
+          finishPercent={55}
           fadeOutOnComplete={true}
           onComplete={() => setIsRevealed(true)}
         />
