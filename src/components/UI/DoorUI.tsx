@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useReadContext } from "../ReadContext";
 import { useNavigate } from "react-router-dom";
 import { TbHandClick } from "react-icons/tb";
-import pointer from "/src/assets/UI/Door/door-pointer.svg";
+import pointer from "/src/assets/UI/Door/door-pointer.png";
 
 const DoorUI = () => {
   const { toggleNext } = useReadContext();
@@ -15,6 +15,16 @@ const DoorUI = () => {
 
   const [strokeWidth, setStrokeWidth] = useState("10");
 
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAnimation(true);
+    }, 100); // Delay a bit after paint (or set to 0 for immediate mount)
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <button
       onClick={(e) => {
@@ -24,8 +34,8 @@ const DoorUI = () => {
     >
       <img
         src={pointer}
-        style={{ strokeWidth: 1.2 }}
-        className="absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] -rotate-55 animate-bounce text-black fill-orange-100 "
+        className={`absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] -rotate-55 
+               ${showAnimation ? "animate-bounce" : ""}`}
       />
       {/* <TbHandClick
         style={{ strokeWidth: 1.2 }}

@@ -4,7 +4,7 @@ import ScratchCard from "react-scratchcard-v2";
 import image from "/src/assets/UI/ThoughtCloud/thought-cloud.png";
 import { useReadContext } from "../../ReadContext";
 import ThoughtBubbleGlow from "./ThoughtBubbleGlow";
-import pointer from "/src/assets/UI/ThoughtCloud/swipe-pointer.svg";
+import pointer from "/src/assets/UI/ThoughtCloud/swipe-pointer.png";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
@@ -61,6 +61,31 @@ const ScratchReveal = () => {
     }
   }, [isRevealed]);
 
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAnimation(true);
+    }, 100); // Delay a bit after paint (or set to 0 for immediate mount)
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     if (document.visibilityState === "visible") {
+  //       setShowAnimation(false);
+  //       requestAnimationFrame(() => {
+  //         setShowAnimation(true);
+  //       });
+  //     }
+  //   };
+
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
+  //   return () =>
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  // }, []);
+
   return (
     <div
       ref={containerRef}
@@ -84,7 +109,8 @@ const ScratchReveal = () => {
       <img
         src={pointer}
         className={`absolute w-1/6 h-auto scale-120 -translate-x-[50%] -translate-y-[50%] top-[61%] left-[101%] z-30 text-blue-400 fill-orange-100
-      animate-bounce transition-opacity duration-1000
+     transition-opacity duration-1000
+      ${showAnimation ? "animate-bounce" : ""}
       ${isRevealed ? "opacity-0" : "opacity-100"}`}
       />
 
