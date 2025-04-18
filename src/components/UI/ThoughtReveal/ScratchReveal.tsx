@@ -4,6 +4,7 @@ import ScratchCard from "react-scratchcard-v2";
 import image from "/src/assets/UI/ThoughtCloud/thought-cloud.png";
 import { useReadContext } from "../../ReadContext";
 import ThoughtBubbleGlow from "./ThoughtBubbleGlow";
+import pointer from "/src/assets/UI/ThoughtCloud/swipe-pointer.svg";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
@@ -76,6 +77,12 @@ const ScratchReveal = () => {
       className="w-1/2 h-1/3 absolute 
         top-[3.5%] left-[24%] scale-95 cursor-pointer"
     >
+      <img
+        src={pointer}
+        className="absolute w-1/6 h-auto scale-120 -translate-x-[50%] -translate-y-[50%] top-[61%] left-[101%] z-30 text-blue-400 fill-orange-100
+      animate-bounce"
+      />
+
       <span
         className={`transition-opacity duration-1000 ${isRevealed ? "opacity-0" : "opacity-100"}`}
       >

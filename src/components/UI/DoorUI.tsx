@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useReadContext } from "../ReadContext";
 import { useNavigate } from "react-router-dom";
+import { TbHandClick } from "react-icons/tb";
+import pointer from "/src/assets/UI/Door/door-pointer.svg";
 
 const DoorUI = () => {
   const { toggleNext } = useReadContext();
@@ -15,6 +17,19 @@ const DoorUI = () => {
 
   return (
     <button onClick={onClick}>
+      <img
+        src={pointer}
+        style={{ strokeWidth: 1.2 }}
+        className="absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] -rotate-55 animate-bounce text-black fill-orange-100 "
+      />
+      {/* <TbHandClick
+        style={{ strokeWidth: 1.2 }}
+        className="absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] -rotate-55 animate-bounce text-black fill-orange-100 "
+      /> */}
+      {/* <GiClick
+        style={{ strokeWidth: 1.2 }}
+        className="absolute w-1/12 h-auto scale-95 -rotate-30 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] animate-bounce text-blue-secondary"
+      /> */}
       <svg
         className="absolute top-[29%] left-[14%] -translate-x-[50%]
        -translate-y-[50%] w-1/4 h-auto scale-112 cursor-pointer animate-pulse-fast"
