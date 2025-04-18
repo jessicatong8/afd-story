@@ -70,7 +70,6 @@ const DumplingFillingUI = () => {
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
-    // <div className="relative border-2">
     <DndContext
       modifiers={[restrictToParentElement]}
       sensors={sensors}
@@ -89,7 +88,6 @@ const DumplingFillingUI = () => {
 
       <DumplingWrapper dragging={isDragging} />
     </DndContext>
-    // </div>
   );
 };
 
