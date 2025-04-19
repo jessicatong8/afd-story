@@ -43,9 +43,9 @@ function ReadPage() {
 
         <section
           ref={containerRef}
-          className="flex flex-grow w-full min-h-0 h-full items-center justify-evenly select-none z-0"
+          className="flex w-full min-h-0 h-full items-center justify-evenly select-none z-0"
         >
-          <span className="hidden md:block">
+          <span className="hide-portrait">
             <BackButton />
           </span>
 
@@ -56,7 +56,7 @@ function ReadPage() {
             <Page />
           </div>
 
-          <span className="hidden md:block">
+          <span className=" hide-portrait ">
             <NextButton />
           </span>
         </section>

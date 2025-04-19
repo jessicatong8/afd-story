@@ -31,6 +31,9 @@
   } */
   
   @media (orientation: portrait) {
+    .show-portrait {
+      display: flex !important;
+    }
       .hide-portrait {
         display: none !important;
       }
@@ -39,7 +42,7 @@
         height:auto;
       } */
       .progress-height-portrait {
-        height: 7rem;
+        height: 6rem;
       }
     }
 }
