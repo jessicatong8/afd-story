@@ -9,16 +9,6 @@
   }
 }
 
-@media (orientation: portrait) {
-    .hide-portrait {
-      display: none !important;
-    }
-    .square-portrait {
-      width: 100vw;
-      height: 100vw;
-    }
-  }
-
 @theme {
   --breakpoint-xs: 24rem;
   --color-yellow-glow: #FFEC5B;
@@ -35,4 +25,21 @@
   .animate-pulse-fast {
     animation: pulse 1.5s infinite;
   }
+  /* .square-portrait {
+    height: 100%;
+    width: auto;
+  } */
+  
+  @media (orientation: portrait) {
+      .hide-portrait {
+        display: none !important;
+      }
+      /* .square-portrait {
+        width: 100%;
+        height:auto;
+      } */
+      .progress-height-portrait {
+        height: 7rem;
+      }
+    }
 }

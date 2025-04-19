@@ -165,42 +165,37 @@ const Page = () => {
         };
 
   return (
-    <div
-      {...swipeHandlers}
-      className="w-full h-screen flex justify-center items-center"
-    >
+    <div {...swipeHandlers}>
       {/* <LeftClickDetector onLeftClick={() => handleBack()} /> */}
       <AnimatePresence custom={direction} initial={false}>
-        <div className="relative aspect-square h-screen square-portrait border-2 border-sky-200 overflow-clip">
-          {imageCache[currentPage] ? (
-            <motion.div
-              className="absolute w-full h-full"
-              custom={direction}
-              variants={getAnimationVariants()}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={getAnimationTransition()}
-              key={currentPage}
-            >
-              <img
-                src={imageCache[currentPage]}
-                className="object-contain pointer-events-none"
-              />
-              {currentPage === 3 && <DoorUI />}
-              {currentPage === 5 && <ScratchReveal />}
-              {currentPage === 15 && <DumplingFillingUI />}
-              {currentPage === 17 && <DumplingGivingUI />}
-              {currentPage === 20 && <LoveLanguagesUI />}
-              {currentPage === 28 && <LoveLanguagesUI />}
-              {currentPage === 29 && <LoveLanguagesUI />}
-              {currentPage === 30 && <LoveLanguagesUI />}
-              {currentPage === 31 && <LoveLanguagesUI />}
-            </motion.div>
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+        {imageCache[currentPage] ? (
+          <motion.div
+            className="absolute w-full h-full"
+            custom={direction}
+            variants={getAnimationVariants()}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={getAnimationTransition()}
+            key={currentPage}
+          >
+            <img
+              src={imageCache[currentPage]}
+              className="object-contain pointer-events-none"
+            />
+            {currentPage === 3 && <DoorUI />}
+            {currentPage === 5 && <ScratchReveal />}
+            {currentPage === 15 && <DumplingFillingUI />}
+            {currentPage === 17 && <DumplingGivingUI />}
+            {currentPage === 20 && <LoveLanguagesUI />}
+            {currentPage === 28 && <LoveLanguagesUI />}
+            {currentPage === 29 && <LoveLanguagesUI />}
+            {currentPage === 30 && <LoveLanguagesUI />}
+            {currentPage === 31 && <LoveLanguagesUI />}
+          </motion.div>
+        ) : (
+          <p>Loading...</p>
+        )}
       </AnimatePresence>
     </div>
   );
