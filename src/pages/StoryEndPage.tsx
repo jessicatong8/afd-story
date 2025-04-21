@@ -49,7 +49,7 @@ const StoryEndPage = () => {
               Read Again
             </button>
             <button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/#readers-guide")}
               className="rounded px-6 py-4 transition-all border-blue-primary  bg-blue-tertiary font-semibold 
           hover:bg-blue-secondary active:scale-95"
             >

@@ -33,13 +33,13 @@ const NavigationBar = () => {
           <Link to={`/read/0`} className={navItemStyle}>
             Read
           </Link>
-          <Link to={`/`} className={navItemStyle}>
+          <Link to={`/#readers-guide`} className={navItemStyle}>
             Learn
           </Link>
-          <Link to={`/game/start`} className={navItemStyle}>
+          <Link to={`/#play-game`} className={navItemStyle}>
             Play
           </Link>
-          <Link to={`/`} className={navItemStyle}>
+          <Link to={`/#about`} className={navItemStyle}>
             About
           </Link>
         </div>

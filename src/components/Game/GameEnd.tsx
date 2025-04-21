@@ -30,7 +30,10 @@ const GameEnd = ({ score }: Props) => {
       >
         Play Again
       </Link>
-      <Link to={`/`} className="border-2  border-gray-200 px-4 py-2 rounded ">
+      <Link
+        to={`/#readers-guide`}
+        className="border-2  border-gray-200 px-4 py-2 rounded "
+      >
         Learn More
       </Link>
     </motion.div>
