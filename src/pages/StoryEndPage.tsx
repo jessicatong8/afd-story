@@ -22,28 +22,36 @@ const StoryEndPage = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
           // transition-opacity ease-in duration-300
-          className={`flex flex-col justify-center items-center gap-12 p-6 w-screen h-screen`}
+          className={`flex flex-col justify-center items-center p-6 w-screen h-screen`}
         >
-          <p className="text-center">
-            Do you know all the different ways to express love?
-            <br />
-            Let’s play a game to find out!
+          <p className="text-center text-lg">
+            <span className="block">
+              Do you know all the different ways to express love?
+            </span>
+            <span className="block mt-4 font-bold">
+              Let’s play a game to find out!
+            </span>
           </p>
 
-          <button onClick={handleGameStart} className="active:scale-95">
+          <button
+            onClick={handleGameStart}
+            className="active:scale-95 px-2 py-16 cursor-pointer hover:scale-95 transition-transform"
+          >
             <img src={lunchBoxClosed} className="pointer-events-none" />
           </button>
 
-          <div className="grid grid-cols-2 gap-4 ">
+          <div className="grid grid-cols-2 gap-6 ">
             <button
               onClick={() => navigate("/read/1")}
-              className="border-2  border-gray-200 px-4 py-2 rounded "
+              className="rounded px-6 py-4 transition-all  border-blue-primary  bg-blue-tertiary font-semibold 
+          hover:bg-blue-secondary active:scale-95"
             >
               Read Again
             </button>
             <button
               onClick={() => navigate("/")}
-              className="border-2  border-gray-200 px-4 py-2 rounded"
+              className="rounded px-6 py-4 transition-all border-blue-primary  bg-blue-tertiary font-semibold 
+          hover:bg-blue-secondary active:scale-95"
             >
               Skip
             </button>
