@@ -5,6 +5,7 @@ import QuestionAnswer from "../components/Game/QuestionAnswer";
 import AnswerChoices from "../components/Game/AnswerChoices";
 import NextButton from "../components/Game/NextButton";
 import GameEnd from "../components/Game/GameEnd";
+import NavigationBar from "../components/NavigationBar";
 
 const GamePage = () => {
   const [questionOrder, setQuestionOrder] = useState(
@@ -76,6 +77,7 @@ const GamePage = () => {
 
   return (
     <div>
+      <NavigationBar />
       {gameEnd ? (
         <GameEnd score={score} />
       ) : (
