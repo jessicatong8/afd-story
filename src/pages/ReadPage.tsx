@@ -50,7 +50,7 @@ function ReadPage() {
           </span>
 
           <div
-            className={`relative border-2 border-blue-tertiary overflow-clip aspect-square
+            className={`relative  border-blue-tertiary overflow-clip aspect-square shadow-[3px_0_3px_-2px_rgba(0,0,0,0.1),_-3px_0_3px_-2px_rgba(0,0,0,0.1)]
               ${isLandscape ? "h-full" : "w-full"}`} //set size according to height when parent landscape and width when parent portrait
           >
             <Page />
