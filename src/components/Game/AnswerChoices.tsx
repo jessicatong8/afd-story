@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const modules = import.meta.glob("/src/assets/game/loveLanguageIcons/*.svg", {
+const modules = import.meta.glob("/src/assets/game/loveLanguageIcons/*.png", {
   eager: true,
 });
 
@@ -83,7 +83,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
             disabled={state !== "unanswered"} // disable buttons after an answer is selected
           >
             <img
-              src={icons[`${key}.svg`]}
+              src={icons[`${key}.png`]}
               alt={label}
               className="w-10 sm:w-12"
             />
