@@ -11,7 +11,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <nav className="w-full flex items-center justify-between px-6 bg-white shadow-md lg:px-12">
+      <nav className="w-full flex items-center justify-between px-6 bg-white shadow-sm lg:px-12">
         <Link to={`/`} className="py-4">
           <div className="flex flex-row justify-center items-center gap-3">
             <img src="/favicon.png" className="w-11 h-11"></img>
