@@ -42,7 +42,7 @@ const QuestionAnswer = ({ question, state }: Props) => {
     } else {
       setText("Not quite! " + answerText[question]);
     }
-  }, [state]);
+  }, [state, question]);
 
   return (
     <div className="bg-blue-tertiary px-6 py-6 rounded flex justify-center items-center">
