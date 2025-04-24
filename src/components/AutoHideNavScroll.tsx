@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
 
-function StickyAutoHideNavbar({
-  setShowMenu,
-}: {
-  setShowMenu: (v: boolean) => void;
-}) {
+function StickyAutoHideNavbar() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
