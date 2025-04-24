@@ -20,7 +20,7 @@ const NavigationBar = () => {
                 Food is My Love Language
                 <br />
               </p>
-              <p className="font-open font-medium italic text-sm -mt-1">
+              <p className="font-medium italic text-sm -mt-1">
                 {" "}
                 An Interactive Story
               </p>
@@ -51,18 +51,7 @@ const NavigationBar = () => {
       </nav>
 
       <AnimatePresence>
-        {showMenu && (
-          <>
-            <motion.div
-              className="fixed inset-0 bg-black bg-opacity-30 z-40"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowMenu(false)} // Clicking backdrop closes menu
-            />
-            <NavigationMenu />
-          </>
-        )}
+        {showMenu && <NavigationMenu closeMenu={() => setShowMenu(false)} />}
       </AnimatePresence>
     </>
   );

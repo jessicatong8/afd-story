@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { IoCloseOutline } from "react-icons/io5";
+import { useEffect } from "react";
 
-const NavigationMenu = () => {
+type Props = {
+  closeMenu: () => void;
+};
+
+const NavigationMenu = ({ closeMenu }: Props) => {
   const menuVariants = {
     hidden: { x: "100%" },
     visible: { x: 0 },
@@ -9,28 +15,52 @@ const NavigationMenu = () => {
   };
 
   const menuItemStyle =
-    "flex justify-left items-center px-6 py-4 border-b-1 border-gray-200 hover:bg-blue-primary active:bg-blue-primary";
+    "flex justify-center items-center px-6 py-4 border-b-1 border-gray-200 hover:bg-blue-primary active:bg-blue-primary";
+
+  useEffect(() => {
+    // Disable scrolling on body when component mounts
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+
+    // Re-enable scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.touchAction = "auto";
+    };
+  }, []);
 
   return (
     <motion.div
-      className="fixed top-0 right-0 h-full w-50 bg-white shadow-lg z-50"
+      className="fixed inset-0 bg-white z-50"
       initial="hidden"
       animate="visible"
       exit="exit"
       variants={menuVariants}
       transition={{ type: "tween", duration: 0.3 }}
-      onClick={(e) => e.stopPropagation()} // Prevent click bubbling from closing menu
     >
+      <button
+        className="absolute top-2 right-0 p-6 scale-175"
+        onClick={closeMenu}
+      >
+        <IoCloseOutline />
+      </button>
       <div className="pt-8  ">
         {/* <h2 className="text-lg font-semibold">Menu</h2> */}
-        <Link to={`/`} className={menuItemStyle}>
-          Home
-        </Link>
-        <Link to={`/read/0`} className={menuItemStyle}>
+        <Link to={`/read/0`} onClick={closeMenu} className={menuItemStyle}>
           Read
         </Link>
-        <Link to={`/game/start`} className={menuItemStyle}>
-          Game
+        <Link
+          to={`/#readers-guide`}
+          onClick={closeMenu}
+          className={menuItemStyle}
+        >
+          Learn
+        </Link>
+        <Link to={`/#play-game`} onClick={closeMenu} className={menuItemStyle}>
+          Play
+        </Link>
+        <Link to={`/#about`} onClick={closeMenu} className={menuItemStyle}>
+          About
         </Link>
       </div>
     </motion.div>
