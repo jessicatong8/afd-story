@@ -24,7 +24,7 @@ const ReadersGuide = () => {
           many other Asian groups tend to prefer other expressions of love, like
           making delicious food and doing acts of service and kindness.
         </p>{" "}
-        <p className="mt-4">
+        <div className="mt-4">
           Immigrant parents who grow up in Asia and their children who grow up
           in the United States have what’s called an{" "}
           <ToolTip content="Acculturation gap: The cultural differences between immigrant parents and their American raised children that are a result of growing up in different cultural environments.">
@@ -42,8 +42,8 @@ const ReadersGuide = () => {
           , which can lead to emotional distancing, family conflict, feelings of
           being misunderstood, and trigger mental health problems in children
           and parents.{" "}
-        </p>
-        <p className="mt-4">
+        </div>
+        <div className="mt-4">
           To reduce the impact of AFD, we need to be more{" "}
           <ToolTip content="Cultural flexibility: To be understanding, flexible and compromising in one’s cultural values.">
             <span className="whitespace-nowrap">culturally flexible</span>
@@ -57,8 +57,8 @@ const ReadersGuide = () => {
           the ability to navigate, understand, and adapt to both cultures, which
           is crucial for children and families with different cultural
           backgrounds.{" "}
-        </p>
-        <p className="mt-4">
+        </div>
+        <div className="mt-4">
           Our hope is that by reading this book, children and parents will be
           able to close the acculturation gap, and better understand each
           other’s love languages. It is important to understand that children
@@ -70,7 +70,7 @@ const ReadersGuide = () => {
           and flexible, we are better able to reduce the impact of parent-child
           cultural and communication differences on family relationships and
           emotional closeness.
-        </p>
+        </div>
       </div>
     </>
   );
