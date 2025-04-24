@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import cover from "/cover.png";
 import NavigationBar from "../components/NavigationBar";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ReadersGuide from "../components/ReadersGuide";
 import { useEffect } from "react";
+import AutoHideNavScroll from "../components/AutoHideNavScroll";
 
 const HomePage = () => {
   const location = useLocation();
@@ -28,43 +28,45 @@ const HomePage = () => {
   }, [location]);
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
+      {/* <AutoHideNavScroll /> */}
       <NavigationBar />
-      <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-28 xl:mx-60">
+      <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40">
         <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
           <Link
             to={`/read/0`}
-            className="hover:scale-95 active:scale-95 transition-all"
+            className="hover:scale-97 active:scale-97 transition-all"
           >
             <img
-              src={cover}
+              src={"/cover.jpg"}
               className="w-full h-auto object-cover shadow-lg cursor-pointer pointer-events-non"
             />
           </Link>
           <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
             <Link
               to={`/read/0`}
-              className="flex justify-center items-center rounded px-4 py-4 transition-all border-2 border-blue-secondary shadow-md bg-blue-primary font-bold text-xl
+              className="flex justify-center items-center rounded px-4 py-4 transition-all  border-blue-secondary shadow-md bg-blue-primary font-bold text-xl
           hover:bg-blue-secondary hover:scale-95 active:scale-95 active:bg-blue-secondary"
             >
               Start Reading
             </Link>
-            <p className="bg-blue-tertiary p-4 rounded">
+            <div className="bg-blue-tertiary p-4 rounded">
               <div>
-                When Mia goes to school speaking a different language from her
-                family, she isn't so sure that her mom loves her. Make dumplings
-                and with Mia and her mom as they learn to show their love in
-                many different ways!
+                Join Mia on a heartwarming journey to discover how love can be
+                expressed in many different ways across cultures.
               </div>
               <div className="mt-4">
-                We hope that this story will help you express your love across
-                cultures and languages, so read together with your family and
-                loved ones.
+                When Mia notices that her mom doesn’t say “I love you” like her
+                friend’s mom does, she begins to wonder if her mom loves her at
+                all. Help Mia make dumplings, engage in meaningful
+                conversations, and uncover a special heart-shaped surprise, as
+                she discovers that love isn’t always spoken.
               </div>
               <div className="mt-4">
-                You will encounter some interactive scenes, click or drag
-                elements as directed to progress through the story.
+                Perfect for children and parents to read together, this story
+                celebrates the many forms love can take—across generations,
+                languages, and traditions.
               </div>
-            </p>
+            </div>
           </div>
         </div>
 
@@ -94,17 +96,19 @@ const HomePage = () => {
           <h1 className="heading">About</h1>
           <p>
             This story is developed by the Cultural Influences on Mental Health
-            Center (CIMH) at Claremont McKenna College.
+            Center (CIMH) at Claremont McKenna College. You are seeing a beta
+            version of this website, so please reach out to us with any feedback
+            or suggestions as we continue to improve this interactive story!
           </p>
           <p className="mt-4">
-            To learn more about our research on Acculturative Family Distancing
-            contact Wei-Chin Hwang, Ph.D. at
-            wei-chin.hwang@claremontmckenna.edu. For any feedback, suggestions,
-            or issues with this website please contact Jessica Tong at
-            jjtb2023@mymail.pomona.edu.
+            For any feedback, suggestions, or issues with this website please
+            contact Jessica Tong at jjtb2023@mymail.pomona.edu. To learn more
+            about our research on Acculturative Family Distancing contact
+            Wei-Chin Hwang, Ph.D. at wei-chin.hwang@claremontmckenna.edu.
           </p>
         </div>
       </div>
+      <footer className="p-6 bg-blue-tertiary mt-12">footer</footer>
     </div>
   );
 };
