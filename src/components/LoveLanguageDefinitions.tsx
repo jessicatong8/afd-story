@@ -1,5 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 
+const modules = import.meta.glob("/public/loveLanguageIcons/*.png", {
+  eager: true,
+});
+
+const icons: Record<string, string> = Object.fromEntries(
+  Object.entries(modules).map(([path, mod]) => {
+    const fileName = path.split("/").pop()!; // non-null assertion since .pop() could be undefined
+    const url = (mod as { default: string }).default; // assert type
+    return [fileName, url];
+  })
+);
+
 const LoveLanguageDefinitions = () => {
   const [activePopup, setActivePopup] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -72,7 +84,7 @@ const LoveLanguageDefinitions = () => {
 
           {/* Icon */}
           <img
-            src={`/loveLanguageIcons/${language}.png`}
+            src={icons[`${language}.png`]}
             alt={language}
             className="cursor-pointer w-full min-w-20 max-w-28 hover:scale-90 transition-transform active:scale-90"
           />

@@ -1,5 +1,17 @@
 import { useState } from "react";
 
+const modules = import.meta.glob("/public/loveLanguageIcons/*.png", {
+  eager: true,
+});
+
+const icons: Record<string, string> = Object.fromEntries(
+  Object.entries(modules).map(([path, mod]) => {
+    const fileName = path.split("/").pop()!; // non-null assertion since .pop() could be undefined
+    const url = (mod as { default: string }).default; // assert type
+    return [fileName, url];
+  })
+);
+
 interface Props {
   question: number;
   state: "unanswered" | "correct" | "wrong";
@@ -69,7 +81,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
             disabled={state !== "unanswered"} // disable buttons after an answer is selected
           >
             <img
-              src={`/loveLanguageIcons/${key}.png`}
+              src={icons[`${key}.png`]}
               alt={label}
               className="w-8 xs:w-10 sm:w-12"
             />

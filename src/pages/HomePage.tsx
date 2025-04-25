@@ -1,10 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
-import NavigationBar from "../components/NavigationBar";
-import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
-import ReadersGuide from "../components/Home/ReadersGuide";
 import { useEffect } from "react";
+
+import NavigationBar from "../components/NavigationBar";
 import AutoHideNavScroll from "../components/Home/AutoHideNavScroll";
+import coverImage from "/cover.jpg";
+import ReadersGuide from "../components/Home/ReadersGuide";
+import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ContactForm from "../components/Home/ContactForm";
+import Footer from "../components/Home/Footer";
 
 const HomePage = () => {
   const location = useLocation();
@@ -38,7 +41,7 @@ const HomePage = () => {
             className="hover:scale-97 active:scale-97 transition-all"
           >
             <img
-              src={"/cover.jpg"}
+              src={coverImage}
               className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
             />
           </Link>
@@ -148,17 +151,7 @@ const HomePage = () => {
           <ContactForm />
         </div>
       </div>
-
-      <footer className="p-12 bg-blue-dark text-white mt-12 text-sm flex flex-row flex-wrap justify-center items-center gap-6">
-        <img src="/cmc_logo.png" className="w-50 h-auto" />
-        <div>
-          <div className="text-base mb-1.5">
-            Cultural Influences on Mental Health Center
-          </div>
-          Claremont McKenna College 850 Columbia Avenue <br></br>
-          Claremont, CA 91711 <br></br>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

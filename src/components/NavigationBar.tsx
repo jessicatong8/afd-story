@@ -4,6 +4,8 @@ import { useState } from "react";
 import NavigationMenu from "./NavigationMenu";
 import { AnimatePresence, motion } from "framer-motion";
 
+import logoImage from "/logo.png";
+
 const NavigationBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const navItemStyle =
@@ -14,7 +16,7 @@ const NavigationBar = () => {
       <nav className="w-full flex items-center justify-between px-6 bg-white shadow-sm lg:px-12">
         <Link to={`/`} className="py-4">
           <div className="flex flex-row justify-center items-center gap-2 md:gap-3">
-            <img src="/logo.png" className="w-10 aspect-square md:w-11"></img>
+            <img src={logoImage} className="w-10 aspect-square md:w-11"></img>
             <div>
               <p className="font-grand text-base md:text-lg font-semibold mt-0.5 text-pink-title">
                 Food is My Love Language
