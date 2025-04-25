@@ -1,17 +1,16 @@
 import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 
 import HomePage from "./pages/HomePage"; // load immediately
 import NotFoundPage from "./pages/NotFoundPage";
 import LunchBoxOpen from "./components/Game/GameStartAnimation";
-import GameEnd from "./components/Game/GameEnd";
 
 const ReadPage = lazy(() => import("./pages/ReadPage"));
 const GamePage = lazy(() => import("./pages/GamePage"));
 const StoryEndPage = lazy(() => import("./pages/StoryEndPage"));
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <HomePage />,
