@@ -1,9 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
-import ReadersGuide from "../components/ReadersGuide";
+import ReadersGuide from "../components/Home/ReadersGuide";
 import { useEffect } from "react";
-import AutoHideNavScroll from "../components/AutoHideNavScroll";
+import AutoHideNavScroll from "../components/Home/AutoHideNavScroll";
+import ContactForm from "../components/Home/ContactForm";
 
 const HomePage = () => {
   const location = useLocation();
@@ -38,18 +39,17 @@ const HomePage = () => {
           >
             <img
               src={"/cover.jpg"}
-              className="w-full h-auto object-cover shadow-lg cursor-pointer pointer-events-non"
+              className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
             />
           </Link>
           <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
             <Link
               to={`/read/0`}
-              className="flex justify-center items-center rounded px-4 py-4 transition-all  border-blue-secondary shadow-md bg-blue-primary font-bold text-xl
-          hover:bg-blue-secondary hover:scale-95 active:scale-95 active:bg-blue-secondary"
+              className="flex justify-center items-center button text-xl"
             >
               Start Reading
             </Link>
-            <div className="bg-blue-tertiary p-4 rounded">
+            <div className="bg-blue-tertiary p-4 rounded-lg">
               <div>
                 Join Mia on a heartwarming journey to discover how love can be
                 expressed in many different ways across cultures.
@@ -81,9 +81,10 @@ const HomePage = () => {
             Do you know all the different ways to express love? Let’s play a
             game to find out!
           </p>
+          s
           <Link
             to={`/game/start`}
-            className="flex justify-center items-center active:scale-95 px-2 cursor-pointer hover:scale-95 transition-transform "
+            className="flex justify-center items-center active:scale-95 px-2 pt-6 cursor-pointer hover:scale-95 transition-transform "
           >
             <img
               src={lunchBoxClosed}
@@ -92,23 +93,54 @@ const HomePage = () => {
           </Link>
         </div>
 
-        <div id="about">
-          <h1 className="heading">About</h1>
-          <p>
-            This story is developed by the Cultural Influences on Mental Health
-            Center (CIMH) at Claremont McKenna College. You are seeing a beta
-            version of this website, so please reach out to us with any feedback
-            or suggestions as we continue to improve this interactive story!
-          </p>
-          <p className="mt-4">
-            For any feedback, suggestions, or issues with this website please
-            contact Jessica Tong at jjtb2023@mymail.pomona.edu. To learn more
-            about our research on Acculturative Family Distancing contact
-            Wei-Chin Hwang, Ph.D. at wei-chin.hwang@claremontmckenna.edu.
-          </p>
+        <div className="flex flex-row flex-wrap gap-6">
+          <div id="about" className="basis-1/2 grow">
+            <h1 className="heading">About</h1>
+            <p>
+              This story is developed by the Cultural Influences on Mental
+              Health Center (CIMH) at Claremont McKenna College. You are seeing
+              a beta version of this website, so please reach out to us with any
+              feedback or suggestions as we continue to improve this interactive
+              story!
+            </p>
+          </div>
+          <ContactForm />
         </div>
       </div>
-      <footer className="p-6 bg-blue-tertiary mt-12">footer</footer>
+
+      <footer className="p-12 bg-blue-dark text-white mt-12 text-sm flex flex-row justify-center items-center gap-6">
+        <img src="/cmc_logo.png" className="w-50 h-auto" />
+        <div>
+          <div className="text-base mb-1.5">
+            Cultural Influences on Mental Health Center
+          </div>
+          Claremont McKenna College 850 Columbia Avenue <br></br>
+          Claremont, CA 91711 <br></br>
+        </div>
+
+        {/* <div>
+          <div className="text-base mb-1.5">Wei-Chin Hwang, Ph.D.</div>
+          Dept Chair and Professor of Psychological Science <br></br>
+          Licensed Practicing Clinical Psychologist <br></br>
+          Email: whwang@cmc.edu <br></br>
+          <a href="https://www.cmc.edu/academic/faculty/profile/wei-chin-hwang">
+            Faculty Website |
+          </a>{" "}
+          <a href="http://www.losangelesclinicalpsychologist.com">
+            Practice Website |
+          </a>{" "}
+          <a href="http://www.abct.org/Therapists/Wei_Chin_Hwang.cfm">
+            ABCT Featured therapist
+          </a>
+        </div>
+        <div>
+          <div className="text-base mb-1.5">Jessica Tong</div>
+          Software Developer <br></br>
+          Student at Pomona College <br></br>
+          Psychological Science and Computer Science <br></br>
+          Email: jjtb2023@mymail.pomona.edu <br></br>
+        </div> */}
+      </footer>
     </div>
   );
 };
