@@ -48,7 +48,10 @@ const NavigationBar = () => {
 
         {/* Mobile Menu Overlay */}
         <button onClick={() => setShowMenu(true)} className="block sm:hidden">
-          {/* <FiMenu className="scale-130" /> */}
+          <span className="scale-130">
+            {FiMenu({ size: 18 })}
+            {/* <FiMenu /> */}
+          </span>
         </button>
       </nav>
 

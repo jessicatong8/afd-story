@@ -43,6 +43,7 @@ const NavigationMenu = ({ closeMenu }: Props) => {
         onClick={closeMenu}
       >
         {/* <IoCloseOutline /> */}
+        {IoCloseOutline({ size: 16 })}
       </button>
       <div className="pt-8  ">
         {/* <h2 className="text-lg font-semibold">Menu</h2> */}
