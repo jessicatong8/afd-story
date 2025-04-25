@@ -65,7 +65,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
             onClick={() => handleClick(key)}
             className={`flex flex-row items-center 
               font-bold w-90 h-18 max-w-full px-6 gap-3 sm:px-8 sm:gap-4
-              ${bgColor} text-black border-2 border-gray-200 rounded-lg transition-color `}
+              ${bgColor} text-black border-2 border-gray-200 rounded-lg transition-color cursor-pointer`}
             disabled={state !== "unanswered"} // disable buttons after an answer is selected
           >
             <img

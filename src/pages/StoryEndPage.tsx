@@ -43,15 +43,13 @@ const StoryEndPage = () => {
           <div className="grid grid-cols-2 gap-6 ">
             <button
               onClick={() => navigate("/read/1")}
-              className="rounded px-6 py-4 transition-all  border-blue-primary  bg-blue-tertiary font-semibold 
-          hover:bg-blue-secondary active:scale-95"
+              className="button secondary"
             >
               Read Again
             </button>
             <button
               onClick={() => navigate("/#readers-guide")}
-              className="rounded px-6 py-4 transition-all border-blue-primary  bg-blue-tertiary font-semibold 
-          hover:bg-blue-secondary active:scale-95"
+              className="button secondary"
             >
               Skip
             </button>

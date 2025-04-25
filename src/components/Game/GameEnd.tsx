@@ -23,19 +23,22 @@ const GameEnd = ({ score }: Props) => {
       }}
       className="flex flex-col h-screen gap-6 justify-center items-center"
     >
-      <p> You got {score} out of 9 questions correct!</p>
-      <Link
-        to={`/game/start`}
-        className="border-2  border-gray-200 px-4 py-2 rounded"
-      >
-        Play Again
-      </Link>
-      <Link
-        to={`/#readers-guide`}
-        className="border-2  border-gray-200 px-4 py-2 rounded "
-      >
-        Learn More
-      </Link>
+      <div className="text-2xl text-center leading-relaxed">
+        You got{" "}
+        <span className="text-pink-title font-extrabold text-5xl">{score}</span>{" "}
+        out of{" "}
+        <span className="text-pink-title font-extrabold text-5xl">9</span>{" "}
+        questions correct!
+      </div>
+
+      <div className="flex flex-row gap-6">
+        <Link to={`/game/start`} className="button secondary">
+          Play Again
+        </Link>
+        <Link to={`/#readers-guide`} className="!shadow-sm button ">
+          Learn More
+        </Link>
+      </div>
     </motion.div>
   );
 };

@@ -21,6 +21,7 @@
   --color-blue-primary: #7DD4FF;
   --color-blue-secondary: #2FB1F2;
   --color-blue-tertiary: #E2F3FF;
+  --color-blue-dark: #009CE9;
   --font-open: 'Open Sans', 'sans-serif';
   --font-grand: 'Grandstander', 'cursive';
 }
@@ -41,6 +42,43 @@
     margin-bottom: 1rem;
     margin-top: 1rem;
     
+  }
+
+  .button {
+    border-radius: 0.5rem;        /* rounded-lg */
+    padding: 1rem 1rem;           /* px-4 py-4 = 16px */
+    transition: all 0.2s ease;    /* transition-all */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+    background-color: #2FB1F2;    /* bg-blue-secondary (adjust if custom!) */
+    color: white;                /* text-white */
+    font-weight: 600;            /* font-semibold */
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #009CE9;   /* hover:bg-blue-dark */
+    transform: scale(0.95);      /* hover:scale-95 */
+  }
+  
+  .button:active {
+    background-color: #009CE9;   /* active:bg-blue-dark */
+    transform: scale(0.95);      /* active:scale-95 */
+  }
+
+  .button:disabled {
+    box-shadow: none;              /* disabled:shadow-none */
+    transform: scale(1);           /* disabled:scale-100 */
+    background-color: #f3f4f6;     /* disabled:bg-gray-100 */
+    color: #6b7280;                /* disabled:text-gray-500 */
+    cursor: not-allowed;           /* disabled:cursor-not-allowed */
+    font-weight: 400;              /* disabled:font-normal */
+  }
+
+  .button.secondary {
+    background-color: #E2F3FF;    
+    color: black;                
+    font-weight: 400;    
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
   
   @media (orientation: portrait) {
