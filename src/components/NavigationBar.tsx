@@ -7,16 +7,16 @@ import { AnimatePresence, motion } from "framer-motion";
 const NavigationBar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const navItemStyle =
-    "flex justify-center px-6 py-6 items-center hover:bg-blue-primary";
+    "flex justify-center px-3.5 py-6 md:px-6 items-center hover:bg-blue-primary";
 
   return (
     <>
       <nav className="w-full flex items-center justify-between px-6 bg-white shadow-sm lg:px-12">
         <Link to={`/`} className="py-4">
-          <div className="flex flex-row justify-center items-center gap-3">
-            <img src="/favicon.png" className="w-11 h-11"></img>
+          <div className="flex flex-row justify-center items-center gap-2 md:gap-3">
+            <img src="/logo.png" className="w-10 aspect-square md:w-11"></img>
             <div>
-              <p className="font-grand font-semibold mt-0.5">
+              <p className="font-grand text-base md:text-lg font-semibold mt-0.5 text-pink-title">
                 Food is My Love Language
                 <br />
               </p>
