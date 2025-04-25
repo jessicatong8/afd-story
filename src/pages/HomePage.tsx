@@ -81,7 +81,7 @@ const HomePage = () => {
             Do you know all the different ways to express love? Let’s play a
             game to find out!
           </p>
-          s
+
           <Link
             to={`/game/start`}
             className="flex justify-center items-center active:scale-95 px-2 pt-6 cursor-pointer hover:scale-95 transition-transform "
@@ -96,19 +96,60 @@ const HomePage = () => {
         <div className="flex flex-row flex-wrap gap-6">
           <div id="about" className="basis-1/2 grow">
             <h1 className="heading">About</h1>
-            <p>
+            <p className="mb-6">
               This story is developed by the Cultural Influences on Mental
               Health Center (CIMH) at Claremont McKenna College. You are seeing
               a beta version of this website, so please reach out to us with any
               feedback or suggestions as we continue to improve this interactive
               story!
             </p>
+
+            <h1 className="heading">People</h1>
+
+            <div className="grid grid-cols-2 auto-rows-fr gap-4 place-items-center">
+              <div className="shadow-md rounded-lg p-4 text-center h-full">
+                <div className="text-base font-semibold mb-1.5">
+                  Wei-Chin Hwang, Ph.D.
+                </div>
+                <div className="mb-1.5  text-blue-dark">
+                  Principal Investigator
+                </div>
+                <div className="text-xs">
+                  Dept. Chair and Professor of Psychological Science <br></br>
+                  Licensed Practicing Clinical Psychologist <br></br>
+                  {/* Email: whwang@cmc.edu <br></br> */}
+                  {/* <a href="https://www.cmc.edu/academic/faculty/profile/wei-chin-hwang">
+                  Faculty Website |
+                </a>{" "}
+                <a href="http://www.losangelesclinicalpsychologist.com">
+                  Practice Website |
+                </a>{" "}
+                <a href="http://www.abct.org/Therapists/Wei_Chin_Hwang.cfm">
+                  ABCT Featured therapist
+                </a> */}
+                </div>
+              </div>
+              <div className="shadow-md rounded-lg p-4 text-center h-full flex flex-col justify-center items-center">
+                {/* <div className="rounded-full bg-amber-100 h-30 w-30"></div> */}
+                <div className="text-base font-semibold mb-1.5">
+                  Jessica Tong
+                </div>
+                <div className="mb-1.5 text-blue-dark">
+                  Product Lead & Software Developer
+                </div>
+                <div className="text-xs">
+                  Pomona College <br></br>
+                  Psychological Science and Computer Science student<br></br>
+                  {/* Email: jjtb2023@mymail.pomona.edu <br></br> */}
+                </div>
+              </div>
+            </div>
           </div>
           <ContactForm />
         </div>
       </div>
 
-      <footer className="p-12 bg-blue-dark text-white mt-12 text-sm flex flex-row justify-center items-center gap-6">
+      <footer className="p-12 bg-blue-dark text-white mt-12 text-sm flex flex-row flex-wrap justify-center items-center gap-6">
         <img src="/cmc_logo.png" className="w-50 h-auto" />
         <div>
           <div className="text-base mb-1.5">
@@ -117,29 +158,6 @@ const HomePage = () => {
           Claremont McKenna College 850 Columbia Avenue <br></br>
           Claremont, CA 91711 <br></br>
         </div>
-
-        {/* <div>
-          <div className="text-base mb-1.5">Wei-Chin Hwang, Ph.D.</div>
-          Dept Chair and Professor of Psychological Science <br></br>
-          Licensed Practicing Clinical Psychologist <br></br>
-          Email: whwang@cmc.edu <br></br>
-          <a href="https://www.cmc.edu/academic/faculty/profile/wei-chin-hwang">
-            Faculty Website |
-          </a>{" "}
-          <a href="http://www.losangelesclinicalpsychologist.com">
-            Practice Website |
-          </a>{" "}
-          <a href="http://www.abct.org/Therapists/Wei_Chin_Hwang.cfm">
-            ABCT Featured therapist
-          </a>
-        </div>
-        <div>
-          <div className="text-base mb-1.5">Jessica Tong</div>
-          Software Developer <br></br>
-          Student at Pomona College <br></br>
-          Psychological Science and Computer Science <br></br>
-          Email: jjtb2023@mymail.pomona.edu <br></br>
-        </div> */}
       </footer>
     </div>
   );
