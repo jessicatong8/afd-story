@@ -56,6 +56,10 @@ const GamePage = () => {
     localStorage.removeItem("gameScore");
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentQuestion]);
+
   const questionNumber = questionOrder[currentQuestion];
 
   console.log(questionOrder);
@@ -76,7 +80,7 @@ const GamePage = () => {
   }
 
   return (
-    <div>
+    <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
       <NavigationBar />
       {gameEnd ? (
         <GameEnd score={score} />
