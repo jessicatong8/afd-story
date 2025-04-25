@@ -1,5 +1,5 @@
-import LoveLanguageDefinitions from "../components/LoveLanguageDefinitions";
-import ToolTip from "../components/Home/ToolTip";
+import LoveLanguageDefinitions from "../LoveLanguageDefinitions";
+import ToolTip from "./ToolTip";
 
 const ReadersGuide = () => {
   return (
