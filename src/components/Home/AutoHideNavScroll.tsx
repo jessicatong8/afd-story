@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import NavigationBar from "./NavigationBar";
+import NavigationBar from "../NavigationBar";
 
 function StickyAutoHideNavbar() {
   const [showNavbar, setShowNavbar] = useState(true);
