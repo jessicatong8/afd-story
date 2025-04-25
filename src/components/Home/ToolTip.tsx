@@ -28,7 +28,7 @@ const Tooltip = ({ content, children }: TooltipProps) => {
       ref={refs.setReference}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      className="underline text-sky-600 cursor-pointer"
+      className="underline text-blue-dark cursor-pointer"
     >
       {children}
       <div
