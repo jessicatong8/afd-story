@@ -37,6 +37,7 @@ function ContactForm() {
           type="text"
           name="name"
           placeholder="Your Name"
+          autoComplete="name"
           required
           className={inputFieldStyle}
         />
@@ -45,6 +46,7 @@ function ContactForm() {
           type="email"
           name="email"
           placeholder="Your Email"
+          autoComplete="email"
           required
           className={inputFieldStyle}
         />
@@ -52,6 +54,7 @@ function ContactForm() {
         <textarea
           name="message"
           placeholder="Your Message"
+          autoComplete="off"
           required
           rows={4}
           className={inputFieldStyle}
