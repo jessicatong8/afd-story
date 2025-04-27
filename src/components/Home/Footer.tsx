@@ -1,4 +1,4 @@
-import CMCLogo from "/cmc_logo.png";
+import CMCLogo from "../../assets/cmc_logo.png";
 
 const Footer = () => {
   return (

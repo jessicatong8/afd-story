@@ -4,7 +4,7 @@ import { useState } from "react";
 import NavigationMenu from "./NavigationMenu";
 import { AnimatePresence, motion } from "framer-motion";
 
-import logoImage from "/logo.png";
+import logoImage from "../assets/logo.png";
 
 const NavigationBar = () => {
   const [showMenu, setShowMenu] = useState(false);

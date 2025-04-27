@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import NavigationBar from "../components/NavigationBar";
 import AutoHideNavScroll from "../components/Home/AutoHideNavScroll";
-import coverImage from "/cover.jpg";
+import coverImage from "../assets/cover.jpg";
 import ReadersGuide from "../components/Home/ReadersGuide";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ContactForm from "../components/Home/ContactForm";

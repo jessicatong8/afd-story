@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const modules = import.meta.glob("/public/loveLanguageIcons/*.png", {
+const modules = import.meta.glob("../../assets/loveLanguageIcons/*.png", {
   eager: true,
 });
 
