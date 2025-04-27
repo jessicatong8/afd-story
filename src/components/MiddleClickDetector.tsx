@@ -13,10 +13,10 @@ export default function MiddleClickDetector({
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      const xMin = width * 0.3;
-      const xMax = width * 0.7;
-      const yMin = height * 0.3;
-      const yMax = height * 0.7;
+      const xMin = width * 0.1;
+      const xMax = width * 0.9;
+      const yMin = height * 0.1;
+      const yMax = height * 0.9;
 
       if (
         clientX >= xMin &&
