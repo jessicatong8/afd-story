@@ -11,6 +11,11 @@ const StoryEndPage = () => {
   const handleGameStart = () => {
     setClicked(true);
   };
+  const animationVariants = {
+    hidden: { x: "100%" }, // Start off-screen (right)
+    visible: { x: 0 }, // Slide to original position (0)
+    exit: { opacity: 50 },
+  };
 
   return (
     <AnimatePresence>
@@ -18,9 +23,18 @@ const StoryEndPage = () => {
         <LunchBoxOpen />
       ) : (
         <motion.div
+          variants={animationVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          transition={{
+            type: "spring",
+            stiffness: 200,
+            damping: 12,
+            mass: 0.8,
+          }}
           key="closed"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
+          // transition={{ duration: 0.2, ease: "easeOut" }}
           // transition-opacity ease-in duration-300
           className={`flex flex-col justify-center items-center p-6 w-screen h-screen`}
         >
