@@ -71,13 +71,13 @@ const LoveLanguageDefinitions = () => {
           }
         >
           <div
-            className={`absolute w-50 h-50 p-6 font-grand leading-snug -translate-y-[25%] rounded-full flex items-center justify-center bg-white border-6 shadow-md transition-all duration-150 z-10
+            className={`absolute w-50 h-50 p-6 font-grand leading-snug -translate-y-[25%] rounded-full text-white font-medium flex items-center justify-center border-6 shadow-md transition-all duration-150 z-10
                ${
                  activePopup === language
                    ? "opacity-100 scale-100"
                    : "opacity-0 scale-0 pointer-events-none"
                }`}
-            style={{ borderColor: definition[1] }}
+            style={{ borderColor: definition[1], background: definition[1] }}
           >
             {definition[0]}
           </div>
