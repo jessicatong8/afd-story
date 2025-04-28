@@ -6,7 +6,7 @@ interface Props {
 }
 
 const QuestionAnswer = ({ question, state }: Props) => {
-  console.log(question);
+  // console.log(question);
 
   const [text, setText] = useState<string>("");
 

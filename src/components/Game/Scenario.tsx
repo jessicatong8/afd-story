@@ -1,7 +1,7 @@
 const images = import.meta.glob("/src/assets/game/*.png", { eager: true });
 
 const imageArray = Object.values(images).map((mod: any) => mod.default);
-console.log(imageArray);
+// console.log(imageArray);
 
 interface Props {
   question: number;
