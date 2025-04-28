@@ -34,7 +34,7 @@ const HomePage = () => {
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
       {/* <AutoHideNavScroll /> */}
       <NavigationBar />
-      <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40">
+      <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
         <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
           <Link
             to={`/read/0`}
