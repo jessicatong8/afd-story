@@ -13,7 +13,7 @@
 }
 
 @theme {
-  --breakpoint-xs: 24rem;
+  --breakpoint-xs: 24.5rem;
   --color-yellow-glow: #FFEC5B;
   --color-green-correct: #1BC237;
   --color-red-wrong: #F63E3E;

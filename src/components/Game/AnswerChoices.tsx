@@ -43,19 +43,20 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
   };
 
   const correctResponse = correctAnswers[question];
-  console.log("correctResponse: " + correctResponse);
+  // console.log("correctResponse: " + correctResponse);
   //   console.log(state);
   const [clickedAnswer, setClickedAnswer] = useState<string | null>(null);
 
   const handleClick = (answerChoice: string) => {
     // console.log("correctResponse: " + correctResponse);
-    console.log("answerChoice: " + answerChoice);
+    // console.log("answerChoice: " + answerChoice);
     setClickedAnswer(answerChoice);
     answerChoice === correctResponse ? setState("correct") : setState("wrong");
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-center gap-4 w-full h-full">
+    <div className="flex flex-wrap justify-center items-center gap-4 w-full h-full max-w-6xl">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full justify-items-center  max-w-6xl"> */}
       {Object.entries(buttonContent).map(([key, label]) => {
         let bgColor = "bg-white";
 
