@@ -91,6 +91,7 @@ const ScratchReveal = () => {
       ref={containerRef}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={(e) => e.stopPropagation()}
       // onMouseDown={() => setIsDragging(true)}
       // onMouseUp={() => setIsDragging(false)}
       onTouchStart={() => setIsDragging(true)}
