@@ -51,7 +51,7 @@ const StoryEndPage = () => {
             onClick={handleGameStart}
             className="active:scale-95 px-2 py-16 cursor-pointer hover:scale-95 transition-transform"
           >
-            <img src={lunchBoxClosed} className="pointer-events-none" />
+            <img src={lunchBoxClosed} className="pointer-events-none w-90" />
           </button>
 
           <div className="grid grid-cols-2 gap-6 ">
