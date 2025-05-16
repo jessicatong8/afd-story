@@ -14,6 +14,7 @@ import DumplingWrapper from "./DumplingWrapper";
 import DumplingFilling from "./DumplingFilling";
 import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
+import pointerImage from "../../../assets/UI/DumplingFilling/pointer.png";
 
 const DumplingFillingUI = () => {
   const { toggleNext, toggleBack } = useReadContext();
@@ -30,6 +31,9 @@ const DumplingFillingUI = () => {
   );
   // State to track if a filling is being dragged
   const [isDragging, setIsDragging] = useState(false);
+
+  // State to track if at leaset one filling has been dropped successfully
+  const [isOneDropped, setIsOneDropped] = useState(false);
 
   //State to track if interaction is complete (all fillings dropped)
   const [isComplete, setIsComplete] = useState(false);
@@ -67,6 +71,13 @@ const DumplingFillingUI = () => {
     }
   }, [dropped]);
 
+  // turn to next page when all dumplings have been dropped
+  useEffect(() => {
+    if (dropped.some((value) => value === true)) {
+      setIsOneDropped(true);
+    }
+  }, [dropped]);
+
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   return (
@@ -76,6 +87,12 @@ const DumplingFillingUI = () => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
+      <img
+        src={pointerImage}
+        className={`${(isDragging || isOneDropped) && "opacity-0"}
+          absolute w-1/12 h-auto scale-105 -translate-x-[50%] -translate-y-[50%] top-[21%] left-[33%] z-30 animate-bounce transition-opacity`}
+      ></img>
+
       {dumplingFillings.map((filling) => (
         <DumplingFilling
           key={filling.id}
