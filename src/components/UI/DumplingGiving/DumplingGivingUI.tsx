@@ -14,6 +14,7 @@ import { useReadContext } from "../../ReadContext";
 import DumplingHeart from "./DumplingHeart";
 import DumplingDrop from "./DumplingDrop";
 import LoveLanguagesUI from "../LoveLanguages/LoveLanguagesUI";
+import pointerImage from "../../../assets/UI/DumplingGiving/pointer.png";
 
 const DumplingGivingUI = () => {
   const { toggleBack } = useReadContext();
@@ -47,6 +48,11 @@ const DumplingGivingUI = () => {
     >
       <DumplingHeart dropped={isDropped} />
       <DumplingDrop dragging={isDragging} />
+      <img
+        src={pointerImage}
+        className={`${(isDragging || isDropped) && "opacity-0"}
+          absolute w-1/12 h-auto scale-105 -translate-x-[50%] -translate-y-[50%] top-[89%] left-[62%] rotate-270 z-30 animate-bounce transition-opacity pointer-events-none`}
+      ></img>
       <span
         className={`transition-opacity delay-100 duration-300 ${isDropped ? "opacity-100" : "opacity-0"}`}
       >
