@@ -53,8 +53,12 @@ const GamePage = () => {
   // Persist current question index and score to localStorage
   useEffect(() => {
     localStorage.setItem("currentQuestion", currentQuestion.toString());
+    // move to next question upon refresh if the current question has been answered to avoid scoring bugs
+    if (responseState != "unanswered") {
+      localStorage.setItem("currentQuestion", (currentQuestion + 1).toString());
+    }
     localStorage.setItem("gameScore", score.toString());
-  }, [currentQuestion, score]);
+  }, [currentQuestion, score, responseState]);
 
   // reset game when game ends
   const handleGameEnd = () => {
