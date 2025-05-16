@@ -90,7 +90,7 @@ const DumplingFillingUI = () => {
       <img
         src={pointerImage}
         className={`${(isDragging || isOneDropped) && "opacity-0"}
-          absolute w-1/12 h-auto scale-105 -translate-x-[50%] -translate-y-[50%] top-[21%] left-[33%] z-30 animate-bounce transition-opacity`}
+          absolute w-1/12 h-auto scale-105 -translate-x-[50%] -translate-y-[50%] top-[21%] left-[33%] z-30 animate-bounce transition-opacity pointer-events-none`}
       ></img>
 
       {dumplingFillings.map((filling) => (

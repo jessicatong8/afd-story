@@ -110,7 +110,7 @@ const ScratchReveal = () => {
       <img
         src={pointer}
         className={`absolute w-1/6 h-auto scale-120 -translate-x-[50%] -translate-y-[50%] top-[61%] left-[101%] z-30 text-blue-400 fill-orange-100
-     transition-opacity duration-1000
+     transition-opacity duration-1000 pointer-events-none
       ${showAnimation ? "animate-bounce" : ""}
       ${isRevealed ? "opacity-0" : "opacity-100"}`}
       />

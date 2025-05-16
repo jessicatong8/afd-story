@@ -34,7 +34,7 @@ const DoorUI = () => {
     >
       <img
         src={pointer}
-        className={`absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] -rotate-55 
+        className={`absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[49%] left-[35%] -rotate-55 pointer-events-none
                ${showAnimation ? "animate-bounce" : ""}`}
       />
       {/* <TbHandClick
