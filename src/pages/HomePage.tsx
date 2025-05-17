@@ -9,6 +9,7 @@ import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ContactForm from "../components/Home/ContactForm";
 import Footer from "../components/Home/Footer";
 
+// pointers and fixed game scoring, in-person testing 1 (Vera)
 const HomePage = () => {
   const location = useLocation();
 
