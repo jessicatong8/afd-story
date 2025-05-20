@@ -22,7 +22,7 @@ const ReadersGuide = () => {
           way we express love. Americans tend to prefer more verbal and direct
           expressions, like saying “I love you” out loud. Whereas, Chinese and
           many other Asian groups tend to prefer other expressions of love, like
-          making delicious food and doing acts of service and kindness.
+          making delicious food and spending quality time together.
         </p>{" "}
         <div className="mt-4">
           Immigrant parents who grow up in Asia and their children who grow up
