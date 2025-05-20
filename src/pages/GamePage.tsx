@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Scenario from "../components/Game/Scenario";
 import QuestionAnswer from "../components/Game/QuestionAnswer";
 import AnswerChoices from "../components/Game/AnswerChoices";
-import NextButton from "../components/Game/NextButton";
 import GameEnd from "../components/Game/GameEnd";
 import NavigationBar from "../components/NavigationBar";
+import AnswerFeedback from "../components/Game/AnswerFeedback";
 
 const GamePage = () => {
   // get questionOrder from local storage if user has already started a game
@@ -98,15 +98,21 @@ const GamePage = () => {
       {gameEnd ? (
         <GameEnd score={score} />
       ) : (
-        <div className="flex flex-col justify-center items-center gap-6 p-6 text-sm xs:text-base">
+        <div className="flex flex-col justify-center items-center gap-6 p-6 pb-12 text-sm xs:text-base">
           <Scenario question={questionNumber} />
-          <QuestionAnswer question={questionNumber} state={responseState} />
+          <QuestionAnswer question={questionNumber} />
           <AnswerChoices
             question={questionNumber}
             state={responseState}
             setState={setResponseState}
           />
-          <NextButton handleNext={handleNext} state={responseState} />
+          {responseState != "unanswered" && (
+            <AnswerFeedback
+              question={questionNumber}
+              handleNext={handleNext}
+              state={responseState}
+            />
+          )}
         </div>
       )}
     </div>

@@ -36,7 +36,7 @@ const GameEnd = ({ score }: Props) => {
           Play Again
         </Link>
         <Link to={`/#readers-guide`} className="!shadow-sm button ">
-          Learn More
+          Continue
         </Link>
       </div>
     </motion.div>

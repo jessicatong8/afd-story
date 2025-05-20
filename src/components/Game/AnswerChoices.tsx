@@ -30,16 +30,16 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
     time: "time",
   };
 
-  const correctAnswers: Record<number, string> = {
-    1: "food",
-    2: "words",
-    3: "touch",
-    4: "gifts",
-    5: "time",
-    6: "service",
-    7: "words",
-    8: "service",
-    9: "food",
+  const correctAnswers: Record<number, string[]> = {
+    1: ["food"],
+    2: ["words"],
+    3: ["touch"],
+    4: ["gifts"],
+    5: ["time"],
+    6: ["service"],
+    7: ["words"],
+    8: ["service", "food"],
+    9: ["food", "service", "time"],
   };
 
   const correctResponse = correctAnswers[question];
@@ -51,7 +51,9 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
     // console.log("correctResponse: " + correctResponse);
     // console.log("answerChoice: " + answerChoice);
     setClickedAnswer(answerChoice);
-    answerChoice === correctResponse ? setState("correct") : setState("wrong");
+    correctResponse.includes(answerChoice)
+      ? setState("correct")
+      : setState("wrong");
   };
 
   return (
@@ -60,14 +62,14 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
       {Object.entries(buttonContent).map(([key, label]) => {
         let bgColor = "bg-white";
 
-        if (state === "correct" && key === correctResponse) {
+        if (state === "correct" && correctResponse.includes(key)) {
           bgColor = "bg-green-correct";
         }
 
         if (state === "wrong") {
           if (key === clickedAnswer) {
             bgColor = "bg-red-wrong";
-          } else if (key === correctResponse) {
+          } else if (correctResponse.includes(key)) {
             bgColor = "bg-green-correct";
           }
         }
