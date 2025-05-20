@@ -22,6 +22,14 @@
   --color-blue-secondary: #2FB1F2;
   --color-blue-tertiary: #E2F3FF;
   --color-blue-dark: #009CE9;
+  --color-LL-food: #FF64B4;
+  --color-LL-words: #FB8A00;
+  --color-LL-touch: #FAC400;
+  --color-LL-gifts: #8CBF2E;
+  --color-LL-service: #2FB1F2;
+  --color-LL-time: #9B75EE;
+
+
   --font-open: 'Open Sans', 'sans-serif';
   --font-grand: 'Grandstander', 'cursive';
 }
