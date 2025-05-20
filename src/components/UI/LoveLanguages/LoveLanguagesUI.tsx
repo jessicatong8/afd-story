@@ -25,17 +25,17 @@ const LoveLanguagesUI = () => {
   const [clicked, setClicked] = useState(false);
   const [hover, setHover] = useState(false);
 
-  useEffect(() => {
-    toggleNext(false);
-  }, []);
+  // useEffect(() => {
+  //   toggleNext(false);
+  // }, []);
 
-  useEffect(() => {
-    toggleNext(clicked);
-  }, [clicked]);
+  // useEffect(() => {
+  //   toggleNext(clicked);
+  // }, [clicked]);
 
   const handleClick = () => {
     setClicked(true);
-    toggleNext(true);
+    // toggleNext(true);
   };
 
   return (
