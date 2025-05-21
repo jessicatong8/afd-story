@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Scenario from "../components/Game/Scenario";
-import QuestionAnswer from "../components/Game/QuestionAnswer";
+import Question from "../components/Game/Question";
 import AnswerChoices from "../components/Game/AnswerChoices";
 import GameEnd from "../components/Game/GameEnd";
 import NavigationBar from "../components/NavigationBar";
@@ -100,7 +100,7 @@ const GamePage = () => {
       ) : (
         <div className="flex flex-col justify-center items-center gap-6 p-6 pb-12 text-sm xs:text-base">
           <Scenario question={questionNumber} />
-          <QuestionAnswer question={questionNumber} />
+          <Question question={questionNumber} />
           <AnswerChoices
             question={questionNumber}
             state={responseState}
