@@ -9,6 +9,8 @@ import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ContactForm from "../components/Home/ContactForm";
 import Footer from "../components/Home/Footer";
 
+// stable test version with enabled next navigation, and game with multiple correct answers and pop up feebdack 5/20/25
+
 const HomePage = () => {
   const location = useLocation();
 
