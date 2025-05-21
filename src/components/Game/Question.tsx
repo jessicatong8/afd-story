@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
-
 interface Props {
   question: number;
 }
 
-const QuestionAnswer = ({ question }: Props) => {
+const Question = ({ question }: Props) => {
   // console.log(question);
 
   const questionText: Record<number, string> = {
@@ -20,10 +18,10 @@ const QuestionAnswer = ({ question }: Props) => {
   };
 
   return (
-    <div className="bg-blue-tertiary px-6 py-6 rounded flex justify-center items-center">
-      <p className="text-center">{questionText[question]}</p>
+    <div className="bg-blue-tertiary px-6 py-6 rounded flex justify-center items-center text-center">
+      {questionText[question]}
     </div>
   );
 };
 
-export default QuestionAnswer;
+export default Question;
