@@ -11,7 +11,7 @@ const Scenario = ({ question }: Props) => {
   console.log(question - 1);
   return (
     <div className="w-sm max-w-full">
-      <img src={imageArray[question - 1]} />
+      <img src={imageArray[question - 1]} className="pointer-events-none" />
     </div>
   );
 };

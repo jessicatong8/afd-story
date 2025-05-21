@@ -86,7 +86,7 @@ const AnswerChoices = ({ question, state, setState }: Props) => {
             <img
               src={icons[`${key}.png`]}
               alt={label}
-              className="w-8 xs:w-10 sm:w-12"
+              className="w-8 xs:w-10 sm:w-12 pointer-events-none"
             />
             {`The love language of ${label}`}
           </button>
