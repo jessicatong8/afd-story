@@ -19,7 +19,7 @@ const NavigationBar = () => {
             <img src={logoImage} className="w-10 aspect-square md:w-11"></img>
             <div>
               <p className="font-grand text-base md:text-lg font-semibold mt-0.5 text-pink-title">
-                Food is My Love Language
+                Food Is My Love Language
                 <br />
               </p>
               <p className="font-medium italic text-sm -mt-1">
