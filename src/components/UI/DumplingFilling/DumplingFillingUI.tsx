@@ -15,6 +15,7 @@ import DumplingFilling from "./DumplingFilling";
 import { useReadContext } from "../../ReadContext";
 import { useNavigate } from "react-router-dom";
 import pointerImage from "../../../assets/UI/DumplingFilling/pointer.png";
+import { motion } from "framer-motion";
 
 const DumplingFillingUI = () => {
   const { toggleNext, toggleBack } = useReadContext();
@@ -41,6 +42,7 @@ const DumplingFillingUI = () => {
   const handleDragStart = (event: DragStartEvent) => {
     setIsDragging(true);
     toggleBack(false); // disable going back when dragging so swipe actions don't trigger navigation
+    toggleNext(false);
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -48,6 +50,7 @@ const DumplingFillingUI = () => {
     setIsDragging(false);
     setTimeout(() => {
       toggleBack(true); // delay enabling back so swipe actions don't trigger navigation upon dropping
+      toggleNext(true);
     }, 200);
     if (active && over) {
       const fillingID = Number(active.id); //cast id to a number
@@ -87,11 +90,16 @@ const DumplingFillingUI = () => {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <img
-        src={pointerImage}
+      <motion.div
+        animate={{
+          y: [0, -10, 0],
+          transition: { repeat: Infinity },
+        }}
         className={`${(isDragging || isOneDropped) && "opacity-0"}
-          absolute w-1/12 h-auto scale-105 -translate-x-[50%] -translate-y-[50%] top-[21%] left-[33%] z-30 animate-bounce transition-opacity pointer-events-none`}
-      ></img>
+        absolute w-1/12 h-auto scale-105 -translate-x-[50%] -translate-y-[50%] top-[21%] left-[33%] z-30 animate-bounce transition-opacity pointer-events-none`}
+      >
+        <img src={pointerImage}></img>
+      </motion.div>
 
       {dumplingFillings.map((filling) => (
         <DumplingFilling
