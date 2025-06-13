@@ -5,6 +5,7 @@ import image from "/src/assets/UI/ThoughtCloud/thought-cloud.png";
 import { useReadContext } from "../../ReadContext";
 import ThoughtBubbleGlow from "./ThoughtBubbleGlow";
 import pointer from "/src/assets/UI/ThoughtCloud/swipe-pointer.png";
+import { motion } from "framer-motion";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
@@ -49,6 +50,7 @@ const ScratchReveal = () => {
     }
 
     toggleBack(!isDragging); // true when not dragging, false when dragging
+    toggleNext(!isDragging);
   }, [isHovered, isDragging]); // Add dependencies
 
   // enable navigation when revealed
@@ -107,13 +109,18 @@ const ScratchReveal = () => {
       className={`w-1/2 h-1/3 absolute 
         top-[3.5%] left-[24%] scale-95 ${!isRevealed && "cursor-pointer"}`}
     >
-      <img
-        src={pointer}
+      <motion.div
+        animate={{
+          y: [0, -10, 0],
+          transition: { repeat: Infinity },
+        }}
         className={`absolute w-1/6 h-auto scale-120 -translate-x-[50%] -translate-y-[50%] top-[61%] left-[101%] z-30 text-blue-400 fill-orange-100
      transition-opacity duration-1000 pointer-events-none
       ${showAnimation ? "animate-bounce" : ""}
       ${isRevealed ? "opacity-0" : "opacity-100"}`}
-      />
+      >
+        <img src={pointer} />
+      </motion.div>
 
       <span
         className={`transition-opacity duration-1000 ${isRevealed ? "opacity-0" : "opacity-100"}`}
