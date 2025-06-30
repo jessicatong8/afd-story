@@ -40,13 +40,13 @@ const ScratchReveal = () => {
 
   const [isHovered, setIsHovered] = useState(false); // State to track whether the mouse is hovering over the card
   const [isDragging, setIsDragging] = useState(false); // State to track when touch input is dragging to reveal the card
-  const [strokeWidth, setStrokeWidth] = useState("10"); // State to track strokeWidth of the glow
+  const [strokeWidth, setStrokeWidth] = useState("15"); // State to track strokeWidth of the glow
 
   useEffect(() => {
     if (isHovered || isDragging) {
-      setStrokeWidth("18");
+      setStrokeWidth("25");
     } else {
-      setStrokeWidth("10");
+      setStrokeWidth("15");
     }
 
     toggleBack(!isDragging); // true when not dragging, false when dragging
