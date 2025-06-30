@@ -86,7 +86,8 @@ const DumplingFilling = ({ id, activeID, dropped, completed }: Props) => {
           src={image[id]}
           className="absolute w-full h-auto z-20 pointer-events-none"
         />
-        <svg
+        {/* old glow */}
+        {/* <svg
           className={`absolute w-full h-auto z-10 animate-pulse-fast hover:animate-none
           ${isDragging || isDropping || hasBeenDropped ? "invisible" : ""}
         `}
@@ -103,8 +104,8 @@ const DumplingFilling = ({ id, activeID, dropped, completed }: Props) => {
               cy="76"
               r="67"
               stroke="#FFEC5B"
-              stroke-opacity="0.7"
-              stroke-width="8"
+              stroke-opacity="0.9"
+              stroke-width="10"
             />
           </g>
           <defs>
@@ -126,6 +127,71 @@ const DumplingFilling = ({ id, activeID, dropped, completed }: Props) => {
               />
               <feGaussianBlur
                 stdDeviation="2"
+                result="effect1_foregroundBlur_2237_940"
+              />
+            </filter>
+          </defs>
+        </svg> */}
+
+        {/* white circle bg */}
+        <svg
+          className={`absolute w-full scale-95 h-auto z-10 
+          ${isDragging || isDropping || hasBeenDropped ? "invisible" : ""}`}
+          width="196"
+          height="196"
+          viewBox="0 0 196 196"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="98"
+            cy="98"
+            r="95.25"
+            fill="white"
+            stroke="white"
+            stroke-width="4.5"
+          />
+        </svg>
+
+        {/* yellow glow */}
+        <svg
+          className={`absolute w-full scale-108 h-auto z-20 animate-pulse-fast hover:animate-none
+          ${isDragging || isDropping || hasBeenDropped ? "invisible" : ""}`}
+          width="232"
+          height="232"
+          viewBox="0 0 232 232"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g filter="url(#filter0_f_2237_940)">
+            <circle
+              cx="116"
+              cy="116"
+              r="100.5"
+              stroke="#FFEC5B"
+              stroke-opacity="0.9"
+              stroke-width="18"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_f_2237_940"
+              x="0"
+              y="0"
+              width="232"
+              height="232"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feGaussianBlur
+                stdDeviation="4"
                 result="effect1_foregroundBlur_2237_940"
               />
             </filter>
