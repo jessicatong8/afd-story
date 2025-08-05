@@ -8,8 +8,9 @@ interface Props {
 const Touch28 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
+      {/* yellow glow */}
       <svg
-        className={`absolute w-1/2 h-1/2 scale-104 top-[67.3%] left-[32%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        className={`absolute w-1/2 h-1/2 scale-102 top-[67.5%] left-[32%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
         ${clicked ? "opacity-0" : "opacity-100 animate-pulse-fast"}
         `}
         width="510"
@@ -23,7 +24,7 @@ const Touch28 = ({ clicked, hover, opacity }: Props) => {
             d="M499.38 249.2C500.897 231.875 499.627 212.869 495.607 192.222C471.078 66.2346 382.028 19.7329 253.517 10C119.815 10 23.6922 79.2118 11.4276 199.251C-0.8369 319.29 64.7515 372.28 253.517 377.688C397.953 381.825 477.453 344.808 495.839 270.754"
             stroke="#FFEC5B"
             stroke-opacity={opacity}
-            stroke-width={clicked || hover ? "20" : "10"}
+            stroke-width={clicked || hover ? "25" : "15"}
           />
         </g>
         <defs>
@@ -50,6 +51,50 @@ const Touch28 = ({ clicked, hover, opacity }: Props) => {
           </filter>
         </defs>
       </svg>
+
+      {/* inner glow */}
+      <svg
+        className={`absolute w-1/2 h-1/2 scale-100 top-[67.3%] left-[32%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000 
+        ${clicked ? "opacity-0" : "opacity-100"}
+        `}
+        width="739"
+        height="557"
+        viewBox="0 0 739 557"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g filter="url(#filter0_f_2338_1013)">
+          <path
+            d="M726.157 356.59C728.259 331.977 726.427 305.072 720.694 275.948C685.048 94.849 553.626 25.9905 366.873 12C172.574 12 31.8808 113.503 14.0578 286.052C-3.76522 458.601 92.5555 536.787 366.873 544.559C576.627 550.503 693.32 496.191 720.694 389.332"
+            stroke="white"
+            stroke-width="8"
+          />
+        </g>
+        <defs>
+          <filter
+            id="filter0_f_2338_1013"
+            x="0.00244141"
+            y="0"
+            width="738.998"
+            height="557"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="4"
+              result="effect1_foregroundBlur_2338_1013"
+            />
+          </filter>
+        </defs>
+      </svg>
+
       <img
         src={text}
         className={`absolute w-1/2 scale-110 h-auto top-[65.8%] left-[35.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-300 pointer-events-none

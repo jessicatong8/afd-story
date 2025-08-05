@@ -8,8 +8,9 @@ interface Props {
 const Time31 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
+      {/* yellow glow */}
       <svg
-        className={`absolute w-1/2 h-1/2 scale-113 top-[64.7%] left-[31.7%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
+        className={`absolute w-1/2 h-1/2 scale-110 top-[64.7%] left-[31.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
         ${clicked ? "opacity-0" : "opacity-100 animate-pulse-fast"}
         `}
         width="557"
@@ -23,7 +24,7 @@ const Time31 = ({ clicked, hover, opacity }: Props) => {
             d="M329.649 22.5239C305.767 17.6414 280.366 15 253.705 15C98.7089 27.5455 26.3412 110.455 15 221.182C15 330.835 75.4864 393 274.227 393C441.112 393 529.171 328.771 541.282 249.402M354.779 28.6325C455.482 57.1302 524.649 126.691 539.936 202.636C540.846 207.158 541.534 211.663 542 216.142"
             stroke="#FFEC5B"
             stroke-opacity={opacity}
-            stroke-width={clicked || hover ? "20" : "10"}
+            stroke-width={clicked || hover ? "25" : "15"}
           />
         </g>
         <defs>
@@ -46,6 +47,50 @@ const Time31 = ({ clicked, hover, opacity }: Props) => {
             <feGaussianBlur
               stdDeviation="5"
               result="effect1_foregroundBlur_2235_927"
+            />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* inner glow */}
+
+      <svg
+        className={`absolute w-1/2 h-1/2  scale-106 top-[64.7%] left-[31.7%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000 
+          ${clicked ? "opacity-0" : "opacity-100"}
+          `}
+        width="791"
+        height="572"
+        viewBox="0 0 791 572"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g filter="url(#filter0_f_2338_1021)">
+          <path
+            d="M469 22.7396C434.714 15.7708 398.242 12 359.956 12C137.917 29.8225 28.2468 152.606 12 309.909C12 465.687 104.65 560 389.355 560C628.713 560 758.877 464.293 775.985 350M513.5 34.0185C654.641 75.4905 754.387 175.112 775.994 281.563C777.244 287.723 778.202 293.872 778.867 300"
+            stroke="white"
+            stroke-width="8"
+          />
+        </g>
+        <defs>
+          <filter
+            id="filter0_f_2338_1021"
+            x="0"
+            y="0"
+            width="790.844"
+            height="572"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="4"
+              result="effect1_foregroundBlur_2338_1021"
             />
           </filter>
         </defs>
