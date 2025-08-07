@@ -37,15 +37,7 @@ const Page = () => {
     direction,
   } = useReadContext();
 
-  type ImageVariants = {
-    small: string;
-    // medium: string;
-    large: string;
-  };
-
-  const [imageCache, setImageCache] = useState<Record<number, ImageVariants>>(
-    {}
-  ); // Stores loaded images
+  const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Check if pageNumber is invalid before rendering
   if (isNaN(currentPage) || currentPage < 0 || currentPage > numPages) {
@@ -90,27 +82,25 @@ const Page = () => {
 
   // Dynamically load page images
   const loadImage = async (page: number) => {
-    const sizes = ["small", "large"];
-    const result: Partial<ImageVariants> = {};
+    const path = `/src/assets/pages/pg_${page}.webp`;
+    if (images[path]) {
+      const imageModule = (await images[path]()) as { default: string };
 
-    for (const size of sizes) {
-      const path = `/src/assets/pages/pg_${page}-${size}.webp`;
-      if (images[path]) {
-        const imageModule = (await images[path]()) as { default: string };
-        result[size as keyof ImageVariants] = imageModule.default;
+      const src = imageModule.default;
 
-        // Preload in memory
-        const img = new Image();
-        img.src = imageModule.default;
-      }
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        // console.log(`Preloaded pg_${page}`);
+      };
+      img.onerror = () => {
+        // console.warn(`Failed to preload pg_${page}`);
+      };
+
+      return src;
     }
-
-    if ("large" in result) {
-      return result as ImageVariants; // large is required fallback
-    }
-
     console.log(`No image found for page: ${page}`); // Debugging: image not found
-    return null;
+    return "";
   };
 
   useEffect(() => {
@@ -120,7 +110,7 @@ const Page = () => {
     const loadCurrent = async () => {
       if (!imageCache[currentPage]) {
         const src = await loadImage(currentPage);
-        if (!isCancelled && src) {
+        if (!isCancelled) {
           setImageCache((prev) => ({ ...prev, [currentPage]: src }));
         }
       }
@@ -131,7 +121,7 @@ const Page = () => {
       const promises = pages.map(async (page) => {
         if (!imageCache[page]) {
           const src = await loadImage(page);
-          if (!isCancelled && src) {
+          if (!isCancelled) {
             setImageCache((prev) => ({ ...prev, [page]: src }));
             if (loadUIComponents[page]) {
               loadUIComponents[page]();
@@ -237,12 +227,7 @@ const Page = () => {
             key={currentPage}
           >
             <img
-              // src={imageCache[currentPage]?.large} // fallback
-              srcSet={`
-                  ${imageCache[currentPage]?.small} 640w,
-                  ${imageCache[currentPage]?.large} 1024w
-                `}
-              sizes="100vw"
+              src={imageCache[currentPage]}
               className="object-contain pointer-events-none"
             />
             {currentPage === 3 && <DoorUI />}
