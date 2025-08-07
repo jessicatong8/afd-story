@@ -71,17 +71,6 @@ const Page = () => {
 
   // Preload page content
 
-  // Dynamically load page images
-  const loadImage = async (page: number) => {
-    const path = `/src/assets/pages/pg_${page}.png`;
-    if (images[path]) {
-      const imageModule = (await images[path]()) as { default: string };
-      return imageModule.default;
-    }
-    console.log(`No image found for page: ${page}`); // Debugging: image not found
-    return "";
-  };
-
   // imports for UI components on each page
   const loadUIComponents: Record<number, () => Promise<any>> = {
     3: DoorUIImport,
@@ -91,30 +80,88 @@ const Page = () => {
     32: StoryEndPageImport,
   };
 
-  // Preload 3 pages back and forth around current page
-  useEffect(() => {
-    const preload = async () => {
-      // array of the 5 pages around current page
-      const pagesToLoad = Array.from(
-        { length: 5 },
-        (_, i) => currentPage - 2 + i
-      );
-      const newCache: Record<number, string> = { ...imageCache };
+  // Dynamically load page images
+  const loadImage = async (page: number) => {
+    const path = `/src/assets/pages/pg_${page}.png`;
+    if (images[path]) {
+      const imageModule = (await images[path]()) as { default: string };
 
-      for (const page of pagesToLoad) {
-        // load page images
-        if (page >= 0 && page <= numPages && !newCache[page]) {
-          newCache[page] = await loadImage(page);
-        }
-        // load UI components
-        if (loadUIComponents[page]) {
-          loadUIComponents[page]();
+      const src = imageModule.default;
+
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        // console.log(`Preloaded pg_${page}`);
+      };
+      img.onerror = () => {
+        // console.warn(`Failed to preload pg_${page}`);
+      };
+
+      return src;
+    }
+    console.log(`No image found for page: ${page}`); // Debugging: image not found
+    return "";
+  };
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    // Load current page image first
+    const loadCurrent = async () => {
+      if (!imageCache[currentPage]) {
+        const src = await loadImage(currentPage);
+        if (!isCancelled) {
+          setImageCache((prev) => ({ ...prev, [currentPage]: src }));
         }
       }
-      setImageCache(newCache);
     };
 
-    preload();
+    const preloadPages = async (pages: number[]) => {
+      // Map pages to promises
+      const promises = pages.map(async (page) => {
+        if (!imageCache[page]) {
+          const src = await loadImage(page);
+          if (!isCancelled) {
+            setImageCache((prev) => ({ ...prev, [page]: src }));
+            if (loadUIComponents[page]) {
+              loadUIComponents[page]();
+            }
+          }
+        }
+      });
+
+      // Wait for all to complete
+      await Promise.all(promises);
+    };
+
+    const preloadSurrounding = async () => {
+      // Forward pages to preload
+      const forwardPages = [
+        currentPage + 1,
+        currentPage + 2,
+        currentPage + 3,
+        currentPage + 4,
+      ].filter((page) => page <= numPages && !imageCache[page]);
+
+      // Backward pages to preload
+      const backwardPages = [];
+      for (let i = 1; i <= 2; i++) {
+        const page = currentPage - i;
+        if (page >= 0 && !imageCache[page]) {
+          backwardPages.push(page);
+        }
+      }
+
+      // Load forward pages concurrently, then backward pages concurrently
+      await preloadPages(forwardPages);
+      await preloadPages(backwardPages);
+    };
+
+    loadCurrent().then(preloadSurrounding);
+
+    return () => {
+      isCancelled = true; // cleanup on unmount
+    };
   }, [currentPage]);
 
   const isStaticPage = [4, 6, 16].includes(currentPage);
