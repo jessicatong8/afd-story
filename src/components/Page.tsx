@@ -23,7 +23,7 @@ const StoryEndPageImport = () => import("../pages/StoryEndPage");
 const StoryEndPage = lazy(StoryEndPageImport);
 
 // Import all images dynamically from the assets folder
-const images = import.meta.glob("/src/assets/pages/*.png");
+const images = import.meta.glob("/src/assets/pages/*.webp");
 // console.log(images);
 
 const Page = () => {
@@ -82,7 +82,7 @@ const Page = () => {
 
   // Dynamically load page images
   const loadImage = async (page: number) => {
-    const path = `/src/assets/pages/pg_${page}.png`;
+    const path = `/src/assets/pages/pg_${page}.webp`;
     if (images[path]) {
       const imageModule = (await images[path]()) as { default: string };
 
