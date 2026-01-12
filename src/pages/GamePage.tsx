@@ -6,6 +6,7 @@ import AnswerChoices from "../components/Game/AnswerChoices";
 import GameEnd from "../components/Game/GameEnd";
 import NavigationBar from "../components/NavigationBar";
 import AnswerFeedback from "../components/Game/AnswerFeedback";
+import { IS_STUDY } from "../config";
 
 const GamePage = () => {
   // get questionOrder from local storage if user has already started a game
@@ -94,7 +95,7 @@ const GamePage = () => {
 
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
-      <NavigationBar />
+      {!IS_STUDY && <NavigationBar />}
       {gameEnd ? (
         <GameEnd score={score} />
       ) : (
