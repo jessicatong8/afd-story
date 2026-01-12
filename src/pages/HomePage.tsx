@@ -8,6 +8,7 @@ import ReadersGuide from "../components/Home/ReadersGuide";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ContactForm from "../components/Home/ContactForm";
 import Footer from "../components/Home/Footer";
+import { IS_STUDY } from "../config";
 
 const HomePage = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const HomePage = () => {
       }
     }
   }, [location]);
+
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
       {/* <AutoHideNavScroll /> */}
@@ -73,55 +75,58 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div id="readers-guide">
-          <ReadersGuide />
-        </div>
+        {!IS_STUDY && (
+          <div>
+            <div id="readers-guide">
+              <ReadersGuide />
+            </div>
 
-        <div id="play-game">
-          <h1 className="heading">Play the Game</h1>
-          <p>
-            {" "}
-            Do you know all the different ways to express love? Let’s play a
-            game to find out!
-          </p>
+            <div id="play-game">
+              <h1 className="heading">Play the Game</h1>
+              <p>
+                {" "}
+                Do you know all the different ways to express love? Let’s play a
+                game to find out!
+              </p>
 
-          <Link
-            to={`/game/start`}
-            className="flex justify-center items-center active:scale-95 px-2 pt-6 cursor-pointer hover:scale-95 transition-transform "
-          >
-            <img
-              src={lunchBoxClosed}
-              className="pointer-events-none h-60 w-auto"
-            />
-          </Link>
-        </div>
+              <Link
+                to={`/game/start`}
+                className="flex justify-center items-center active:scale-95 px-2 pt-6 cursor-pointer hover:scale-95 transition-transform "
+              >
+                <img
+                  src={lunchBoxClosed}
+                  className="pointer-events-none h-60 w-auto"
+                />
+              </Link>
+            </div>
 
-        <div className="flex flex-row flex-wrap gap-6">
-          <div id="about" className="basis-1/2 grow">
-            <h1 className="heading">About</h1>
-            <p className="mb-6">
-              This story is developed by the Cultural Influences on Mental
-              Health Center (CIMH) at Claremont McKenna College. You are seeing
-              a beta version of this website, so please reach out to us with any
-              feedback or suggestions as we continue to improve this interactive
-              story!
-            </p>
+            <div className="flex flex-row flex-wrap gap-6">
+              <div id="about" className="basis-1/2 grow">
+                <h1 className="heading">About</h1>
+                <p className="mb-6">
+                  This story is developed by the Cultural Influences on Mental
+                  Health Center (CIMH) at Claremont McKenna College. You are
+                  seeing a beta version of this website, so please reach out to
+                  us with any feedback or suggestions as we continue to improve
+                  this interactive story!
+                </p>
 
-            <h1 className="heading">People</h1>
+                <h1 className="heading">People</h1>
 
-            <div className="grid grid-cols-2 auto-rows-fr gap-4 place-items-center">
-              <div className="shadow-md rounded-lg p-4 text-center h-full">
-                <div className="text-base font-semibold mb-1.5">
-                  Wei-Chin Hwang, Ph.D.
-                </div>
-                <div className="mb-1.5  text-blue-dark">
-                  Principal Investigator
-                </div>
-                <div className="text-xs">
-                  Dept. Chair and Professor of Psychological Science <br></br>
-                  Licensed Practicing Clinical Psychologist <br></br>
-                  {/* Email: whwang@cmc.edu <br></br> */}
-                  {/* <a href="https://www.cmc.edu/academic/faculty/profile/wei-chin-hwang">
+                <div className="grid grid-cols-2 auto-rows-fr gap-4 place-items-center">
+                  <div className="shadow-md rounded-lg p-4 text-center h-full">
+                    <div className="text-base font-semibold mb-1.5">
+                      Wei-Chin Hwang, Ph.D.
+                    </div>
+                    <div className="mb-1.5  text-blue-dark">
+                      Principal Investigator
+                    </div>
+                    <div className="text-xs">
+                      Dept. Chair and Professor of Psychological Science{" "}
+                      <br></br>
+                      Licensed Practicing Clinical Psychologist <br></br>
+                      {/* Email: whwang@cmc.edu <br></br> */}
+                      {/* <a href="https://www.cmc.edu/academic/faculty/profile/wei-chin-hwang">
                   Faculty Website |
                 </a>{" "}
                 <a href="http://www.losangelesclinicalpsychologist.com">
@@ -130,26 +135,29 @@ const HomePage = () => {
                 <a href="http://www.abct.org/Therapists/Wei_Chin_Hwang.cfm">
                   ABCT Featured therapist
                 </a> */}
+                    </div>
+                  </div>
+                  <div className="shadow-md rounded-lg p-4 text-center h-full flex flex-col justify-center items-center">
+                    {/* <div className="rounded-full bg-amber-100 h-30 w-30"></div> */}
+                    <div className="text-base font-semibold mb-1.5">
+                      Jessica Tong
+                    </div>
+                    <div className="mb-1.5 text-blue-dark">
+                      Product Lead & Software Developer
+                    </div>
+                    <div className="text-xs">
+                      Pomona College <br></br>
+                      Psychological Science and Computer Science student
+                      <br></br>
+                      {/* Email: jjtb2023@mymail.pomona.edu <br></br> */}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="shadow-md rounded-lg p-4 text-center h-full flex flex-col justify-center items-center">
-                {/* <div className="rounded-full bg-amber-100 h-30 w-30"></div> */}
-                <div className="text-base font-semibold mb-1.5">
-                  Jessica Tong
-                </div>
-                <div className="mb-1.5 text-blue-dark">
-                  Product Lead & Software Developer
-                </div>
-                <div className="text-xs">
-                  Pomona College <br></br>
-                  Psychological Science and Computer Science student<br></br>
-                  {/* Email: jjtb2023@mymail.pomona.edu <br></br> */}
-                </div>
-              </div>
+              <ContactForm />
             </div>
           </div>
-          <ContactForm />
-        </div>
+        )}
       </div>
       <Footer />
     </div>
