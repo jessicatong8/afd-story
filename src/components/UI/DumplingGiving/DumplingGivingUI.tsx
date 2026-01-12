@@ -35,9 +35,6 @@ const DumplingGivingUI = () => {
     }, 200);
     if (active && over) {
       setIsDropped(true);
-      if (IS_STUDY) {
-        toggleNext(true);
-      }
     }
   };
   const handleDragStart = (event: DragStartEvent) => {
