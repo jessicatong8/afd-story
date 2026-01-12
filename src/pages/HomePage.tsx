@@ -47,7 +47,7 @@ const HomePage = () => {
         {IS_STUDY ? (
           <Link
             to={IS_STUDY ? `/read/${1}` : `/read/0`}
-            className="hover:scale-97 active:scale-97 transition-all"
+            className="h-screen w-screen hover:scale-97 active:scale-97 transition-all "
           >
             <img
               src={coverImage}
