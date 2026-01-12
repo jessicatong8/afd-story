@@ -1,4 +1,6 @@
+import { motion } from "framer-motion";
 import text from "/src/assets/UI/LoveLanguages/20_words.png";
+import pointer from "/src/assets/UI/LoveLanguages/pointer.svg";
 
 interface Props {
   clicked: boolean;
@@ -8,6 +10,19 @@ interface Props {
 const Words20 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
+      {/* pointer */}
+      <motion.div
+        className={`absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[73%] left-[68%] -rotate-55 pointer-events-none
+          transition-opacity duration-500
+           ${clicked ? "opacity-0 " : "opacity-100"}
+          `}
+        animate={{
+          y: [0, -10, 0],
+          transition: { repeat: Infinity },
+        }}
+      >
+        <img src={pointer} />
+      </motion.div>
       {/* yellow glow */}
       <svg
         className={`absolute w-1/2 h-1/2 scale-111 top-[62.8%] left-[36.2%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000

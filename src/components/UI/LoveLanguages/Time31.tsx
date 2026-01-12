@@ -1,4 +1,6 @@
 import text from "/src/assets/UI/LoveLanguages/31_time.png";
+import pointer from "/src/assets/UI/LoveLanguages/pointer.svg";
+import { motion } from "framer-motion";
 
 interface Props {
   clicked: boolean;
@@ -8,6 +10,20 @@ interface Props {
 const Time31 = ({ clicked, hover, opacity }: Props) => {
   return (
     <span>
+      {/* pointer */}
+      <motion.div
+        className={`absolute w-1/12 h-auto scale-95 -translate-x-[50%] -translate-y-[50%] top-[85%] left-[55%] -rotate-40 pointer-events-none
+          transition-opacity duration-500
+           ${clicked ? "opacity-0 " : "opacity-100"}
+          `}
+        animate={{
+          y: [0, -10, 0],
+          transition: { repeat: Infinity },
+        }}
+      >
+        <img src={pointer} />
+      </motion.div>
+
       {/* yellow glow */}
       <svg
         className={`absolute w-1/2 h-1/2 scale-110 top-[64.7%] left-[31.8%] -translate-x-[50%] -translate-y-[50%] transition-opacity duration-1000
