@@ -31,12 +31,6 @@ const LoveLanguagesUI = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (IS_STUDY) {
-  //     toggleNext(clicked);
-  //   }
-  // }, [clicked]);
-
   const handleClick = () => {
     setClicked(true);
     if (IS_STUDY) {
