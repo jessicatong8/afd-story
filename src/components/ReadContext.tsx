@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { IS_STUDY } from "../config";
 
 // Context for the ReadPage component, contains all states and functions related to viewing and navigating the story
 interface ReadContextType {
@@ -49,7 +50,7 @@ export const ReadContextProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const handleBack = () => {
-    if (backIsActive && currentPage > 0) {
+    if (backIsActive && currentPage > 0 && !(IS_STUDY && currentPage === 1)) {
       setDirection(-1);
       navigate(`/read/${currentPage - 1}`);
       // console.log("handleBack called");

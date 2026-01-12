@@ -4,6 +4,7 @@ import { useSwipeable } from "react-swipeable";
 import { Navigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LeftClickDetector from "./LeftClickDetector";
+import { IS_STUDY } from "../config";
 
 // import UI elements lazily
 const DoorUIImport = () => import("./UI/DoorUI");
@@ -40,7 +41,12 @@ const Page = () => {
   const [imageCache, setImageCache] = useState<Record<number, string>>({}); // Stores loaded images
 
   // Check if pageNumber is invalid before rendering
-  if (isNaN(currentPage) || currentPage < 0 || currentPage > numPages) {
+  if (
+    isNaN(currentPage) ||
+    currentPage < 0 ||
+    currentPage > numPages ||
+    (IS_STUDY && currentPage === 0)
+  ) {
     return <Navigate to="/not-found" replace />; //replace to avoid the browser back button leading back to an invalid page
   }
 
@@ -83,6 +89,9 @@ const Page = () => {
   // Dynamically load page images
   const loadImage = async (page: number) => {
     const path = `/src/assets/pages/pg_${page}.webp`;
+    if (IS_STUDY && page === 0) {
+      return "";
+    }
     if (images[path]) {
       const imageModule = (await images[path]()) as { default: string };
 
@@ -147,7 +156,7 @@ const Page = () => {
       const backwardPages = [];
       for (let i = 1; i <= 2; i++) {
         const page = currentPage - i;
-        if (page >= 0 && !imageCache[page]) {
+        if (page >= 0 && !(IS_STUDY && page === 0) && !imageCache[page]) {
           backwardPages.push(page);
         }
       }
