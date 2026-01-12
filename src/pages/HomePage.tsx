@@ -46,7 +46,7 @@ const HomePage = () => {
       <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
         <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
           <Link
-            to={`/read/0`}
+            to={IS_STUDY ? `/read/${1}` : `/read/0`}
             className="hover:scale-97 active:scale-97 transition-all"
           >
             <img
@@ -57,7 +57,7 @@ const HomePage = () => {
           {!IS_STUDY && (
             <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
               <Link
-                to={`/read/0`}
+                to={IS_STUDY ? `/read/${1}` : `/read/0`}
                 className="flex justify-center items-center button text-xl"
               >
                 Start Reading
