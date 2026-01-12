@@ -5,6 +5,7 @@ import image from "/src/assets/UI/ThoughtCloud/thought-cloud.png";
 import { useReadContext } from "../../ReadContext";
 import pointer from "/src/assets/UI/ThoughtCloud/swipe-pointer.png";
 import { motion } from "framer-motion";
+import { IS_STUDY } from "../../../config";
 
 const ScratchReveal = () => {
   const containerRef = useRef(null); // Reference the parent <div>
@@ -49,7 +50,9 @@ const ScratchReveal = () => {
     }
 
     toggleBack(!isDragging); // true when not dragging, false when dragging
-    // toggleNext(!isDragging);
+    if (!IS_STUDY) {
+      toggleNext(!isDragging);
+    }
   }, [isHovered, isDragging]); // Add dependencies
 
   // enable navigation when revealed
