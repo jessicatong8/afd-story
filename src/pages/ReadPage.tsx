@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 
 import AutoHideNavController from "../components/AutoHideNavClick";
 import { AnimatePresence, motion } from "framer-motion";
+import { IS_STUDY } from "../config";
 
 function ReadPage() {
   useEffect(() => {
@@ -45,7 +46,7 @@ function ReadPage() {
         className="w-screen h-[100dvh] flex flex-col "
       >
         <ReadContextProvider>
-          <AutoHideNavController />
+          {!IS_STUDY && <AutoHideNavController />}
 
           <section
             ref={containerRef}
