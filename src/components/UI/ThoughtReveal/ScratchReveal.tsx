@@ -49,7 +49,7 @@ const ScratchReveal = () => {
     }
 
     toggleBack(!isDragging); // true when not dragging, false when dragging
-    toggleNext(!isDragging);
+    // toggleNext(!isDragging);
   }, [isHovered, isDragging]); // Add dependencies
 
   // enable navigation when revealed
