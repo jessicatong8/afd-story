@@ -3,6 +3,7 @@ import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import { useEffect, useState } from "react";
 import LunchBoxOpen from "../components/Game/GameStartAnimation";
 import { AnimatePresence, motion } from "framer-motion";
+import { IS_STUDY } from "../config";
 
 const StoryEndPage = () => {
   const navigate = useNavigate();
@@ -46,7 +47,6 @@ const StoryEndPage = () => {
               Let’s play a game to find out!
             </span>
           </p>
-
           <button
             onClick={handleGameStart}
             className="active:scale-95 px-2 py-16 cursor-pointer hover:scale-95 transition-transform"
@@ -54,20 +54,22 @@ const StoryEndPage = () => {
             <img src={lunchBoxClosed} className="pointer-events-none w-90" />
           </button>
 
-          <div className="grid grid-cols-2 gap-6 ">
-            <button
-              onClick={() => navigate("/read/1")}
-              className="button secondary"
-            >
-              Read Again
-            </button>
-            <button
-              onClick={() => navigate("/#readers-guide")}
-              className="button secondary"
-            >
-              Skip
-            </button>
-          </div>
+          {!IS_STUDY && (
+            <div className="grid grid-cols-2 gap-6 ">
+              <button
+                onClick={() => navigate("/read/1")}
+                className="button secondary"
+              >
+                Read Again
+              </button>
+              <button
+                onClick={() => navigate("/#readers-guide")}
+                className="button secondary"
+              >
+                Skip
+              </button>
+            </div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>
