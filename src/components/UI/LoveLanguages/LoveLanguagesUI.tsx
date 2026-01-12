@@ -7,6 +7,7 @@ import Touch28 from "./Touch28";
 import Gift29 from "./Gift29";
 import Service30 from "./Service30";
 import Time31 from "./Time31";
+import { IS_STUDY } from "../../../config";
 
 const LoveLanguagesUI = () => {
   const { currentPage, toggleNext } = useReadContext();
@@ -25,17 +26,23 @@ const LoveLanguagesUI = () => {
   const [clicked, setClicked] = useState(false);
   const [hover, setHover] = useState(false);
 
-  // useEffect(() => {
-  //   toggleNext(false);
-  // }, []);
+  useEffect(() => {
+    if (IS_STUDY) {
+      toggleNext(false);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   toggleNext(clicked);
-  // }, [clicked]);
+  useEffect(() => {
+    if (IS_STUDY) {
+      toggleNext(clicked);
+    }
+  }, [clicked]);
 
   const handleClick = () => {
     setClicked(true);
-    // toggleNext(true);
+    if (IS_STUDY) {
+      toggleNext(true);
+    }
   };
 
   return (
@@ -46,8 +53,8 @@ const LoveLanguagesUI = () => {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      // onTouchStart={() => setClicked(true)}
-      // onTouchEnd={() => setClicked(false)}
+      onTouchStart={() => setClicked(true)}
+      onTouchEnd={() => setClicked(false)}
       className={`${!clicked && "cursor-pointer"}`}
     >
       {[17, 20, 28, 29, 30, 31].includes(currentPage) && (
