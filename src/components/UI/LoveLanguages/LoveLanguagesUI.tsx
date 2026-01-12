@@ -11,7 +11,6 @@ import { IS_STUDY } from "../../../config";
 
 const LoveLanguagesUI = () => {
   const { currentPage, toggleNext } = useReadContext();
-  // console.log(currentPage);
 
   const componentMap: Record<number, React.ComponentType<any>> = {
     17: Food17,
