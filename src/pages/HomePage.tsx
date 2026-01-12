@@ -14,6 +14,7 @@ const HomePage = () => {
   const location = useLocation();
 
   useEffect(() => {
+    if (IS_STUDY) return;
     if (location.hash === "#readers-guide") {
       const element = document.getElementById("readers-guide");
       if (element) {
@@ -41,7 +42,7 @@ const HomePage = () => {
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
       {/* <AutoHideNavScroll /> */}
-      <NavigationBar />
+      {!IS_STUDY && <NavigationBar />}
       <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
         <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
           <Link
@@ -53,32 +54,35 @@ const HomePage = () => {
               className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
             />
           </Link>
-          <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
-            <Link
-              to={`/read/0`}
-              className="flex justify-center items-center button text-xl"
-            >
-              Start Reading
-            </Link>
-            <div className="bg-blue-tertiary p-4 rounded-lg">
-              <div>
-                Join Mia on a heartwarming journey to discover how love can be
-                expressed in many different ways across cultures.
-              </div>
-              <div className="mt-4">
-                When Mia notices that her mom doesn’t say “I love you” like her
-                friend’s mom does, she begins to wonder if her mom loves her at
-                all. Help Mia make dumplings, engage in meaningful
-                conversations, and uncover a special heart-shaped surprise, as
-                she discovers that love isn’t always spoken.
-              </div>
-              <div className="mt-4">
-                Perfect for children and parents to read together, this story
-                celebrates the many forms love can take—across generations,
-                languages, and traditions.
+          {!IS_STUDY && (
+            <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
+              <Link
+                to={`/read/0`}
+                className="flex justify-center items-center button text-xl"
+              >
+                Start Reading
+              </Link>
+
+              <div className="bg-blue-tertiary p-4 rounded-lg">
+                <div>
+                  Join Mia on a heartwarming journey to discover how love can be
+                  expressed in many different ways across cultures.
+                </div>
+                <div className="mt-4">
+                  When Mia notices that her mom doesn’t say “I love you” like
+                  her friend’s mom does, she begins to wonder if her mom loves
+                  her at all. Help Mia make dumplings, engage in meaningful
+                  conversations, and uncover a special heart-shaped surprise, as
+                  she discovers that love isn’t always spoken.
+                </div>
+                <div className="mt-4">
+                  Perfect for children and parents to read together, this story
+                  celebrates the many forms love can take—across generations,
+                  languages, and traditions.
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {!IS_STUDY && (
