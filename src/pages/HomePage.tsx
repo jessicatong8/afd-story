@@ -32,6 +32,12 @@ const HomePage = () => {
     }
   }, [location]);
 
+  if (IS_STUDY) {
+    console.log("Study mode is ON");
+  } else {
+    console.log("Study mode is OFF");
+  }
+
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
       {/* <AutoHideNavScroll /> */}
