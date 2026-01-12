@@ -42,19 +42,10 @@ const HomePage = () => {
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
       {/* <AutoHideNavScroll /> */}
-      {!IS_STUDY && <NavigationBar />}
-      <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
-        {IS_STUDY ? (
-          <Link
-            to={IS_STUDY ? `/read/${1}` : `/read/0`}
-            className="h-screen w-screen hover:scale-97 active:scale-97 transition-all "
-          >
-            <img
-              src={coverImage}
-              className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
-            />
-          </Link>
-        ) : (
+
+      {IS_STUDY ? (
+        // Study Mode Home Page
+        <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
           <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
             <Link
               to={IS_STUDY ? `/read/${1}` : `/read/0`}
@@ -65,7 +56,62 @@ const HomePage = () => {
                 className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
               />
             </Link>
-            {!IS_STUDY && (
+
+            <div className="flex flex-col justify-center items-center gap-6 ">
+              <div className="p-4 rounded-lg">
+                <div className="mt-4">
+                  In this part of the study, you and your child will read this
+                  interactive digital storybook and play a game we developed to
+                  help you better understand and navigate differences in each
+                  other’s love languages (est. 15 minutes).
+                </div>
+
+                <div className="mt-4">
+                  You may either read aloud to your child, have your child read
+                  aloud, or take turns reading aloud together. You will
+                  encounter some interactive scenes.{" "}
+                  <span className="underline">Click</span> or{" "}
+                  <span className="underline">drag</span> elements as directed
+                  to progress through the story.
+                </div>
+
+                <div className="mt-4">
+                  After completing the book and the game, you will complete a
+                  short survey so we can learn more about you and your child's
+                  experience.
+                </div>
+
+                <div className="mt-4 font-bold">
+                  If you did not recieve a link to access this website through
+                  an online survey you just completed, please do not proceed and
+                  contact the researchers for more information.
+                </div>
+              </div>
+              <Link
+                to={IS_STUDY ? `/read/${1}` : `/read/0`}
+                className="flex justify-center items-center button text-xl"
+              >
+                Start Reading
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : (
+        // Public Home Page
+        <div>
+          <NavigationBar />
+          <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
+            <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
+              <Link
+                to={IS_STUDY ? `/read/${1}` : `/read/0`}
+                className="hover:scale-97 active:scale-97 transition-all"
+              >
+                <img
+                  src={coverImage}
+                  className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
+                />
+              </Link>
+
               <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
                 <Link
                   to={IS_STUDY ? `/read/${1}` : `/read/0`}
@@ -93,12 +139,8 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-            )}
-          </div>
-        )}
+            </div>
 
-        {!IS_STUDY && (
-          <div>
             <div id="readers-guide">
               <ReadersGuide />
             </div>
@@ -179,8 +221,8 @@ const HomePage = () => {
               <ContactForm />
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <Footer />
     </div>
   );
