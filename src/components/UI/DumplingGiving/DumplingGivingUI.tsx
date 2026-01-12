@@ -16,6 +16,7 @@ import DumplingDrop from "./DumplingDrop";
 import LoveLanguagesUI from "../LoveLanguages/LoveLanguagesUI";
 import pointerImage from "../../../assets/UI/DumplingGiving/pointer.png";
 import { motion } from "framer-motion";
+import { IS_STUDY } from "../../../config";
 
 const DumplingGivingUI = () => {
   const { toggleBack, toggleNext } = useReadContext();
@@ -28,10 +29,15 @@ const DumplingGivingUI = () => {
     setIsDragging(false);
     setTimeout(() => {
       toggleBack(true); // delay enabling back so swipe actions don't trigger navigation upon dropping
-      toggleNext(true);
+      if (!IS_STUDY) {
+        toggleNext(true);
+      }
     }, 200);
     if (active && over) {
       setIsDropped(true);
+      if (IS_STUDY) {
+        toggleNext(true);
+      }
     }
   };
   const handleDragStart = (event: DragStartEvent) => {
