@@ -72,7 +72,9 @@ const Page = () => {
 
   // Disable navigation to next page for UI pages
   useEffect(() => {
-    toggleNext(![3, 5, 15, 17].includes(currentPage));
+    if (IS_STUDY) {
+      toggleNext(![3, 5, 15, 17].includes(currentPage));
+    }
   }, [currentPage]);
 
   // Preload page content
