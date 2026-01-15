@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { IS_STUDY } from "../../config";
 import { getParticipantID } from "../../hooks/getParticipantID";
-import { useEffect } from "react";
-import { endGame } from "../../utils/gameTracker";
 
 interface Props {
   score: number;

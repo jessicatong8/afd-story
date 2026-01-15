@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LunchBoxOpen from "../components/Game/GameStartAnimation";
 import { AnimatePresence, motion } from "framer-motion";
 import { IS_STUDY } from "../config";
-import { startGame } from "../utils/gameTracker";
+import { getParticipantID } from "../hooks/getParticipantID";
+import { endBook, startGame } from "../utils/tracker";
 
 const StoryEndPage = () => {
   const navigate = useNavigate();
   const [clicked, setClicked] = useState(false);
+  const participantId = getParticipantID();
 
   const handleGameStart = () => {
     setClicked(true);
@@ -22,6 +24,12 @@ const StoryEndPage = () => {
     visible: { x: 0 }, // Slide to original position (0)
     exit: { opacity: 50 },
   };
+
+  useEffect(() => {
+    if (IS_STUDY) {
+      endBook(participantId);
+    }
+  }, []);
 
   return (
     <AnimatePresence>

@@ -9,8 +9,15 @@ import { useEffect, useRef, useState } from "react";
 import AutoHideNavController from "../components/AutoHideNavClick";
 import { AnimatePresence, motion } from "framer-motion";
 import { IS_STUDY } from "../config";
+import { startBook } from "../utils/tracker";
 
 function ReadPage() {
+  useEffect(() => {
+    if (IS_STUDY) {
+      startBook();
+    }
+  }, []);
+
   useEffect(() => {
     // Disable scrolling when component mounts
     document.body.classList.add("overflow-hidden");

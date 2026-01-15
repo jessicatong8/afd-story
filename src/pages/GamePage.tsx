@@ -7,7 +7,7 @@ import GameEnd from "../components/Game/GameEnd";
 import NavigationBar from "../components/NavigationBar";
 import AnswerFeedback from "../components/Game/AnswerFeedback";
 import { IS_STUDY } from "../config";
-import { endGame } from "../utils/gameTracker";
+import { endGame } from "../utils/tracker";
 import { getParticipantID } from "../hooks/getParticipantID";
 
 const GamePage = () => {
