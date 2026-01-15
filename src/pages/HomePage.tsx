@@ -10,11 +10,24 @@ import ContactForm from "../components/Home/ContactForm";
 import Footer from "../components/Home/Footer";
 import { IS_STUDY } from "../config";
 import { getParticipantID } from "../hooks/getParticipantID";
+import { createParticipant } from "../hooks/createParticipant";
 
 const HomePage = () => {
   const location = useLocation();
-  const participantId = getParticipantID();
+  const participantId = getParticipantID(); // from URL or localStorage
   console.log("Participant ID:", participantId);
+
+  if (IS_STUDY) {
+    console.log("Study mode is ON");
+  } else {
+    console.log("Study mode is OFF");
+  }
+
+  useEffect(() => {
+    if (IS_STUDY) {
+      createParticipant(participantId);
+    }
+  }, []);
 
   useEffect(() => {
     if (IS_STUDY) return;
@@ -35,12 +48,6 @@ const HomePage = () => {
       }
     }
   }, [location]);
-
-  if (IS_STUDY) {
-    console.log("Study mode is ON");
-  } else {
-    console.log("Study mode is OFF");
-  }
 
   return (
     <div className="min-w-[350px] w-screen overflow-x-auto scroll-smooth">
