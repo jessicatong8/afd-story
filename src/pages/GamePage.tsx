@@ -35,6 +35,7 @@ const GamePage = () => {
   });
 
   const [gameEnd, setGameEnd] = useState(false);
+  const participantId = getParticipantID(); // make sure this returns a string
 
   // add a point to score whenever user answers correctly
   useEffect(() => {
@@ -75,7 +76,6 @@ const GamePage = () => {
     setGameEnd(true);
 
     if (IS_STUDY) {
-      const participantId = getParticipantID(); // make sure this returns a string
       console.log("handleGameEnd participantId:", participantId);
 
       endGame(participantId)
