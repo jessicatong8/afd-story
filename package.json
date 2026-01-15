@@ -16,6 +16,7 @@
     "@dnd-kit/modifiers": "^9.0.0",
     "@floating-ui/react": "^0.27.7",
     "@floating-ui/react-dom": "^2.1.2",
+    "@supabase/supabase-js": "^2.90.1",
     "@tailwindcss/vite": "^4.0.15",
     "framer-motion": "^12.6.3",
     "gh-pages": "^6.3.0",
