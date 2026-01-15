@@ -9,9 +9,12 @@ import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
 import ContactForm from "../components/Home/ContactForm";
 import Footer from "../components/Home/Footer";
 import { IS_STUDY } from "../config";
+import { getParticipantID } from "../hooks/getParticipantID";
 
 const HomePage = () => {
   const location = useLocation();
+  const participantId = getParticipantID();
+  console.log("Participant ID:", participantId);
 
   useEffect(() => {
     if (IS_STUDY) return;
@@ -59,40 +62,52 @@ const HomePage = () => {
 
             <div className="flex flex-col justify-center items-center gap-6 ">
               <div className="p-4 rounded-lg">
-                <div className="mt-4">
-                  In this part of the study, you and your child will read this
-                  interactive digital storybook and play a game we developed to
-                  help you better understand and navigate differences in each
-                  other’s love languages (est. 15 minutes).
-                </div>
+                {!participantId && (
+                  <div className="mt-4 font-bold">
+                    You are missing a participant ID. If you are not a
+                    participant in this study please do not proceed. If you are
+                    a participant and was redirected to this page via a survey
+                    you just completed, please do not proceed and contact the
+                    researchers for more information.
+                  </div>
+                )}
 
-                <div className="mt-4">
-                  You may either read aloud to your child, have your child read
-                  aloud, or take turns reading aloud together. You will
-                  encounter some interactive scenes.{" "}
-                  <span className="underline">Click</span> or{" "}
-                  <span className="underline">drag</span> elements as directed
-                  to progress through the story.
-                </div>
+                {participantId && (
+                  <div>
+                    <div className="mt-4">
+                      In this part of the study, you and your child will read
+                      this interactive digital storybook and play a game we
+                      developed to help you better understand and navigate
+                      differences in each other’s love languages (est. 15
+                      minutes).
+                    </div>
 
-                <div className="mt-4">
-                  After completing the book and the game, you will complete a
-                  short survey so we can learn more about you and your child's
-                  experience.
-                </div>
+                    <div className="mt-4">
+                      You may either read aloud to your child, have your child
+                      read aloud, or take turns reading aloud together. You will
+                      encounter some interactive scenes.{" "}
+                      <span className="underline">Click</span> or{" "}
+                      <span className="underline">drag</span> elements as
+                      directed to progress through the story.
+                    </div>
 
-                <div className="mt-4 font-bold">
-                  If you did not recieve a link to access this website through
-                  an online survey you just completed, please do not proceed and
-                  contact the researchers for more information.
-                </div>
+                    <div className="mt-4">
+                      After completing the book and the game, you will complete
+                      a short survey so we can learn more about you and your
+                      child's experience.
+                    </div>
+                  </div>
+                )}
               </div>
-              <Link
-                to={IS_STUDY ? `/read/${1}` : `/read/0`}
-                className="flex justify-center items-center button text-xl"
-              >
-                Start Reading
-              </Link>
+
+              {participantId && (
+                <Link
+                  to={IS_STUDY ? `/read/${1}` : `/read/0`}
+                  className="flex justify-center items-center button text-xl"
+                >
+                  Start Reading
+                </Link>
+              )}
             </div>
           </div>
         </div>
