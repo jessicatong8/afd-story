@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import lunchBoxClosed from "../assets/game/startPage/lunchbox_closed.png";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LunchBoxOpen from "../components/Game/GameStartAnimation";
 import { AnimatePresence, motion } from "framer-motion";
 import { IS_STUDY } from "../config";
+import { startGame } from "../utils/gameTracker";
 
 const StoryEndPage = () => {
   const navigate = useNavigate();
@@ -11,6 +12,10 @@ const StoryEndPage = () => {
 
   const handleGameStart = () => {
     setClicked(true);
+    // log game start time
+    if (IS_STUDY) {
+      startGame();
+    }
   };
   const animationVariants = {
     hidden: { x: "100%" }, // Start off-screen (right)

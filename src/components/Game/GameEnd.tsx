@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { IS_STUDY } from "../../config";
 import { getParticipantID } from "../../hooks/getParticipantID";
+import { useEffect } from "react";
+import { endGame } from "../../utils/gameTracker";
 
 interface Props {
   score: number;
@@ -12,6 +14,14 @@ const GameEnd = ({ score }: Props) => {
     hidden: { x: "100%" }, // Start off-screen (right)
     visible: { x: 0 }, // Slide to original position (0)
   };
+
+  // log game metrics to backend
+  useEffect(() => {
+    if (IS_STUDY) {
+      endGame(getParticipantID());
+    }
+  }, []);
+
   return (
     <motion.div
       variants={animationVariants}
