@@ -15,12 +15,10 @@ const GameEnd = ({ score }: Props) => {
     visible: { x: 0 }, // Slide to original position (0)
   };
 
-  if (IS_STUDY) {
-    console.log("Calling endGame");
-    endGame(getParticipantID())
-      .then(() => console.log("endGame finished"))
-      .catch((e) => console.error("endGame error:", e));
-  }
+  // console.log("Calling endGame");
+  // endGame(getParticipantID())
+  //   .then(() => console.log("endGame finished"))
+  //   .catch((e) => console.error("endGame error:", e));
 
   return (
     <motion.div
