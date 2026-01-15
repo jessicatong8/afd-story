@@ -64,35 +64,30 @@ const GamePage = () => {
   }, [currentQuestion, score, responseState]);
 
   // reset game when game ends
+  const handleGameEnd = () => {
+    setGameEnd(true);
+    localStorage.removeItem("questionOrder");
+    localStorage.removeItem("currentQuestion");
+    localStorage.removeItem("gameScore");
+  };
+
   // const handleGameEnd = () => {
+  //   console.log("Game ended! Participant ID:", getParticipantID());
   //   setGameEnd(true);
-  //   if (IS_STUDY) {
-  //     endGame(getParticipantID());
-  //   }
+
+  //   // if (IS_STUDY) {
+  //   //   console.log("Calling endGame");
+  //   //   endGame(getParticipantID())
+  //   //     .then(() => console.log("endGame finished"))
+  //   //     .catch((e) => console.error("endGame error:", e));
+  //   // }
+
   //   if (!IS_STUDY) {
   //     localStorage.removeItem("questionOrder");
   //     localStorage.removeItem("currentQuestion");
   //     localStorage.removeItem("gameScore");
   //   }
   // };
-
-  const handleGameEnd = () => {
-    console.log("Game ended! Participant ID:", getParticipantID());
-    setGameEnd(true);
-
-    // if (IS_STUDY) {
-    //   console.log("Calling endGame");
-    //   endGame(getParticipantID())
-    //     .then(() => console.log("endGame finished"))
-    //     .catch((e) => console.error("endGame error:", e));
-    // }
-
-    if (!IS_STUDY) {
-      localStorage.removeItem("questionOrder");
-      localStorage.removeItem("currentQuestion");
-      localStorage.removeItem("gameScore");
-    }
-  };
 
   // handle moving to the next question
   useEffect(() => {
