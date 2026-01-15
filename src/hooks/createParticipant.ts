@@ -6,9 +6,10 @@ export async function createParticipant(participantId: string | null) {
     return;
   }
 
+  // Try to insert a new row
   const { data, error } = await supabase
     .from("participants")
-    .upsert(
+    .insert([
       {
         participant_id: participantId,
         book_time_sec: 0,
@@ -17,12 +18,18 @@ export async function createParticipant(participantId: string | null) {
         game_completed: false,
         game_score: 0,
       },
-      { onConflict: "participant_id" } // important: avoid duplicates
-    );
+    ])
+    .select(); // optional: returns the inserted row
 
   if (error) {
-    console.error("Error creating participant row:", error);
+    // Check for conflict error (participant already exists)
+    if (error.code === "23505") {
+      // 23505 = unique constraint violation
+      console.log("Participant already exists, skipping insert:", participantId);
+    } else {
+      console.error("Error creating participant row:", error);
+    }
   } else {
-    console.log("Participant row ready:", data);
+    console.log("New participant row inserted:", data);
   }
 }
