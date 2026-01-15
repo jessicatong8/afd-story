@@ -63,31 +63,31 @@ const GamePage = () => {
     localStorage.setItem("gameScore", score.toString());
   }, [currentQuestion, score, responseState]);
 
-  // reset game when game ends
+  // // reset game when game ends
+  // const handleGameEnd = () => {
+  //   setGameEnd(true);
+  //   localStorage.removeItem("questionOrder");
+  //   localStorage.removeItem("currentQuestion");
+  //   localStorage.removeItem("gameScore");
+  // };
+
   const handleGameEnd = () => {
     setGameEnd(true);
+
+    if (IS_STUDY) {
+      const participantId = getParticipantID(); // make sure this returns a string
+      console.log("handleGameEnd participantId:", participantId);
+
+      endGame(participantId)
+        .then(() => console.log("endGame promise resolved"))
+        .catch((e) => console.error("endGame promise rejected:", e));
+    }
+
+    // Clear localStorage regardless of study mode
     localStorage.removeItem("questionOrder");
     localStorage.removeItem("currentQuestion");
     localStorage.removeItem("gameScore");
   };
-
-  // const handleGameEnd = () => {
-  //   console.log("Game ended! Participant ID:", getParticipantID());
-  //   setGameEnd(true);
-
-  //   // if (IS_STUDY) {
-  //   //   console.log("Calling endGame");
-  //   //   endGame(getParticipantID())
-  //   //     .then(() => console.log("endGame finished"))
-  //   //     .catch((e) => console.error("endGame error:", e));
-  //   // }
-
-  //   if (!IS_STUDY) {
-  //     localStorage.removeItem("questionOrder");
-  //     localStorage.removeItem("currentQuestion");
-  //     localStorage.removeItem("gameScore");
-  //   }
-  // };
 
   // handle moving to the next question
   useEffect(() => {
