@@ -15,13 +15,6 @@ const GameEnd = ({ score }: Props) => {
     visible: { x: 0 }, // Slide to original position (0)
   };
 
-  // log game metrics to backend
-  useEffect(() => {
-    if (IS_STUDY) {
-      endGame(getParticipantID());
-    }
-  }, []);
-
   return (
     <motion.div
       variants={animationVariants}

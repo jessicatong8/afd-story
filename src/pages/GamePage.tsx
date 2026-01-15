@@ -7,6 +7,8 @@ import GameEnd from "../components/Game/GameEnd";
 import NavigationBar from "../components/NavigationBar";
 import AnswerFeedback from "../components/Game/AnswerFeedback";
 import { IS_STUDY } from "../config";
+import { endGame } from "../utils/gameTracker";
+import { getParticipantID } from "../hooks/getParticipantID";
 
 const GamePage = () => {
   // get questionOrder from local storage if user has already started a game
@@ -64,9 +66,14 @@ const GamePage = () => {
   // reset game when game ends
   const handleGameEnd = () => {
     setGameEnd(true);
-    localStorage.removeItem("questionOrder");
-    localStorage.removeItem("currentQuestion");
-    localStorage.removeItem("gameScore");
+    if (IS_STUDY) {
+      endGame(getParticipantID());
+    }
+    if (!IS_STUDY) {
+      localStorage.removeItem("questionOrder");
+      localStorage.removeItem("currentQuestion");
+      localStorage.removeItem("gameScore");
+    }
   };
 
   // handle moving to the next question
