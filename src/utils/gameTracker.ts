@@ -43,7 +43,7 @@ export async function endGame(participantId: string|null) {
   const { data, error } = await supabase
     .from("participants")
     .update({
-      game_time_sec: gameTimeSec,    // <-- store in seconds
+      game_time_sec: gameTimeSec,
       game_completed: true,
       game_score: gameScore,
       updated_at: new Date(),
@@ -53,6 +53,6 @@ export async function endGame(participantId: string|null) {
   if (error) {
     console.error("Error saving game data:", error);
   } else {
-    console.log("Game data saved:", data);
+    console.log("Game data saved!");
   }
 }

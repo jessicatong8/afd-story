@@ -64,14 +64,6 @@ const GamePage = () => {
     localStorage.setItem("gameScore", score.toString());
   }, [currentQuestion, score, responseState]);
 
-  // // reset game when game ends
-  // const handleGameEnd = () => {
-  //   setGameEnd(true);
-  //   localStorage.removeItem("questionOrder");
-  //   localStorage.removeItem("currentQuestion");
-  //   localStorage.removeItem("gameScore");
-  // };
-
   const handleGameEnd = () => {
     setGameEnd(true);
 
