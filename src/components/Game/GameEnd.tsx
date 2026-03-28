@@ -56,9 +56,10 @@ const GameEnd = ({ score }: Props) => {
             <br></br>Click continue to be automatically redirected to the
             survey.
           </div>
-          {/*post-test survey link https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_da3CqEHNFInWUwm */}
+          {/*post-test survey link PILOT https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_da3CqEHNFInWUwm */}
+          {/*post-test survey link MAIN STUDY https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1HcQps4jqga71Sm */}
           <Link
-            to={`https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_da3CqEHNFInWUwm/?participant_id=${getParticipantID()}`}
+            to={`https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1HcQps4jqga71Sm/?participant_id=${getParticipantID()}`}
             className="!shadow-sm button "
           >
             Continue
