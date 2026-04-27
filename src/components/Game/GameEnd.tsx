@@ -49,13 +49,13 @@ const GameEnd = ({ score }: Props) => {
         </div>
       ) : (
         <div className="flex flex-col p-12 gap-12 justify-center items-center">
-          <div className="text-center text-lg">
+          {/* <div className="text-center text-lg">
             Congrats you have finished reading the book and playing the game!
             For the last part of this study, you will complete a short survey so
             we can learn more about you and your child's experience.
             <br></br>Click continue to be automatically redirected to the
             survey.
-          </div>
+          </div> */}
           {/*post-test survey link PILOT https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_da3CqEHNFInWUwm */}
           {/*post-test survey link MAIN STUDY https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1HcQps4jqga71Sm */}
           <Link
