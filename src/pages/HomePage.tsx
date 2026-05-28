@@ -118,8 +118,14 @@ const HomePage = () => {
                   </div>
                 )}
               </div>
-
-              {participantId && <Link to={`/read/${1}`}>Start Reading</Link>}
+              {participantId && (
+                <Link
+                  to={`/read/${1}`}
+                  className="flex justify-center items-center button text-xl"
+                >
+                  Start Reading
+                </Link>
+              )}
             </div>
           </div>
         </div>
