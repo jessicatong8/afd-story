@@ -68,10 +68,15 @@ const HomePage = () => {
                 />
               </Link>
             ) : (
-              <img
-                src={coverImage}
-                className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
-              />
+              <Link
+                to=""
+                className="hover:scale-97 active:scale-97 transition-all"
+              >
+                <img
+                  src={coverImage}
+                  className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
+                />
+              </Link>
             )}
 
             <div className="flex flex-col justify-center items-center gap-6 ">
