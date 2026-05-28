@@ -57,15 +57,22 @@ const HomePage = () => {
         // Study Mode Home Page
         <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
           <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
-            <Link
-              to={IS_STUDY ? `/read/${1}` : `/read/0`}
-              className="hover:scale-97 active:scale-97 transition-all"
-            >
+            {participantId ? (
+              <Link
+                to={`/read/${1}`}
+                className="hover:scale-97 active:scale-97 transition-all"
+              >
+                <img
+                  src={coverImage}
+                  className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
+                />
+              </Link>
+            ) : (
               <img
                 src={coverImage}
                 className="w-full h-auto rounded object-cover shadow-lg cursor-pointer pointer-events-non"
               />
-            </Link>
+            )}
 
             <div className="flex flex-col justify-center items-center gap-6 ">
               <div className="p-4 rounded-lg">
@@ -107,14 +114,7 @@ const HomePage = () => {
                 )}
               </div>
 
-              {participantId && (
-                <Link
-                  to={IS_STUDY ? `/read/${1}` : `/read/0`}
-                  className="flex justify-center items-center button text-xl"
-                >
-                  Start Reading
-                </Link>
-              )}
+              {participantId && <Link to={`/read/${1}`}>Start Reading</Link>}
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@ const HomePage = () => {
           <div className="flex flex-col gap-6 m-6 md:mx-24 lg:mx-12 xl:mx-40 2xl:mx-70">
             <div className="flex flex-col justify-center items-center gap-6 w-full h-full lg:flex-row mb-6">
               <Link
-                to={IS_STUDY ? `/read/${1}` : `/read/0`}
+                to={`/read/0`}
                 className="hover:scale-97 active:scale-97 transition-all"
               >
                 <img
@@ -136,7 +136,7 @@ const HomePage = () => {
 
               <div className="flex flex-col justify-center items-center gap-6 lg:items-start">
                 <Link
-                  to={IS_STUDY ? `/read/${1}` : `/read/0`}
+                  to={`/read/0`}
                   className="flex justify-center items-center button text-xl"
                 >
                   Start Reading
