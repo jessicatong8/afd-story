@@ -4,7 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
-  // base: "/afd-story"
-  
+  base: '/afd-story/',
+  plugins: [react(), tailwindcss()],
 })
