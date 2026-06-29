@@ -5,6 +5,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage"; // load immediately
 import NotFoundPage from "./pages/NotFoundPage";
 import LunchBoxOpen from "./components/Game/GameStartAnimation";
+import PreviewLoginPage from "./pages/PreviewLoginPage";
 
 const ReadPage = lazy(() => import("./pages/ReadPage"));
 const GamePage = lazy(() => import("./pages/GamePage"));
@@ -15,6 +16,10 @@ const router = createHashRouter([
     path: "/",
     element: <HomePage />,
     errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/preview-login",
+    element: <PreviewLoginPage />,
   },
   {
     path: "/read/:pageNumber",

@@ -5,6 +5,7 @@ import BackButton from "../components/BackButton";
 import NextButton from "../components/NextButton";
 import ProgressBar from "../components/ProgressBar";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import AutoHideNavController from "../components/AutoHideNavClick";
 import { AnimatePresence, motion } from "framer-motion";
@@ -12,11 +13,18 @@ import { IS_STUDY } from "../config";
 import { startBook } from "../utils/tracker";
 
 function ReadPage() {
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (IS_STUDY) {
       startBook();
+      return;
     }
-  }, []);
+
+    if (sessionStorage.getItem("storybook-preview-auth") !== "true") {
+      navigate("/preview-login", { replace: true });
+    }
+  }, [navigate]);
 
   useEffect(() => {
     // Disable scrolling when component mounts
