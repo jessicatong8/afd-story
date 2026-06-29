@@ -13,7 +13,7 @@ const Question = ({ question }: Props) => {
     5: "Even when Kevin’s dad is tired after work, he still takes the time to play catch Kevin. Which love language is Kevin's dad using?",
     6: "When Emma gets stuck on her math homework, dad is always there to help. Which love language is Emma's dad using?",
     7: "Mia knows mom spends a lot of time making her favorite foods, so she always says thank you at dinner. Which love language is Mia using?",
-    8: "Mom isn’t feeling well, so Emma brings her a warm cup of tea. Which love lanugage is Emma using?",
+    8: "Mom isn’t feeling well, so Emma brings her a warm cup of tea. Which love language is Emma using?",
     9: "Mia helps her mom make dumplings for New Year's Eve dinner. Which love language is Mia using?",
   };
 
