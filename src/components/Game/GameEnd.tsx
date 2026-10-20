@@ -58,8 +58,9 @@ const GameEnd = ({ score }: Props) => {
           </div> */}
           {/*post-test survey link PILOT https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_da3CqEHNFInWUwm */}
           {/*post-test survey link MAIN STUDY https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1HcQps4jqga71Sm */}
+          {/* post-test survey link MAIN STUDY REVISED https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1UnYPrAk42dMtBI */}
           <Link
-            to={`https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1HcQps4jqga71Sm/?participant_id=${getParticipantID()}`}
+            to={`https://claremontmckenna.co1.qualtrics.com/jfe/form/SV_1UnYPrAk42dMtBI/?participant_id=${getParticipantID()}`}
             className="!shadow-sm button "
           >
             Continue
